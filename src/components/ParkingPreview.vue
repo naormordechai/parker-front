@@ -5,13 +5,14 @@
             <img class="img-parking mr" :src="parking.imageURL" alt="parking">
             <div class="parking-box-details flex column space-between">
                 <h3>{{parking.address}}</h3>
+
                 <p>price: {{parking.price}}$</p>
-                <p>distance:?</p>
+                <p>0.2 km</p>
                 <div class="flex space-around">
                     <p>{{parking.amenities.isCovered}}</p>
-                    <p>{{parking.amenities.isForDisable}}</p>
-                    <p>{{parking.amenities.isPaved}}</p>
-            </div>
+                    <font-awesome-icon icon="wheelchair" v-if="parking.amenities.isForDisable" />
+                    <font-awesome-icon icon="road" v-if="parking.amenities.isPaved" />
+                </div>
                 <div>
                     <el-button type="info">Details</el-button>
                     <el-button @click.prevent="$router.push('/reserve')" type="success">Reserve</el-button>
@@ -51,23 +52,4 @@ export default {
     background-color: rgba(231, 231, 231, 0.192);
 }
 
-
-/* .flex {
-  display: flex;
-}
-
-.space-around {
-  justify-content: space-around;
-}
-
-.justify-content-c {
-  justify-content: center;
-}
-
-button {
-  cursor: pointer;
-}
-img {
-  width: 200px;
-} */
 </style>
