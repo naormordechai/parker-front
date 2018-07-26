@@ -10,8 +10,6 @@
                 <p>0.2 km</p>
                 <div class="flex space-around">
                     <p>{{parking.amenities.isCovered}}</p>
-                    <font-awesome-icon icon="wheelchair" v-if="parking.amenities.isForDisable" />
-                    <font-awesome-icon icon="road" v-if="parking.amenities.isPaved" />
                 </div>
                 <div>
                     <el-button type="info">Details</el-button>

@@ -34,8 +34,6 @@
             <p>Amenties</p>
                 <div class="box-amenties flex justify-content-c">
                     <p>{{parkingDetail.parking.amenities.isCovered}}</p>
-                    <font-awesome-icon icon="wheelchair" />
-                    <font-awesome-icon icon="road" />
                 </div>
         </div>
     </el-card>
@@ -65,8 +63,10 @@ data(){
 methods:{
     loadParkingId(){
         var parkingId = this.$route.params.id
+        console.log('asdasdas',parkingId)
         ParkingService.getById(parkingId)
         .then(res => {
+            console.log('res',res)
             this.parkingDetail = res
         })
     },

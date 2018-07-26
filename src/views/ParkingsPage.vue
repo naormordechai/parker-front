@@ -20,7 +20,6 @@ export default {
             return ParkingService.query()
             .then(res => {
                 this.parkings = res
-                
             })
         }
     },
