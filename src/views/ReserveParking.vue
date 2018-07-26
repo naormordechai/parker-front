@@ -35,8 +35,10 @@ export default {
           }
          }
     },
-    created() {
-
+    created: {
+        initMarker() {
+            
+        }
     },
     moethods: {
         setParkingDuration() {
