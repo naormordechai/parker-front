@@ -6,14 +6,11 @@
             map-type-id="terrain"
             style="height: 300px"
             >
-        <GmapMarker     
-            :key="index"
-            v-for="(m, index) in markers"     
-            :position="m.position"
+        <GmapMarker           
+            :position="reservedParking"
             :clickable="true"
             :draggable="true"
-            @click="center=m.position"
-        />
+            @click="center=m.position" />
         </GmapMap>
         <div class="reserve-details">
             <p>How many hours?</p>
@@ -26,25 +23,34 @@
 </template>
 
 <script>
+import ParkingService from '../../services/ParkingService.js'
+
 export default {
     
     data () {
         return {
           hours: 0,
-          parking: {
+          reservedParking: {
               lat: 0,
               lng: 0
           }
          }
     },
-    created: {
-        initMarker() {
-            
-        }
+    created(){
+        this.initMarker()        
     },
-    moethods: {
+    methods: {
         setParkingDuration() {
-
+        },
+        initMarker() {            
+            var parkingId = this.$route.params
+            console.log('parking ID: ', parkingId)
+            ParkingService.getById(parkingId)
+            .then (res=> {
+                this.reservedParking = res.location
+                console.log('reserved parking: ', this.reservedParking)
+                console.log('res location: ', res.location)
+            })
         }
 
     }

@@ -38,7 +38,7 @@ export default new Router({
       component: signUpPage
     },
     {
-      path: '/reserve',
+      path: '/reserve/:id',
       name: 'reserve-parking',
       component: ReserveParking
     }

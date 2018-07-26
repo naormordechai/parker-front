@@ -46,7 +46,7 @@
         </div>
     </el-card>
         
-             <el-button @click="$router.push('/reserve')" class="btn-reserve" type="success">Reserve Now!</el-button>
+             <el-button @click="$router.push('/reserve/'+parkingDetail.parking._id)" class="btn-reserve" type="success">Reserve Now!</el-button>
 
     </div>
     </section>
