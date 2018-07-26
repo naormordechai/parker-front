@@ -7,7 +7,8 @@
             map-type-id="terrain"
             style="height: 300px"
             >
-        <GmapMarker           
+        <GmapMarker   
+                 
             :position="parking.location"
             :clickable="true"
             :draggable="true"
@@ -33,12 +34,16 @@ export default {
     
     data () {
         return {
-          hours: 2,
+          hours: 1,
           parking: {
               location: {
                   lat:0,
                   lng:0
-              }
+            },
+            // markers: [
+            //     {lat:32.003,lng:31.334},
+            //     {lat:35.3,lng: 32.3}
+            // ]
           }         
          }
     },
@@ -49,7 +54,7 @@ export default {
     },
     methods: {
         reserveParking() {
-            var occupiedUntil = Date.now() + this.hours * 60 * 60
+            var occupiedUntil = Date.now() + this.hours * 60 * 60 * 1000
             var reservedParking = {
                 reserverId: '5b583081f6d632e56ebd6a43',
                 parkingId: this.parking._id,
