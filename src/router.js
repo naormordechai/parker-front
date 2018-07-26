@@ -5,6 +5,8 @@ import About from './views/About.vue'
 import parkingsPage from './views/ParkingsPage.vue'
 import ParkingDetail from './views/ParkingDetails.vue'
 import signUpPage from './views/SignUpPage.vue'
+import ReserveParking from './views/ReserveParking.vue'
+
 
 Vue.use(Router)
 
@@ -35,5 +37,10 @@ export default new Router({
       name: 'sign-up',
       component: signUpPage
     },
+    {
+      path: '/reserve',
+      name: 'reserve-parking',
+      component: ReserveParking
+    }
   ]
 })
