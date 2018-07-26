@@ -34,6 +34,8 @@
             <p>Amenties</p>
                 <div class="box-amenties flex justify-content-c">
                     <p>{{parkingDetail.parking.amenities.isCovered}}</p>
+                    <!-- <font-awesome-icon icon="wheelchair" />
+                    <font-awesome-icon icon="road" /> -->
                 </div>
         </div>
     </el-card>

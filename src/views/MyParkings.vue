@@ -26,6 +26,7 @@
 
 <script>
 import ParkingService from '../../services/ParkingService';
+import UserService from '../../services/UserService.js'
 
 
 export default {
@@ -39,7 +40,7 @@ export default {
     },
     methods:{
         loadParkingsActivity(){
-            ParkingService.getUserById()
+            UserService.getUserById()
             .then(res => {
                 this.user = res.user;
                 this.reservedParkings = res.reserveParkings

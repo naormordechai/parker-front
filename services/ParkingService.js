@@ -1,5 +1,6 @@
-const PARKING_URL = 'localhost:3000'
 import axios from 'axios'
+const PARKING_URL = '//localhost:3000/parking'
+
 
 var parkingDetail = {
     owenr: {
@@ -44,7 +45,9 @@ var parkings = [
         reserverId: '5b583081f6d632e56ebd6a43',
         address: "Sokolov 87, Tel Aviv",
         isAvaliable: true,
-        ownerId: "5b583081f6d632e56ebd6a44",
+        occupiedUntil: Date.now(),
+        reserverId: '',
+        ownerId: "5b583081f6d632e56ebd6a44",        
         price: 20,
         amenities: {
             isCovered: true,
@@ -63,6 +66,8 @@ var parkings = [
         },
         address: "basel 32, Tel Aviv",
         isAvaliable: true,
+        occupiedUntil: Date.now(),
+        reserverId: '',
         ownerId: "5b583081f6d632e56ebd6a43",
         price: 28,
         amenities: {
@@ -116,8 +121,26 @@ function query() {
     // .then(res => res.data)
 }
 
-function getById(id) {
-    return Promise.resolve(parkingDetail)
+function getById(parkingId) {
+    return axios.get(`${PARKING_URL}/${parkingId}`)
+    .then(res => res.data)
+    .then(data => {
+        data.parking.location.lat = +data.parking.location.lat
+        data.parking.location.lng = +data.parking.location.lng
+        
+        return data
+    })
+    console.log('res: ', res)
+    console.log('res data: ', res.data)    
+}
+
+function reserveParking(parkingReserved){
+    console.log('parking reserved: ', parkingReserved)
+    return axios.put(`${PARKING_URL}/${parkingReserved.parkingId}`, parkingReserved)
+        .then(res => res.data)
+        console.log('res: ', res)
+        console.log('res data: ', res.data)
+
 }
 
 function getUserById(userId) {
@@ -127,5 +150,6 @@ function getUserById(userId) {
 export default {
     query,
     getById,
-    getUserById
+    getUserById,
+    reserveParking
 }

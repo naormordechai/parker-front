@@ -1,13 +1,14 @@
 <template>
     <section class="reserve-parking">
+        {{parking}}
         <GmapMap
-            :center="{lat: 32.0749831, lng: 34.9120554}"
+            :center="parking.location"
             :zoom="15"
             map-type-id="terrain"
             style="height: 300px"
             >
         <GmapMarker           
-            :position="reservedParking"
+            :position="parking.location"
             :clickable="true"
             :draggable="true"
             @click="center=m.position" />
@@ -15,8 +16,11 @@
         <div class="reserve-details">
             <p>How many hours?</p>
             <form submit="setParkingDuration">
-            <input v-model="hours" class="hours" type="number" placeholder="number of hours" />        
-            <button class="reserve-btn">Reserve Parking!</button>
+            <el-input-number v-model="hours" :min="1" :max="10"></el-input-number>
+            <!-- <input v-model="hours" class="hours" type="number" min="1" placeholder="number of hours" />  -->
+            <p>Total Price: ${{cost}}</p>       
+            <!-- <button class="reserve-btn">Reserve Parking!</button> -->
+             <el-button type="success" @click="reserveParking">Reserve Parking!</el-button>
             </form>
         </div>
     </section>
@@ -29,30 +33,48 @@ export default {
     
     data () {
         return {
-          hours: 0,
-          reservedParking: {
-              lat: 0,
-              lng: 0
-          }
+          hours: 2,
+          parking: {
+              location: {
+                  lat:0,
+                  lng:0
+              }
+          }         
          }
     },
     created(){
-        this.initMarker()        
+        // this.initMarker() 
+        this.loadParking()
+               
     },
     methods: {
-        setParkingDuration() {
+        reserveParking() {
+            var occupiedUntil = Date.now() + this.hours * 60 * 60
+            var reservedParking = {
+                reserverId: '5b583081f6d632e56ebd6a43',
+                parkingId: this.parking._id,
+                occupiedUntil: occupiedUntil
+            }
+            ParkingService.reserveParking(reservedParking)
+            .then ((res)=> {
+                console.log('parking has been reserved!')
+            })
+            
         },
-        initMarker() {            
-            var parkingId = this.$route.params
-            console.log('parking ID: ', parkingId)
+        loadParking() {
+            var parkingId = this.$route.params.id
             ParkingService.getById(parkingId)
             .then (res=> {
-                this.reservedParking = res.location
-                console.log('reserved parking: ', this.reservedParking)
-                console.log('res location: ', res.location)
+                this.parking = res.parking
             })
         }
 
+    },
+    computed: {
+        cost() {
+            return this.hours * this.parking.price
+        },
+       
     }
 }
 </script>
@@ -68,5 +90,11 @@ export default {
     }
     .reserve-details {
         margin: 20px 0
+    }
+    .el-input-number {
+        margin: 20px 0;
+    }
+    .el-button{
+        margin: 20px;
     }
 </style>
