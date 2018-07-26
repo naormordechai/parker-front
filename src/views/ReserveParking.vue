@@ -6,7 +6,9 @@
             map-type-id="terrain"
             style="height: 300px"
             >
-        <GmapMarker          
+        <GmapMarker     
+            :key="index"
+            v-for="(m, index) in markers"     
             :position="m.position"
             :clickable="true"
             :draggable="true"

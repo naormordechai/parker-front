@@ -40,12 +40,13 @@
         </div>
     </el-card>
 
-        <el-card>
+    <el-card>
         <div>
             <p>{{parkingDetail.parking.description}}</p>
         </div>
     </el-card>
-      <el-button @click="$router.push('/reserve')" class="btn-reserve" type="success">Reserve Now!</el-button>
+        
+             <el-button @click="$router.push('/reserve')" class="btn-reserve" type="success">Reserve Now!</el-button>
 
     </div>
     </section>
@@ -110,6 +111,9 @@ created(){
 .btn-reserve{
     width: 350px;
     margin-top: 30px;
+    position: fixed;
+    top: 88%;
+    left:30%
 }
 
 
