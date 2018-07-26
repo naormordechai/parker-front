@@ -1,4 +1,5 @@
-
+import axios from 'axios'
+const PARKING_URL = '//localhost:3000/parking'
 
     var parkingDetail = {
         owenr: {
@@ -8,8 +9,8 @@
             _id: 'asdasd'
         },
         parking: {
-            occupidUntil :  0,
-            occupiderId  : 0,
+            occupiedUntil :  0,
+            reserverId  : '',
             _id: "5b583499c0b5ace041055cdf",
             location: {
                 lat: 32.055401,
@@ -40,7 +41,9 @@ var parkings = [
         },
         address: "Sokolov 87, Tel Aviv",
         isAvaliable: true,
-        ownerId: "5b583081f6d632e56ebd6a44",
+        occupiedUntil: Date.now(),
+        reserverId: '',
+        ownerId: "5b583081f6d632e56ebd6a44",        
         price: 20,
         amenities: {
             isCovered: true,
@@ -59,6 +62,8 @@ var parkings = [
         },
         address: "basel 32, Tel Aviv",
         isAvaliable: true,
+        occupiedUntil: Date.now(),
+        reserverId: '',
         ownerId: "5b583081f6d632e56ebd6a43",
         price: 28,
         amenities: {
@@ -79,10 +84,31 @@ function query() {
     return Promise.resolve(parkings)
 }
 
-function getById(id) {
-    return Promise.resolve(parkingDetail)
+function getById(parkingId) {
+    return axios.get(`${PARKING_URL}/${parkingId}`)
+    .then(res => res.data)
+    .then(data => {
+        data.parking.location.lat = +data.parking.location.lat
+        data.parking.location.lng = +data.parking.location.lng
+        
+        return data
+    })
+    console.log('res: ', res)
+    console.log('res data: ', res.data)    
 }
+
+function reserveParking(parkingReserved){
+    console.log('parking reserved: ', parkingReserved)
+    return axios.put(`${PARKING_URL}/${parkingReserved.parkingId}`, parkingReserved)
+        .then(res => res.data)
+        console.log('res: ', res)
+        console.log('res data: ', res.data)
+
+}
+
+
 export default {
     query,
-    getById
+    getById,
+    reserveParking
 }
