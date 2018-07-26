@@ -1,5 +1,8 @@
 <template>
   <section>
+    <div class="container">
+        
+          <el-input placeholder="Search"></el-input>
       <ul>
           <li v-for="parking in parkings" :key="parking._id">
             <router-link class="text-decoration" :to="'parking/'+parking._id">
@@ -7,6 +10,7 @@
             </router-link>
           </li>
       </ul>
+    </div>
   </section>
 </template>
 
@@ -18,7 +22,6 @@ export default {
         parkings: Array,
 
     },
-    // props: [parkings]
 
 components:{
         ParkingPreview
@@ -27,10 +30,10 @@ components:{
 </script>
 
 <style scoped>
-ul{
-    list-style: none;
+ul {
+  list-style: none;
 }
-.text-decoration{
-    text-decoration: none;
+.text-decoration {
+  text-decoration: none;
 }
 </style>

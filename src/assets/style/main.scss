@@ -6,6 +6,13 @@
     box-sizing: border-box;
 }
 
+/* globals */
+
+.container{
+    width: 1300px;
+    margin: 0 auto;
+}
+
 /* helpers */
 
 .flex{
@@ -22,4 +29,12 @@
 
 .space-between{
     justify-content: space-between;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.justify-content-c{
+    justify-content: center;
 }

@@ -2,7 +2,9 @@
 
     var parkingDetail = {
         owenr: {
-            name: 'asdas',
+            firstName: 'firstName',
+            lastName:'lastName',
+            eMail:'a@a.com',
             _id: 'asdasd'
         },
         parking: {
@@ -19,7 +21,7 @@
             price: 28,
             amenities: {
                 isCovered: true,
-                isPaved: false,
+                isPaved: true,
                 isForDisable: false
             },
             description: "One of the most popular spots for parking - available during the days at a killer price",
@@ -42,7 +44,7 @@ var parkings = [
         price: 20,
         amenities: {
             isCovered: true,
-            isPaved: false,
+            isPaved: true,
             isForDisable: true
         },
         description: "Daily parking in the old north of Tel Aviv. Located just few minutes walking from all the main cultural places of TLV",
@@ -61,7 +63,7 @@ var parkings = [
         price: 28,
         amenities: {
             isCovered: true,
-            isPaved: false,
+            isPaved: true,
             isForDisable: false
         },
         description: "One of the most popular spots for parking - available during the days at a killer price",
