@@ -17,9 +17,9 @@
 
     <el-card>
         <div>
-            <p>{{parkingDetail.owenr.firstName}}</p>
-            <p>{{parkingDetail.owenr.lastName}}</p>
-            <p>{{parkingDetail.owenr.eMail}}</p>
+            <p>{{parkingDetail.owner.firstName}}</p>
+            <p>{{parkingDetail.owner.lastName}}</p>
+            <p>{{parkingDetail.owner.eMail}}</p>
         </div>
     </el-card>
 </div>
