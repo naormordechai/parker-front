@@ -36,6 +36,15 @@ function getUserById(userId) {
     return Promise.resolve(parkingsActivity)
 }
 
+function checkLogin({ email }) {
+    return axios.post('/login', { email })
+        .then(res => {
+ //           _setLoggedinUser(res.data)
+             console.log('res.data:',res.data)
+            return (res.data)
+        })
+}
+
 export default {
     getUserById
 }
