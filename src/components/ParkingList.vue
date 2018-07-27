@@ -22,6 +22,9 @@ export default {
         parkings: Array,
 
     },
+    created() {
+      console.log('parkings', this.parkings)
+    },
 
 components:{
         ParkingPreview
