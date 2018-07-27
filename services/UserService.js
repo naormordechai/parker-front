@@ -36,7 +36,7 @@ function getUserById(userId) {
     return Promise.resolve(parkingsActivity)
 }
 
-function checkLogin({ email }) {
+function login({ email }) {
     return axios.post('/login', { email })
         .then(res => {
  //           _setLoggedinUser(res.data)
@@ -45,6 +45,14 @@ function checkLogin({ email }) {
         })
 }
 
+function logout(){
+    //TODO
+}
+
+
+
 export default {
-    getUserById
+    getUserById,
+    login,
+    logout
 }
