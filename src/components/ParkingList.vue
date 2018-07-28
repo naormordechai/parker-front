@@ -1,5 +1,7 @@
 <template>
   <section>
+    <section>
+    </section>
     <div class="container">
         
           <el-input placeholder="Search"></el-input>
@@ -11,6 +13,7 @@
           </li>
       </ul>
     </div>
+       
   </section>
 </template>
 
@@ -18,16 +21,34 @@
 import ParkingPreview from './ParkingPreview.vue'
 
 export default {
-    props: {
-        parkings: Array,
+  data(){
+    return{
 
-    },
+    }
+  },
+   props:{
+     parkings:Array
+   },
+   created(){
+     
+   },
+   methods:{
+
+     },
+     mounted(){
+        console.log('sababa',this.parkings);
+       },
+ 
 
 components:{
-        ParkingPreview
+    ParkingPreview
     },
 }
 </script>
+
+
+
+
 
 <style scoped>
 ul {

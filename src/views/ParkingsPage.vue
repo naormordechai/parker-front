@@ -1,6 +1,6 @@
 <template>
 <section>
-    <ParkingList :parkings = "parkings"/>
+    <ParkingList :parkings ="parkings"/>
     </section>
 </template>
 
@@ -12,22 +12,19 @@ import ParkingService from '../../services/ParkingService.js'
 export default {
     data(){
         return{
-            parkings:[]
-        }
-    },
-    methods:{
-        loadParkings(){
-            return ParkingService.query()
-            .then(res => {
-                this.parkings = res
-            })
+
         }
     },
     created(){
-        this.loadParkings()
+       this.$store.dispatch({type:'loadParkings'})
+    },
+    computed:{
+        parkings() {
+            return this.$store.getters.parkingsToDisplay;
+        }
     },
         components:{
-        ParkingList
+            ParkingList
     },
 }
 </script>
