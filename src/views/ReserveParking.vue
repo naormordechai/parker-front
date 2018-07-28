@@ -1,9 +1,11 @@
 <template>
     <section class="reserve-parking">
-        {{parking}}
+        <!-- {{parking}} -->
+        <h2>{{parking.address}}</h2>
+        
         <GmapMap
             :center="parking.location"
-            :zoom="15"
+            :zoom="17"
             map-type-id="terrain"
             style="height: 300px"
             >
@@ -52,7 +54,7 @@ export default {
     methods: {
         reserveParking() {
             if (this.user._id === '' || this.user._id === false) {
-                this.$route.push('/login')
+                this.$router.push('/login')
             } else {           
             var occupiedUntil = Date.now() + this.hours * 60 * 60 * 1000
             var reservedParking = {
@@ -104,5 +106,8 @@ export default {
     }
     .el-button{
         margin: 20px;
+    }
+    h2 {
+        margin-bottom: 20px;
     }
 </style>

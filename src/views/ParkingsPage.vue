@@ -12,19 +12,16 @@ import ParkingService from '../../services/ParkingService.js'
 export default {
     data(){
         return{
-            parkings:[]
+           
         }
     },
-    methods:{
-        loadParkings(){
-            return ParkingService.query()
-            .then(res => {
-                this.parkings = res
-            })
+    computed:{
+        parkings(){
+            return this.$store.getters.parkingToDisplay
         }
     },
     created(){
-        this.loadParkings()
+        this.$store.dispatch({type: 'loadParkings'})
     },
         components:{
         ParkingList

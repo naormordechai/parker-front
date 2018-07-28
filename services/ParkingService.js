@@ -116,9 +116,9 @@ var parkingsActivity = {
 
 
 function query() {
-    return Promise.resolve(parkings)
-    // return axios.get(`${PARKING_URL}/parking`)
-    // .then(res => res.data)
+    // return Promise.resolve(parkings)
+    return axios.get(PARKING_URL)
+    .then(res => res.data)
 }
 
 function getById(parkingId) {

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import ParkingModule from '@/ParkingModule.js'
-import UserModule from '@/UserModule.js'
+import ParkingModule from './ParkingModule.js'
+import UserModule from './UserModule.js'
 
 
 Vue.use(Vuex)
