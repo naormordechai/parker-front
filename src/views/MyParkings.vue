@@ -4,8 +4,8 @@
         <div class="my-details">
                 <h2>My Details</h2>
             <el-card class="box-card">
-                <h3>Name: {{user.firstName}} {{user.lastName}}</h3>
-                <h3>email: {{user.eMail}}</h3>
+                <p>Name: {{user.firstName}} {{user.lastName}}</p>
+                <p>email: {{user.eMail}}</p>
             </el-card>
         </div>
             
@@ -18,10 +18,15 @@
                                 <el-card class="box-card">
                                     <div class="flex space-between">
                                         <img  :src="parking.imageURL">
-                                        <div class="flex column">
-                                            <h3> {{parking.address}} </h3>
-                                            <h3> ${{parking.price}} per hour </h3>
-                                            <h3> ends {{convertTimestamp(parking.occupiedUntil)}}</h3>
+                                        <div class="flex column space-between">
+                                            <div class="flex column">
+                                                <h3> {{parking.address}} </h3>
+                                                <h3> ${{parking.price}} per hour </h3>
+                                                <h3> ends {{convertTimestamp(parking.occupiedUntil)}}</h3>
+                                            </div>
+                                            <div>
+                                              <button @click.prevent="stopParking(parking._id)">Stop Parking</button>  
+                                            </div>
                                         </div>
                                         <GmapMap
                                             :center="parking.location"
@@ -33,7 +38,7 @@
                                             :position="parking.location"
                                             :clickable="true"
                                             :draggable="false"
-                                            @click.stop="center=m.position" />
+                                            @click.prevent="center=m.position" />
                                         </GmapMap>
                                     </div>
                                 </el-card> 
@@ -102,14 +107,14 @@ export default {
             .then(res => {
                 this.user = res.user;
                 this.reservedParkings = res.reservedParkings                               
-                this.ownedParkings = res.ownedParkings
-                // console.log('user',this.user)
-                // console.log('reservedParkings: ',this.reserveParkings)
-                // console.log('ownedParkings',this.ownedParkings)
+                this.ownedParkings = res.ownedParkings                
             })            
         },
         convertTimestamp (timestamp) {
             return moment(timestamp).fromNow();;
+        },
+        stopParking (parkingId) {
+            this.$store.dispatch({type:'stopParking', parkingId: parkingId})
         }
     },
     created() {
