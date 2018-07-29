@@ -1,4 +1,5 @@
 <template>
+
     <section v-if="parkingDetail">
         <div class="container">
 <el-button-group class="box-btns-nav">
@@ -46,7 +47,8 @@
         </div>
     </el-card>
         
-             <el-button @click="$router.push('/reserve/'+parkingDetail.parking._id)" class="btn-reserve" type="success">Reserve Now!</el-button>
+             <el-button @click="$router.push('/reserve/'+parkingDetail.parking._id)" 
+             class="btn-reserve" type="success" :disabled="isOccupied">Reserve Now!</el-button>
 
     </div>
     </section>
@@ -70,11 +72,18 @@ methods:{
         .then(res => {
             console.log('res',res)
             this.parkingDetail = res
+
         })
     },
 },
 created(){
         this.loadParkingId()
+        
+    },
+    computed:{
+        isOccupied(){
+            return this.parkingDetail.parking.occupiedUntil > Date.now()
+        }
     }
 }
 </script>

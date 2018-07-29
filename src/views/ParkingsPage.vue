@@ -1,7 +1,6 @@
 <template>
 <section>
     <ParkingList :parkings ="parkings"/>
-    <h1>helooooasdasd</h1>
     </section>
 </template>
 
@@ -20,7 +19,7 @@ export default {
     },
     computed:{
         parkings() {
-            return this.$store.getters.parkingsToDisplay;
+            return this.$store.getters.parkingToDisplay;
         }
     },
         components:{
