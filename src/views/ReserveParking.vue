@@ -48,8 +48,6 @@ export default {
     created(){
         // this.initMarker() 
         this.loadParking()
-       
-               
     },
     methods: {
         reserveParking() {

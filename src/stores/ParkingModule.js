@@ -1,21 +1,26 @@
 import ParkingService from '../../services/ParkingService.js'
 
-export default{
-    state:{
-        parkings:[],
+
+export default {
+    state: {
+        parkings: [],
 
     },
-    mutations:{
-        setParkings(state, {parkings}){
+    mutations: {
+        setParkings(state, { parkings }) {
             state.parkings = parkings
+            console.log('mutations:',state.parkings)
             console.log('state parkings after mutation: ', state.parkings)
         },
         stopParking(state, {parking}) {
             var idx= state.parkings.indexOf(parking)
             console.log('idx: ',idx)
             state.parkings.splice(idx,1,parking)
-        }
+        },
        
+        addParking(state, { newParking }) {
+            state.parkings.unshift(newParking)
+        },
     },
     getters: {
         parkingToDisplay(state) {
@@ -23,7 +28,7 @@ export default{
         }
     },
     actions: {
-        loadParkings(context, payload){
+        loadParkings(context, payload) {
             return ParkingService.query()
             .then((parkings)=> {
                 console.log('store action then parkings: ', parkings)
@@ -43,7 +48,15 @@ export default{
             .then((parking) => {
                 context.commit({type: 'stopParking', parking})
             })
-        }
+        },
+        addParking(context, { newParking }) {
+            console.log("actions:",newParking);
+            
+            return ParkingService.addParking({ newParking })
+                .then((res) => {
+                    return context.commit({ type: 'addParking', newParking: res.data })
+                })
+        },
     }
-    
+
 }

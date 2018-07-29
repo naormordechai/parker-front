@@ -1,6 +1,7 @@
 import axios from 'axios'
 const PARKING_URL = '//localhost:3000/parking'
 
+
 function query() {
     // return Promise.resolve(parkings)
     return axios.get(PARKING_URL)
@@ -18,6 +19,11 @@ function getById(parkingId) {
     })
     console.log('res: ', res)
     console.log('res data: ', res.data)    
+}
+
+function addParking(parking) {
+    console.log('parking',parking)
+    return axios.post(PARKING_URL + '/add', parking)
 }
 
 function reserveParking(parkingReserved){
@@ -48,5 +54,7 @@ export default {
     getById,
     // getUserById,
     reserveParking,
-    stopParking
+    stopParking,  
+    reserveParking,
+    addParking
 }
