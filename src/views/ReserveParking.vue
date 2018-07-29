@@ -1,9 +1,11 @@
 <template>
     <section class="reserve-parking">
-        {{parking}}
+        <!-- {{parking}} -->
+        <h2>{{parking.address}}</h2>
+        
         <GmapMap
             :center="parking.location"
-            :zoom="15"
+            :zoom="17"
             map-type-id="terrain"
             style="height: 300px"
             >
@@ -39,25 +41,22 @@ export default {
               location: {
                   lat:0,
                   lng:0
-            },
-            // markers: [
-            //     {lat:32.003,lng:31.334},
-            //     {lat:35.3,lng: 32.3}
-            // ]
+            }                     
           }         
          }
     },
     created(){
         // this.initMarker() 
         this.loadParking()
-        
-               
     },
     methods: {
         reserveParking() {
+            if (this.user._id === '' || this.user._id === false) {
+                this.$router.push('/login')
+            } else {           
             var occupiedUntil = Date.now() + this.hours * 60 * 60 * 1000
             var reservedParking = {
-                reserverId: '5b583081f6d632e56ebd6a43',
+                reserverId: this.user._id,
                 parkingId: this.parking._id,
                 occupiedUntil: occupiedUntil
             }
@@ -65,7 +64,7 @@ export default {
             .then ((res)=> {
                 console.log('parking has been reserved!')
             })
-            
+            }
         },
         loadParking() {
             var parkingId = this.$route.params.id
@@ -73,14 +72,17 @@ export default {
             .then (res=> {
                 this.parking = res.parking
             })
-        }
+        },
+        
 
     },
     computed: {
         cost() {
             return this.hours * this.parking.price
         },
-       
+       user() {
+           return this.$store.getters.loggedInUser
+       }
     }
 }
 </script>
@@ -102,5 +104,8 @@ export default {
     }
     .el-button{
         margin: 20px;
+    }
+    h2 {
+        margin-bottom: 20px;
     }
 </style>

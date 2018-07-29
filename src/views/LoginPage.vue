@@ -4,28 +4,64 @@
     Hello!!
     <h3>Login</h3>
     {{$store.getters.loggedInUser}}
-    <form>
-        <input type="text">
+
+    <div class="login">
+                <form @submit.prevent="login">
+                    <input type="text" v-model="email" placeholder="Insert your email"/>                   
+                    <button type="submit">Login</button>
+                </form>
+                <p>{{message}}</p>
+        </div>
+    <!-- <form type="submit" @click="login">
+        <input type="text" v-model="email">
+        <button>login</button>
         <input type="submit" value="Login" @click="login">
-    </form>
+    </form> -->
     </section>
 </template>
 
 <script>
 export default {
-methods:{
-    login(){
-        this.$store.commit({type: 'setUser', user: {
-            _id: 50505050,
-            eMail: 'a@a.com',
-            firstName: 'elad',
-            lastName : 'frizi'
-        }})
-    }
-}
-}
+  data() {
+    return {
+      email: '',
+      message: ''
+    };
+  },
+  methods: {
+      login () {
+          if ((!this.email)){
+              this.message = 'please enter your email address'
+              return 
+          } 
+              this.$store.dispatch({type: 'login', email:this.email})   
+              .then (_=> this.$router.push('/parking'))          
+            //   .then ((user) => {
+            //       console.log('user from store: ', user)
+            //       this.message = user.firstName + ' logged in successfully!'
+            //       this.email = ''
+                  
+            //   })
+           
+              
+          }
+      }
+    // login(){
+    //     this.$store.commit({type: 'setUser', user: {
+    //         _id: 50505050,
+    //         eMail: 'a@a.com',
+    //         firstName: 'elad',
+    //         lastName : 'frizi'
+    //     }})
+    // }
+  }
+
+
+
 </script>
 
 <style>
-
+.login input, button {
+         padding: 10px;
+}
 </style>

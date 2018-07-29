@@ -1,3 +1,8 @@
+const USER_URL = (process.env.NODE_ENV !== 'development')
+    ? '/user'
+    : '//localhost:3000/user';
+
+import axios from 'axios'
 
 var parkingsActivity = {
     user: {
@@ -33,9 +38,32 @@ var parkingsActivity = {
 
 
 function getUserById(userId) {
-    return Promise.resolve(parkingsActivity)
+    return axios.get(`${USER_URL}/${userId}`)
+    // return Promise.resolve(parkingsActivity)
+    .then(res => {
+        console.log('res: ', res)
+        return res.data
+    })
 }
 
+function login(email) {
+    console.log('email: ', email)
+    return axios.post(`${USER_URL}/checkLogin`, {email})
+        .then(res => {
+ //           _setLoggedinUser(res.data)
+             console.log('res.data:',res.data)
+            return (res.data)
+        })
+}
+
+function logout(){
+    //TODO
+}
+
+
+
 export default {
-    getUserById
+    getUserById,
+    login,
+    logout
 }

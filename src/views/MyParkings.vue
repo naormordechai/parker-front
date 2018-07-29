@@ -1,6 +1,8 @@
 <template>
     
     <section>
+            <h2>My Details</h2>
+                <!-- <h3>{{user.firstName}}</h3> -->
                 <h2 class="my-parkings">My Parkings</h2>
                 <ul>
                     <li v-for="parking in reservedParkings" :key="parking._id">
@@ -40,7 +42,9 @@ export default {
     },
     methods:{
         loadParkingsActivity(){
-            UserService.getUserById()
+            var userId = this.$route.params
+            console.log('userID: ', userId)
+            UserService.getUserById(userId)
             .then(res => {
                 this.user = res.user;
                 this.reservedParkings = res.reserveParkings

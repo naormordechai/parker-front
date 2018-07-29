@@ -1,5 +1,5 @@
+import ParkingService from '../../services/ParkingService.js'
 
-import ParkingServices from '../../services/ParkingService.js'
 
 export default {
     state: {
@@ -7,23 +7,26 @@ export default {
 
     },
     mutations: {
-        setParkings(state, {parkings}) {
+        setParkings(state, { parkings }) {
             state.parkings = parkings
+            console.log('state parkings after mutation: ', state.parkings)
         }
     },
     getters: {
-        parkingsToDisplay(state) {
-            // console.log('state.getters',state.parkings);
+        parkingToDisplay(state) {
             return state.parkings
         }
     },
     actions: {
-        loadParkings(context) {
-            return ParkingServices.query()
-                .then(parkings => {
+        loadParkings(context, payload) {
+            return ParkingService.query()
+                .then((parkings) => {
+                    console.log('store action then parkings: ', parkings)
                     context.commit({ type: 'setParkings', parkings })
-                    // console.log('promise parkings',parkings);
+                    return parkings
+
                 })
         }
     }
+
 }

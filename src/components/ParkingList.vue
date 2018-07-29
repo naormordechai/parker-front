@@ -1,7 +1,5 @@
 <template>
   <section>
-    <section>
-    </section>
     <div class="container">
         
           <el-input placeholder="Search"></el-input>
@@ -35,12 +33,8 @@ export default {
    methods:{
 
      },
-     mounted(){
-        console.log('sababa',this.parkings);
-       },
- 
 
-components:{
+  components:{
     ParkingPreview
     },
 }

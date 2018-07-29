@@ -1,12 +1,12 @@
 <template>
 <section>
     <ParkingList :parkings ="parkings"/>
+    <h1>helooooasdasd</h1>
     </section>
 </template>
 
 <script>
 import ParkingList from '@/components/ParkingList.vue' 
-import ParkingService from '../../services/ParkingService.js'
 
 
 export default {
