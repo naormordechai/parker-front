@@ -8,6 +8,7 @@ import signUpPage from './views/SignUpPage.vue'
 import ReserveParking from './views/ReserveParking.vue'
 import MyParkings from './views/MyParkings.vue'
 import LoginPage from './views/LoginPage.vue'
+import ParkingEdit from './views/ParkingEdit.vue'
 
 
 Vue.use(Router)
@@ -28,6 +29,11 @@ export default new Router({
       path: '/parking',
       name: 'parking-page',
       component: parkingsPage
+    },
+    {
+      path: '/parking/add',
+      name: 'parking-add',
+      component: ParkingEdit
     },
     {
       path: '/parking/:id',
@@ -53,6 +59,6 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: LoginPage
-    }
+    },
   ]
 })

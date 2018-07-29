@@ -1,7 +1,6 @@
 <template>
   <section>
     <div class="container">
-        
           <el-input placeholder="Search"></el-input>
       <ul>
           <li v-for="parking in parkings" :key="parking._id">
@@ -15,21 +14,20 @@
 </template>
 
 <script>
-import ParkingPreview from './ParkingPreview.vue'
+import ParkingPreview from "./ParkingPreview.vue";
 
 export default {
-    props: {
-        parkings: Array,
+  props: {
+    parkings: Array
+  },
+  created() {
+    console.log("parkings", this.parkings);
+  },
 
-    },
-    created() {
-      console.log('parkings', this.parkings)
-    },
-
-components:{
-        ParkingPreview
-    },
-}
+  components: {
+    ParkingPreview
+  }
+};
 </script>
 
 <style scoped>

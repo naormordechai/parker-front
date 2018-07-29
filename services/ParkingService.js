@@ -134,6 +134,11 @@ function getById(parkingId) {
     console.log('res data: ', res.data)    
 }
 
+function addParking(parking) {
+    console.log('parking',parking)
+    return axios.post(PARKING_URL + '/add', parking)
+}
+
 function reserveParking(parkingReserved){
     console.log('parking reserved: ', parkingReserved)
     return axios.put(`${PARKING_URL}/${parkingReserved.parkingId}`, parkingReserved)
@@ -151,5 +156,6 @@ export default {
     query,
     getById,
     getUserById,
-    reserveParking
+    reserveParking,
+    addParking
 }
