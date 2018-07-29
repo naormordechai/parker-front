@@ -15,6 +15,8 @@
 </template>
 
 <script>
+
+
 export default {
   data () {
     return {
@@ -39,7 +41,8 @@ export default {
     // }
     logout() {
       this.$store.dispatch({type:'logout'})
-      this.$router.push('/')
+      localStorage.removeItem('loggedInUser')
+      this.$router.push('/login')
 
     }
   }

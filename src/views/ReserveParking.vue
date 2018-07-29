@@ -55,8 +55,10 @@ export default {
         reserveParking() {
             if (this.user._id === '' || this.user._id === false) {
                 this.$router.push('/login')
-            } else {           
+            } else {          
+                console.log(this.hours) 
             var occupiedUntil = Date.now() + this.hours * 60 * 60 * 1000
+            console.log('occupied until: ', occupiedUntil)
             var reservedParking = {
                 reserverId: this.user._id,
                 parkingId: this.parking._id,

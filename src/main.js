@@ -10,6 +10,7 @@ import './registerServiceWorker'
 import './assets/style/main.scss'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
+import StorageService from '../services/StorageService.js'
 
 Vue.use(VueGoogleMaps, {
   load: {
@@ -44,5 +45,12 @@ Vue.use(ElementUI);
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  created() {
+    var user = StorageService.load('loggedInUser')
+    if (user) {
+      this.$store.commit({type:'setUser', user})
+    }
+
+  }
 }).$mount('#app')
