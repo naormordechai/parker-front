@@ -1,12 +1,13 @@
 import ParkingService from '../../services/ParkingService.js'
 
-export default{
-    state:{
-        parkings:[],
+
+export default {
+    state: {
+        parkings: [],
 
     },
-    mutations:{
-        setParkings(state, {parkings}){
+    mutations: {
+        setParkings(state, { parkings }) {
             state.parkings = parkings
             console.log('mutations:',state.parkings)
             console.log('state parkings after mutation: ', state.parkings)
@@ -21,7 +22,7 @@ export default{
         }
     },
     actions: {
-        loadParkings(context, payload){
+        loadParkings(context, payload) {
             return ParkingService.query()
             .then((parkings)=> {
                 console.log('store action then parkings: ', parkings)
@@ -39,5 +40,5 @@ export default{
                 })
         },
     }
-    
+
 }

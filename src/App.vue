@@ -7,7 +7,7 @@
       <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`">My parkings</router-link> 
       <router-link v-if="!loggedInUser._id" to="/login">Login</router-link> |
       <!-- <div class="welcome-user" v-if="loggedInUser">Hi {{loggedInUser.firstName}}</div> -->
-      <router-link to="/park/add">Add Parking</router-link> 
+      <router-link to="/parking/add">Add Parking</router-link> 
       <div class="logout" v-if="loggedInUser._id" @click="logout">logout</div>
 
     </div>
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+
+
 export default {
   data () {
     return {
@@ -40,9 +42,10 @@ export default {
     // }
     logout() {
       this.$store.dispatch({type:'logout'})
-      this.$router.push('/')
+      localStorage.removeItem('loggedInUser')
+      this.$router.push('/login')
 
-    }
+    },
   }
 }
 
