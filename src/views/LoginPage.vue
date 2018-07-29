@@ -21,6 +21,8 @@
 </template>
 
 <script>
+
+
 export default {
   data() {
     return {
@@ -35,7 +37,9 @@ export default {
               return 
           } 
               this.$store.dispatch({type: 'login', email:this.email})   
-              .then (_=> this.$router.push('/parking'))          
+              .then (_=> {                  
+                  this.$router.push('/parking')
+                  })          
             //   .then ((user) => {
             //       console.log('user from store: ', user)
             //       this.message = user.firstName + ' logged in successfully!'

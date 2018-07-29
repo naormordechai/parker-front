@@ -1,4 +1,5 @@
 import UserService from '../../services/UserService.js'
+import StorageService from '../../services/StorageService.js'
 
 export default{
     state: {
@@ -37,7 +38,8 @@ export default{
           .then (user => {
               if (!user._id) return Promise.reject()
               console.log('this user logged in successfully', user)
-              context.commit({type: 'setUser', user: user})             
+              context.commit({type: 'setUser', user: user})  
+              StorageService.store('loggedInUser',user )          
               return Promise.resolve(user)       
           })
           // .catch (err => {

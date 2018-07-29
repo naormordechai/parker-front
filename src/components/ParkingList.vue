@@ -14,14 +14,14 @@
 >
   <GmapMarker
     :key="index"
-    v-for="(m, index) in markers"
-    :position="m.position"
-    :icon="available"
+    v-for="(p, index) in parkings"
+    :position="p.location"
+    :icon="getSymbol(p)"
     :clickable="true" 
     :draggable="false"
-    @click="openDetailsByMarker($event)"
+    @click="$router.push('/parking/' + p._id)"
   />
-</GmapMap>
+</GmapMap>  
     </div>
   </section>
 </template>
@@ -30,47 +30,15 @@
 import ParkingPreview from './ParkingPreview.vue'
 
 export default {
-  data(){
-    return{
-      available:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
-    }
-  },
    props:{
      parkings:Array
    },
    methods:{
-     openDetailsByMarker(ev){
-       let position = {lat : ev.latLng.lat(), lng:+ev.latLng.lng().toFixed(3)}
-        this.parkings.forEach(parking => {
-            if (parking.location.lat === position.lat && parking.location.lng === position.lng){
-              var parkingId = parking._id
-              this.$router.push('/parking/'+parkingId)
-
-            }
-        });
-     }
-     },
-     created(){
-     },
-     computed:{
-        markers(){
-          var markersArr = []
-        this.parkings.forEach(parking => {
-          markersArr.push({
-            position : {lat:parking.location.lat,lng:parking.location.lng}
-          })
-        });
-        return markersArr
-        },
-        available(){
-          this.parking.forEach(parking => {
-            if(parking.occupiedUntil < Date.now()){
-              return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
-            } else {
-              return 'http://www.geocodezip.com/mapIcons/greenSoldier.png'
-            }
-          })
-        }
+       getSymbol(parking){
+         return  (parking.occupiedUntil < Date.now()) 
+                          ? 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+                          : 'http://www.geocodezip.com/mapIcons/greenSoldier.png'
+       } 
      },
   components:{
     ParkingPreview
