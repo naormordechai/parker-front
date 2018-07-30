@@ -21,7 +21,7 @@
                                         <div class="flex column space-between">
                                             <div class="flex column">
                                                 <h3> {{parking.address}} </h3>
-                                                <h3> {{parking.price}}₪ per hour </h3>
+                                                <h3> ₪ {{parking.price}} per hour </h3>
                                                 <h3> ends {{convertTimestamp(parking.occupiedUntil)}}</h3>
                                             </div>
                                             <div>
@@ -57,7 +57,7 @@
                                     <img :src="parking.imageURL" alt="my owned parkings" />
                                     <div class="flex column">
                                         <h3> {{parking.address}}</h3>
-                                        <h3>{{parking.price}}₪ per hour</h3>
+                                        <h3>₪ {{parking.price}} per hour</h3>
                                         <h3>{{(parking.reserverId)? 'Occupied' : 'Available for rent'}}</h3>
                                     </div>
                                     <GmapMap

@@ -9,6 +9,7 @@ import ReserveParking from './views/ReserveParking.vue'
 import MyParkings from './views/MyParkings.vue'
 import LoginPage from './views/LoginPage.vue'
 import ParkingEdit from './views/ParkingEdit.vue'
+import Navigate from './views/Navigate.vue'
 
 
 Vue.use(Router)
@@ -60,5 +61,10 @@ export default new Router({
       name: 'login',
       component: LoginPage
     },
+    {
+      path: '/navigate',
+      name: 'navigate',
+      component: Navigate
+    }
   ]
 })
