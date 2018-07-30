@@ -1,13 +1,11 @@
 
 <template>
     <section>
-    Hello!!
     <h3>Login</h3>
-    {{$store.getters.loggedInUser}}
-
     <div class="login">
                 <form @submit.prevent="login">
-                    <input type="text" v-model="email" placeholder="Insert your email"/>                   
+                    <input type="text" v-model="userInfo.email" placeholder="Insert your email"/>   
+                    <input type="password" v-model="userInfo.password" placeholder="password"/>                
                     <button type="submit">Login</button>
                 </form>
                 <p>{{message}}</p>
@@ -22,42 +20,32 @@
 
 <script>
 
+import UserService from '../../services/UserService.js'
+
 
 export default {
   data() {
     return {
-      email: '',
-      message: ''
+      message: '',
+      userInfo :{
+          email : '',
+          password : ''
+      }
     };
   },
   methods: {
       login () {
-          if ((!this.email)){
-              this.message = 'please enter your email address'
+          if (!this.userInfo.email || !this.userInfo.password){
+              this.message = 'please enter valid user'
               return 
           } 
-              this.$store.dispatch({type: 'login', email:this.email})   
+              this.$store.dispatch({type: 'login', userInfo : this.userInfo})   
               .then (_=> {                  
                   this.$router.push('/parking')
                   })          
-            //   .then ((user) => {
-            //       console.log('user from store: ', user)
-            //       this.message = user.firstName + ' logged in successfully!'
-            //       this.email = ''
-                  
-            //   })
-           
-              
+          },
+
           }
-      }
-    // login(){
-    //     this.$store.commit({type: 'setUser', user: {
-    //         _id: 50505050,
-    //         eMail: 'a@a.com',
-    //         firstName: 'elad',
-    //         lastName : 'frizi'
-    //     }})
-    // }
   }
 
 
@@ -65,7 +53,8 @@ export default {
 </script>
 
 <style>
-.login input, button {
-         padding: 10px;
+.login input,
+button {
+  padding: 10px;
 }
 </style>

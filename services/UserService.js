@@ -46,12 +46,12 @@ function getUserById(userId) {
     })
 }
 
-function login(email) {
-    console.log('email: ', email)
-    return axios.post(`${USER_URL}/checkLogin`, {email})
+function login(userInfo) {
+    console.log('emailbimail: ', userInfo)
+    return axios.post(`${USER_URL}/checkLogin`, {userInfo})
         .then(res => {
  //           _setLoggedinUser(res.data)
-             console.log('res.data:',res.data)
+             console.log('res.data dat resssssssss:',res.data)
             return (res.data)
         })
 }

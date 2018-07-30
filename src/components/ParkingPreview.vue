@@ -13,7 +13,7 @@
                 </div>
                 <div>
                     <el-button type="info">Details</el-button>
-                    <el-button v-if="!isOccupied" type="success" :disabled="isOccupied">
+                    <el-button v-if="!isOccupied" type="success" :disabled="isOccupied" @click.prevent="$router.push('/reserve/'+parking._id)">
                             Reserve
                     </el-button>
                 </div>
@@ -40,7 +40,7 @@ export default {
         onResrvedClick(){
             debugger
             if (!this.isOccupied) $router.push('/reserve/'+parking._id)
-        }
+        },
     },
     props:{
         parking:Object
