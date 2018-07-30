@@ -28,19 +28,16 @@ function addParking(parking) {
 
 function reserveParking(parkingReserved){
     console.log('parking reserved: ', parkingReserved)
-    return axios.put(`${PARKING_URL}/${parkingReserved.parkingId}`, parkingReserved)
-        .then(res => res.data)
-        console.log('res: ', res)
-        console.log('res data: ', res.data)
+    return axios.put(`${PARKING_URL}/reserve/${parkingReserved.parkingId}`, parkingReserved)
+        .then(res => {
+            console.log('parking service res: ', res)
+            console.log('parking service res data: ', res.data)
+           return res.data})
 
 }
 
-// function getUserById(userId) {
-//     return Promise.resolve(parkingsActivity)
-// }
-
-function stopParking(parking) {
-    console.log('parking: ', parking)
+function stopParking(parking) {  
+    console.log('front end service parking: ', parking)  
     return axios.put(`${PARKING_URL}/stop`, parking)
     .then(res => res.data)
     .then(data => {  
