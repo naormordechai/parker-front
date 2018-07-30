@@ -1,28 +1,34 @@
 <template>
   <div id="app">
     <div id="nav">
-      
-      <router-link to="/">Home</router-link> |
-      <router-link to='/parking'>find parking</router-link> | 
-      <router-link to="/about">About</router-link> |
-      <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`">My parkings</router-link> 
-      <router-link v-if="!loggedInUser._id" to="/login">Login</router-link> |
-      <!-- <div class="welcome-user" v-if="loggedInUser">Hi {{loggedInUser.firstName}}</div> -->
-      <router-link to="/parking/add">Add Parking</router-link> | 
-      <div class="logout" v-if="loggedInUser._id" @click="logout">logout</div>
+  <div class="container">
+    <el-menu class="el-menu-demo flex" mode="horizontal" 
+    background-color="#545c64"
+    text-color="#fff"
+    active-text-color="#ffd04b">
+    <router-link  to="/"><el-menu-item index="1">Home</el-menu-item></router-link>
+    <router-link  to="/about"><el-menu-item index="2">About</el-menu-item></router-link>
+    <router-link to="/parking/add"><el-menu-item index="3">add parking</el-menu-item></router-link> 
+    <router-link v-if="!loggedInUser._id" to="/login"><el-menu-item index="4">Login</el-menu-item></router-link>
+    <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`"><el-menu-item index="5">my parkings</el-menu-item></router-link>
+    <div class="logout" v-if="loggedInUser._id" @click="logout"><el-menu-item index="6">Logout</el-menu-item></div>
 
+</el-menu>
+</div> 
     </div>
-    <router-view/>
+    <router-view/>  
+<FooterCmp /> 
   </div>
-</template>
 
+</template>
 <script>
 
+import FooterCmp from '@/components/FooterCmp.vue' 
 
 export default {
   data () {
     return {
-      // user:'',
+
     }
   },
   computed: {
@@ -47,6 +53,9 @@ export default {
       this.$router.push('/login')
 
     },
+  },
+  components:{
+    FooterCmp
   }
 }
 
@@ -60,9 +69,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
 }
 #nav, {
-  padding: 30px;
+  // padding: 30px;
   a {
     font-weight: bold;
     color: #2c3e50;
@@ -81,4 +94,27 @@ export default {
   cursor: pointer;
 }
 
+.inline-block{
+  display: inline-block;
+}
+
+.footer-app{
+  padding: 50px;
+  width: 100%;
+}
+
+.footer-list-details a{
+  color: black;
+  text-decoration: none;
+}
+
+footer {
+  background-image: linear-gradient(to bottom, 
+  rgba(238, 238, 238, 0.5)5%,
+  rgba(97, 97, 97, 0.8))
+}
+
+footer p {
+  padding-bottom: 30px;
+}
 </style>

@@ -21,9 +21,9 @@ function getById(parkingId) {
     console.log('res data: ', res.data)    
 }
 
-function addParking(parking) {
-    console.log('parking',parking)
-    return axios.post(PARKING_URL + '/add', parking)
+function addParking(newParking) {
+    console.log('25-serice', newParking)
+    return axios.post(PARKING_URL + '/add', newParking)
 }
 
 function reserveParking(parkingReserved){

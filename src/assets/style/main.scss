@@ -6,6 +6,13 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
 /* globals */
 
 .container{
@@ -13,7 +20,9 @@
     margin: 0 auto;
 }
 
-
+ul{
+    list-style: none;
+}
 
 /* helpers */
 
@@ -47,4 +56,8 @@
 
 .flex-start {
     justify-content: flex-start
+}
+
+.column {
+    flex-direction: column;
 }
