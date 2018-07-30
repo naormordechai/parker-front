@@ -23,7 +23,7 @@
             <!-- <input v-model="hours" class="hours" type="number" min="1" placeholder="number of hours" />  -->
             <p>Total Price: ${{cost}}</p>       
             <!-- <button class="reserve-btn">Reserve Parking!</button> -->
-             <el-button type="success" @click="reserveParking">Reserve Parking!</el-button>
+             <el-button type="success" @click="reserveParking(parking)">Reserve Parking!</el-button>
             </form>
         </div>
     </section>
@@ -50,41 +50,40 @@ export default {
         this.loadParking()
     },
     methods: {
-        reserveParking() {
+        reserveParking(parking) {
             if (this.user._id === '' || this.user._id === false) {
-                this.$router.push('/login')
-            } else {          
-                console.log(this.hours) 
-            var occupiedUntil = Date.now() + this.hours * 60 * 60 * 1000
-            console.log('occupied until: ', occupiedUntil)
-            var reservedParking = {
-                reserverId: this.user._id,
-                parkingId: this.parking._id,
-                occupiedUntil: occupiedUntil
-            }
-            ParkingService.reserveParking(reservedParking)
-            .then ((res)=> {
-                console.log('parking has been reserved!')
-            })
-            }
-        },
+                    this.$router.push('/login')
+                } else {           
+                var occupiedUntil = Date.now() + this.hours * 60 * 60 * 1000
+                    console.log('occupied until: ', occupiedUntil)           
+                parking.reserverId= this.user._id,
+                parking._id= this.parking._id,
+                parking.occupiedUntil= occupiedUntil
+                     console.log('parking before reservation: ', parking)
+                      this.$store.dispatch({type:'reserveParking', parking: parking})            
+                .then ((res)=> {
+                    console.log('parking has been reserved!')
+                     })
+                 }
+            },        
         loadParking() {
+            debugger
+            console.log('test to see if page uploads')
             var parkingId = this.$route.params.id
+            console.log('this route URL: ', this.$route)
             ParkingService.getById(parkingId)
             .then (res=> {
                 this.parking = res.parking
             })
-        },
-        
-
-    },
-    computed: {
-        cost() {
+        },   
+        computed: {
+            cost() {
             return this.hours * this.parking.price
-        },
-       user() {
+             },
+            user() {
            return this.$store.getters.loggedInUser
-       }
+            }
+        }
     }
 }
 </script>
