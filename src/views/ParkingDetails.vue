@@ -12,7 +12,7 @@
         <div>
            <p>{{parkingDetail.parking.address}}</p>
            <p>0.4 km</p>
-           <p>${{parkingDetail.parking.price}}</p>
+           <p>{{parkingDetail.parking.price}}₪</p>
         </div>
     </el-card>
 
@@ -67,14 +67,16 @@ data(){
 methods:{
     loadParkingId(){
         var parkingId = this.$route.params.id
-        console.log('asdasdas',parkingId)
+        console.log('parkingId',parkingId)
         ParkingService.getById(parkingId)
         .then(res => {
             console.log('res',res)
             this.parkingDetail = res
+            console.log('parking detail:', this.parkingDetail)
 
         })
     },
+
 },
 created(){
         this.loadParkingId()
