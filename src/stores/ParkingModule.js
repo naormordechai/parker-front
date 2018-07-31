@@ -74,6 +74,7 @@ export default {
             
             return ParkingService.addParking( newParking )
                 .then((res) => {
+                    console.log('res in store: ', res)
                     return context.commit({ type: 'addParking', newParking: res.data })
                 })
         },
