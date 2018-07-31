@@ -62,7 +62,7 @@ export default new Router({
       component: LoginPage
     },
     {
-      path: '/navigate',
+      path: '/navigate/:id',
       name: 'navigate',
       component: Navigate
     }
