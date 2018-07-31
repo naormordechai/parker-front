@@ -1,9 +1,14 @@
 import ParkingService from '../../services/ParkingService.js'
+import LocService from '../../services/LocService'
 
 
 export default {
     state: {
         parkings: [],
+        positon : {
+            lat: 0,
+            lng : 0
+        }
 
     },
     mutations: {
@@ -37,8 +42,10 @@ export default {
         }
     },
     actions: {
-        loadParkings(context) {           
-            return ParkingService.query()
+        loadParkings(context, {lat,lng}) { 
+    console.log({lat,lng,msg:'in th moudle serviece'})
+
+            return ParkingService.query({lat,lng})
             .then((parkings)=> {
                 console.log('parkings returned from backend: ', parkings)
                 context.commit({type: 'setParkings', parkings})

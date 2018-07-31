@@ -7,7 +7,7 @@
             <div class="parking-box-details flex column space-between">
                 <h3>{{parking.address}}</h3>
                 <p>price: {{parking.price}}₪</p>
-                <p>0.2 km</p>
+                <p>{{distance}} km</p>
                 <div class="flex space-around">
                     <p>{{parking.amenities.isCovered}}</p>
                 </div>
@@ -34,6 +34,10 @@ export default {
     computed:{
         isOccupied(){
             return this.parking.occupiedUntil > Date.now()
+        },
+        distance(){
+            var distance = this.parking.location.distance
+            return distance.toFixed(1)
         }
     },
     methods: {
@@ -45,6 +49,10 @@ export default {
     props:{
         parking:Object
     },
+    created(){
+        console.log('craeated',this.parking);
+        
+    }
 }
 </script>
 
