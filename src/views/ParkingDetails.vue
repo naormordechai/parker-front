@@ -12,7 +12,7 @@
         <div>
            <p>{{parkingDetail.parking.address}}</p>
            <p>0.4 km</p>
-           <p>{{parkingDetail.parking.price}}₪</p>
+           <p>₪ {{parkingDetail.parking.price}}</p>
         </div>
     </el-card>
 

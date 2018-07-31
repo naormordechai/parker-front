@@ -23,7 +23,7 @@ export default {
   mutations: {
     setUser(state, { user }) {
       state.user = user
-      console.log('sababa',state.user);
+      // console.log('sababa',state.user);
     },
     logoutUser(state) {
       state.user = {

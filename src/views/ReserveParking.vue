@@ -21,7 +21,7 @@
             <form submit="setParkingDuration">
             <el-input-number v-model="hours" :min="1" :max="10"></el-input-number>
             <!-- <input v-model="hours" class="hours" type="number" min="1" placeholder="number of hours" />  -->
-            <p>Total Price: {{cost}} ₪</p>       
+            <p>Total Price: ₪ {{cost}}</p>       
             <!-- <button class="reserve-btn">Reserve Parking!</button> -->
              <el-button type="success" @click="reserveParking(parking)">Reserve Parking!</el-button>
             </form>
@@ -52,7 +52,7 @@ export default {
   // this.status = this.$store.state.UserModuls.isAdmin;
   methods: {
     reserveParking(parking) {
-      if (this.user._id === "" || this.user._id === false) {
+      if (this.user._id === "" || this.user._id === false) {          
         this.$router.push("/login");
       } else {
         var occupiedUntil = Date.now() + this.hours * 60 * 60 * 1000;
@@ -65,6 +65,7 @@ export default {
           .dispatch({ type: "reserveParking", parking: parking })
           .then(res => {
             console.log("parking has been reserved!");
+            this.$router.push(`/navigate/${parking._id}`)
           });
       }
     },

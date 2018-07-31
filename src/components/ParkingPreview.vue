@@ -6,8 +6,13 @@
             <img class="img-parking mr" :src="parking.imageURL" alt="parking">
             <div class="parking-box-details flex column space-between">
                 <h3>{{parking.address}}</h3>
+<<<<<<< HEAD
                 <p>price: {{parking.price}}₪</p>
                 <p>{{distance}} km</p>
+=======
+                <p>price: ₪ {{parking.price}} </p>
+                <p>0.2 km</p>
+>>>>>>> 858d193ab3d266f4a45cfddfc93c576f4c6be107
                 <div class="flex space-around">
                     <p>{{parking.amenities.isCovered}}</p>
                 </div>

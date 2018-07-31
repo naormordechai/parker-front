@@ -49,11 +49,23 @@ function centerMap(lat,lng) {
     map.setCenter(latLng);
 }
 
+function loadLocation(value) {
+
+    const API_KEY = 'AIzaSyC6AifY9XewU3b2wEp0Dr7XKyOjSS1oebQ';
+    console.log(value)
+    return  axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${value}&key=${API_KEY}`)
+    .then(function(res){
+        console.log('the data from searching an address', res.data)
+        return res.data
+    })
+} 
+
 
 
 export default {
     initMap,
     addMarker,
-    centerMap
+    centerMap,
+    loadLocation
     
 }
