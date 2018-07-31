@@ -14,6 +14,7 @@ export default {
     data(){
         return {
             filterBy:'',
+            loc:{}
         }
     },
     mounted: async function(){
@@ -26,23 +27,33 @@ export default {
         filterBy(){
             // pass new lat and lng
             eventBus.$emit('filter',this.filterBy)
-        }
+        },
     },
     methods:{
         search(){
             var geocoder= new google.maps.Geocoder();
             var input  = this.$refs.input.value
-            var loc=[];
+            // var loc={};
             console.log('this.geocode',geocoder.geocode);
             
             // console.log('input',input);
-            geocoder.geocode( { 'address': input}, function(results, status) {
+            geocoder.geocode( { 'address': input}, (results, status) => {
       // and this is function which processes response
-      if (status == google.maps.GeocoderStatus.OK) {
-        loc[0]=results[0].geometry.location.lat();
-        loc[1]=results[0].geometry.location.lng();
+      if (status === google.maps.GeocoderStatus.OK) {
+        this.loc.lat=results[0].geometry.location.lat();
+        this.loc.lng=results[0].geometry.location.lng();
 
-        console.log( {loc} ); // the place where loc contains geocoded coordinates
+       this.$store.dispatch({type:'loadParkings',            
+            lat :this.loc.lat,
+            lng : this.loc.lng
+        });
+
+         
+//              {
+//              lat : results[0].geometry.location.lat(),
+//             lng :  results[0].geometry.location.lng()
+// }
+        console.log( this.loc ); // the place where loc contains geocoded coordinates
 
       } else {
         alert("Geocode was not successful for the following reason: " + status);
@@ -51,7 +62,7 @@ export default {
 
     // pretty meaningless, because it always will be []
     // this line is executed right after creating AJAX request, but not after its response comes
-    return loc;
+    return this.loc;
             
         }
     }

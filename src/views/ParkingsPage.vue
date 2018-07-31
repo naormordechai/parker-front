@@ -38,12 +38,13 @@ export default {
     },
     computed:{
         parkings() {
-            var parkings = this.$store.getters.parkingToDisplay
-             if (this.filter === '') return parkings
+            return this.$store.getters.parkingToDisplay
+            // var parkings = this.$store.getters.parkingToDisplay
+            //  if (this.filter === '') return parkings
 
-            return parkings.filter(parking => {
-                return parking.address.toLowerCase().includes(this.filter.toLowerCase())
-            })
+            // return parkings.filter(parking => {
+            //     return parking.address.toLowerCase().includes(this.filter.toLowerCase())
+            // })
         }
     },
         components:{

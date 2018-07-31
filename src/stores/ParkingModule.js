@@ -55,6 +55,7 @@ export default {
                 
             })
         },
+    
         reserveParking(context, {parking}){
             console.log('parking to reserve', parking)
             return ParkingService.reserveParking(parking)
