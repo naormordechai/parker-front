@@ -88,11 +88,14 @@ export default {
 .logout{
   display: inline; 
   font-weight: bold;
-  text-decoration: underline
+  text-decoration: underline;
+  &:hover {
+    cursor: pointer;
+  }
 }
-.logout:hover {
-  cursor: pointer;
-}
+// .logout:hover {
+//   cursor: pointer;
+// }
 
 .inline-block{
   display: inline-block;

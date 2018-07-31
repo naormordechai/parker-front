@@ -122,8 +122,8 @@ export default {
     },
 
     navigate() {
-        let lat= this.parking.location.lat
-        let lng= this.parking.location.lng
+        let lat= +this.parking.location.lat
+        let lng= +this.parking.location.lng
         console.log('lat: ', lat)
         console.log('lng: ', lng)
         console.log('parking location: ', this.parking.location)

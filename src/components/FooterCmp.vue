@@ -15,7 +15,7 @@
         <li><a href="#">T</a></li>
       </ul>
       </div>
-      <p>Copyright © 2018 by Parker. All right reserved.</p>
+      <p>Copyright © 2018 by Parker. All rights reserved.</p>
   </footer>
 </template>
 
