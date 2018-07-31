@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     reserveParking(parking) {
-      if (this.user._id === "" || this.user._id === false) {
+      if (this.user._id === "" || this.user._id === false) {          
         this.$router.push("/login");
       } else {
         var occupiedUntil = Date.now() + this.hours * 60 * 60 * 1000;
@@ -63,6 +63,7 @@ export default {
           .dispatch({ type: "reserveParking", parking: parking })
           .then(res => {
             console.log("parking has been reserved!");
+            this.$router.push(`/navigate/${parking._id}`)
           });
       }
     },

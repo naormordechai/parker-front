@@ -10,7 +10,7 @@
         </div>
             
            
-                <div class="reserved-parkings">           
+                <div v-show="reservedParkings" class="reserved-parkings">           
                     <h2 v-if="reservedParkings.length > 0">My Reserved Parkings:</h2>
                     <ul>
                         <li v-for="parking in reservedParkings" :key="parking._id">                         
