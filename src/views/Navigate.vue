@@ -175,6 +175,10 @@ export default {
     height: 50px;
 }
 
+navigation img:hover {
+    cursor: pointer;
+}
+
 .navigation-header {
   margin: 20px;
 }
