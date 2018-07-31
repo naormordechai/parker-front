@@ -2,11 +2,12 @@ import axios from 'axios'
 const PARKING_URL = '//localhost:3000/parking'
 
 
-function query(lat, lng) {
+function query({lat, lng}) {
     // return Promise.resolve(parkings)
     return axios.get(PARKING_URL+`?lat=${lat}&lng=${lng}`)
     .then(res => res.data)
 }
+
 
 function getById(parkingId) {
     return axios.get(`${PARKING_URL}/${parkingId}`)
@@ -33,8 +34,9 @@ function reserveParking(parkingReserved){
             console.log('parking service res: ', res)
             console.log('parking service res data: ', res.data)
            return res.data})
-
 }
+
+
 
 function stopParking(parking) {  
     console.log('front end service parking: ', parking)  
@@ -53,5 +55,5 @@ export default {
     reserveParking,
     stopParking,  
     reserveParking,
-    addParking
+    addParking,
 }

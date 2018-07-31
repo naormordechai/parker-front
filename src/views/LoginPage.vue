@@ -21,7 +21,7 @@
 <script>
 
 import UserService from '../../services/UserService.js'
-
+import eventBus from '../../services/EventBusService.js'
 
 export default {
   data() {
@@ -30,20 +30,27 @@ export default {
       userInfo :{
           email : '',
           password : ''
-      }
+      },
     };
   },
+  // this.status = this.$store.state.UserModuls.isAdmin;
+
   methods: {
       login () {
+          console.log('4-00000',this.$store.state.UserModule.aboutUser);
           if (!this.userInfo.email || !this.userInfo.password){
               this.message = 'please enter valid user'
               return 
           } 
+
               this.$store.dispatch({type: 'login', userInfo : this.userInfo})   
               .then (_=> {                  
                   this.$router.push('/parking')
                   })          
           },
+
+          },
+          cretaed(){
 
           }
   }

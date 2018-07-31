@@ -31,6 +31,7 @@
 
 <script>
 import ParkingService from "../../services/ParkingService.js";
+import {eventBus} from '../../services/EventBusService.js'
 
 export default {
   data() {
@@ -41,13 +42,14 @@ export default {
           lat: 0,
           lng: 0
         }
-      }
+      },
     };
   },
   created() {
     // this.initMarker()
     this.loadParking();
   },
+  // this.status = this.$store.state.UserModuls.isAdmin;
   methods: {
     reserveParking(parking) {
       if (this.user._id === "" || this.user._id === false) {          
