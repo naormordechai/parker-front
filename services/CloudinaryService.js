@@ -1,27 +1,29 @@
-const CLOUD_NAME = "dta0c0abc"
+const CLOUD_NAME = "parker1"
 
 var UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
 
 // on submit call to this function
-function uploadImg(elForm, ev) {
-    ev.preventDefault();
-   
-    // A function to be called if request succeeds
+async function uploadImg(elForm, ev) {
+   // ev.preventDefault();
+                                                                                                        // A function to be called if request succeeds
     function onSuccess(res) {
         console.log('uploadedImg', res);
         console.log('uploadedImg', res.url);
+        return res;
     }
 
-    doUploadImg(elForm, onSuccess);
+    var res = await doUploadImg(elForm, onSuccess)
+    console.log('res=',res.url)
+    return res.url;
 }
 
-function doUploadImg(elForm, onSuccess) {
+function doUploadImg(elInput, onSuccess) {
     var UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
     var formData = new FormData();
-    formData.append('file', elForm[0].files[0])
+    formData.append('file', elInput.files[0])
     formData.append('upload_preset', 'ymaycqwv');
 
-    fetch(UPLOAD_URL, {
+   return fetch(UPLOAD_URL, {
         method: 'POST',
         body: formData
     })
@@ -32,6 +34,7 @@ function doUploadImg(elForm, onSuccess) {
     .catch(function (error) {
         console.error(error)
     })
+   
 }
 
 export default{

@@ -1,42 +1,38 @@
 <template>
     <section>
+ 
      <h1> Add New Parking </h1>
 <!--     <button @click="isAddParking = true">Add Parking</button> -->
        <form @submit.prevent="addParking"> 
           <div v-if="isAddParking" class="add-parking">
             <div>
-             <h3>Your Address:</h3>
-            <input type="text" ref="placeAutocomplete">
- <!--           <input type="text" ref="placeAutocomplete" -- v-model="parkingToEdit.address" > -->
-        
-             </div>
-
-            Price: <input type="number" min="1" v-model="parkingToEdit.price">
-             IsCovered: <select v-model="parkingToEdit.amenities.isCovered">
-                    <option value=false>false</option>
-                    <option value=true>true</option>    
-                    </select> 
-            isPaved: <select v-model="parkingToEdit.amenities.isPaved">
-                    <option value=true>true</option>    
-                    <option value=false>false</option>
-                    </select>
-            isForDisable: <select v-model="parkingToEdit.amenities.isForDisable">
-                    <option value=false>false</option>
-                    <option value=true>true</option>    
-                    </select> 
+             <input placeholder="Please input Adress" type="text" ref="placeAutocomplete" class="el-input__inner">  
+         <!-- <el-input placeholder="Please input Adress" type="text" ref="placeAutocomplete" />  -->
+             </div>          
+            <div>
+            Price:  <el-input-number v-model="parkingToEdit.price" :min="1" ></el-input-number>
+            </div>
+             <el-checkbox v-model="parkingToEdit.amenities.isCovered">IsCovered</el-checkbox>
+             <el-checkbox v-model="parkingToEdit.amenities.isPaved">isPaved</el-checkbox>
+             <el-checkbox v-model="parkingToEdit.amenities.isForDisable">isForDisable</el-checkbox>
              <div class="flex align-center">
-                <p>Descriptionp</p>
             <el-input
                     type="textarea"
                     :rows="2"
-                    placeholder="Please input"
+                    placeholder="Please input Description"
                     v-model="parkingToEdit.description"
                     >
                     </el-input>     
             </div>
-             Load Picture<input type="file" @change="loadPicture(this,event)" />
-            ImagURL: <input type="string" v-model="parkingToEdit.imageURL">
-            <button type="submit">Add!</button>
+            <div>
+              <input class="load-img-btn" type="file" id="LoadImageBtn" name="img"  method="POST"
+               enctype="multipart/form-data" @change="loadImg($event.target, $event)"/>
+
+               <label for="LoadImageBtn" class="el-button el-button--primary el-button--small">Load image</label>
+            </div>
+            
+             <el-button type="success" @click="addParking">Confirm New Parking</el-button> 
+            
           </div>
         </form>
     </section>
@@ -70,7 +66,8 @@ export default {
         createdAt: 0,
         imageURL: ""
       },
-      isAddParking: true
+      isAddParking: true,
+      msg:''
     };
   },
   computed: {
@@ -105,19 +102,46 @@ export default {
         newParking.ownerId = this.user._id;
         console.log("ownerID:", newParking.ownerId);
 
-        this.$store.dispatch({ type: "addParking", newParking });
-       // this.isAddParking = false;
+        this.$store.dispatch({ type: "addParking", newParking })
+        .then ((res) => {
+          console.log('new parking added: ', res)
+          // reditect to the parking details page with vue router.push 
+        })
+        .catch(err => {
+          // show an error msg maybe with elment msg cmp.
+        })
       }
     },
-
-    loadPicture(elPic,ev){
-      CloudinaryService.uploadImg(elPic, ev);
+    loadImg(elPic,ev){
+      // debugger
+      
+      CloudinaryService.uploadImg(elPic, ev).then(res =>{
+          this.parkingToEdit.imageURL = res
+          console.log(' this.parkingToEdit.imageURL',  this.parkingToEdit.imageURL);
+          
+      });
+      
+      
+      //this.parkingToEdit.imageURL = newImg.url;
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
+
+.load-img-btn{
+    	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+  
+}
+.el-textarea__inner{
+      width: 300px;
+}
 </style>
 
 
