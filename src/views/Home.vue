@@ -1,11 +1,11 @@
 <template>
   <section>
-    <div class="home">
+    <div class="home flex column justify-content-c">
       <div class="header">
         <h2>Parker - Your Parking Friend!</h2>  
-        <p>Wasting too much time finding an available parking? Parker helps you find one in just a few clicks!
-        Simply set the preferred area, choose the parking that suits you, and click RESERVE - the parking will be waiting for you!   
-        </p>      
+        <p>Wasting too much time finding an available parking? Parker helps you find one in just a few clicks!</p>
+        <p>Simply set the preferred area, choose the parking that suits you, 
+        and click RESERVE - the parking will be waiting for you!</p>
         <router-link to="/parking"><el-button type="success">Find me a Parking!</el-button></router-link>
       </div>
     </div>
@@ -32,6 +32,7 @@ export default {
 .home {
   background-image: url('../assets/images/parker.png');
   background-size: cover;
+  background-attachment: fixed;
   height: 100vh;
   width: 100%;  
 }
