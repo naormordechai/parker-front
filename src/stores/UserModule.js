@@ -9,7 +9,8 @@ export default {
       lastName: '',
       eMail: '',
       password: ''
-    }
+    },
+    aboutUser:''
   },
   getters: {
     isLoggedIn(state) {
