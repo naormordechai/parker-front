@@ -1,10 +1,11 @@
 <template>
   <section v-if="pos !== null">
+    <!-- <ParkingFilter /> -->
     <ParkingFilter />
     <div class="container flex ">
       <div class="list-h">
       <ul>
-          <li v-for="parking in sortParkings" :key="parking._id">
+          <li v-for="parking in parkings" :key="parking._id">
             <parkingPreview :parking="parking"/>
           </li>
       </ul>
@@ -36,9 +37,11 @@
 </template>
 
 <script>
+
 import ParkingPreview from './ParkingPreview.vue';
 import LocService from '../../services/LocService.js'
 import ParkingFilter from './ParkingFilter.vue' 
+import { eventBus } from '../../services/EventBusService';
 
 export default {
   data(){
@@ -127,4 +130,6 @@ ul {
   height: 100vh;
   overflow-y: scroll;
 }
+
+
 </style>

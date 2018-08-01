@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <!-- <keep-alive>
+    <component :is="x"></component>
+    </keep-alive> -->
+    <!-- <ParkingFilter /> -->
     <div id="nav">
   <div class="container">
     <el-menu class="el-menu-demo flex" mode="horizontal" 
@@ -14,6 +18,7 @@
     <div class="logout" v-if="loggedInUser._id" @click="logout"><el-menu-item index="6">Logout</el-menu-item></div>
 
 </el-menu>
+
 </div> 
     </div>
     <router-view/>  
@@ -24,6 +29,7 @@
 <script>
 
 import FooterCmp from '@/components/FooterCmp.vue' 
+// import ParkingFilter from '@/components/ParkingFilter.vue'
 
 export default {
   data () {
@@ -35,6 +41,9 @@ export default {
     // this.loadUser() 
     loggedInUser(){
       return this.$store.getters.loggedInUser
+    },
+    x(){
+      return this.$store.getters.componentToShow
     }
   },
 
@@ -55,7 +64,8 @@ export default {
     },
   },
   components:{
-    FooterCmp
+    FooterCmp,
+    // ParkingFilter
   }
 }
 

@@ -1,7 +1,7 @@
 <template>
     <section>
         <!-- <input type="text" v-model="filterBy"> -->
-                <input id="pac-input" type="text" ref="input"
+                <input id="pac-input" class="input-location" type="text" ref="input"
                     placeholder="Enter a location">
                     <button @click="search">search</button>
     </section>
@@ -9,12 +9,13 @@
 
 <script>
 import { eventBus } from '../../services/EventBusService';
+import StorageService from '../../services/StorageService.js'
 
 export default {
     data(){
         return {
             filterBy:'',
-            loc:{}
+            loc:{},
         }
     },
     mounted: async function(){
@@ -23,37 +24,22 @@ export default {
         var autocomplete = new google.maps.places.Autocomplete(input);
 
     },
-    watch:{
-        filterBy(){
-            // pass new lat and lng
-            eventBus.$emit('filter',this.filterBy)
-        },
-    },
     methods:{
         search(){
             var geocoder= new google.maps.Geocoder();
             var input  = this.$refs.input.value
-            // var loc={};
-            console.log('this.geocode',geocoder.geocode);
-            
-            // console.log('input',input);
+            if (input){
+                this.$store.state.ParkingModule.search = true
+            }
             geocoder.geocode( { 'address': input}, (results, status) => {
-      // and this is function which processes response
       if (status === google.maps.GeocoderStatus.OK) {
         this.loc.lat=results[0].geometry.location.lat();
         this.loc.lng=results[0].geometry.location.lng();
 
-       this.$store.dispatch({type:'loadParkings',            
-            lat :this.loc.lat,
-            lng : this.loc.lng
-        });
+        this.$store.commit('setPosition', this.loc)
 
-         
-//              {
-//              lat : results[0].geometry.location.lat(),
-//             lng :  results[0].geometry.location.lng()
-// }
-        console.log( this.loc ); // the place where loc contains geocoded coordinates
+       this.$store.dispatch({type:'loadParkings'});
+
 
       } else {
         alert("Geocode was not successful for the following reason: " + status);
@@ -70,5 +56,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 </style>

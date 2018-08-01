@@ -11,7 +11,7 @@ import './assets/style/main.scss'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
 import StorageService from '../services/StorageService.js'
-
+import LocService from '../services/LocService.js'
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyC6AifY9XewU3b2wEp0Dr7XKyOjSS1oebQ',
@@ -31,8 +31,16 @@ new Vue({
   created() {
     var user = StorageService.load('loggedInUser')
     if (user) {
-      this.$store.commit({type:'setUser', user})
+      this.$store.commit({ type: 'setUser', user })
     }
+
+    LocService.getPosition().then(({ coords }) => {
+      this.$store.commit({
+        type: 'setPosition',
+        lat: coords.latitude,
+        lng: coords.longitude
+      })
+    })
 
   }
 }).$mount('#app')

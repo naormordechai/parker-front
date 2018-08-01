@@ -1,6 +1,7 @@
 <template>
-
     <section v-if="parkingDetail">
+{{lat}}
+{{lng}}
         <div class="container">
 <el-button-group class="box-btns-nav">
   <el-button @click="$router.push('/parking')" type="info" plain>List <i class="el-icon-arrow-right el-icon-more"></i></el-button>
@@ -61,7 +62,9 @@ import ParkingService from '../../services/ParkingService.js'
 export default {
 data(){
     return {
-        parkingDetail:null
+        parkingDetail:null,
+        lat:0,
+        lng:0
     }
 },
 methods:{
@@ -77,15 +80,24 @@ methods:{
         })
     },
 
+            x(){
+            this.lat = this.$store.getters.p.lat
+            this.lng = this.$store.getters.p.lng
+            // return this.$store.getters.p.lat
+        }
+
 },
 created(){
-        this.loadParkingId()
+        this.loadParkingId();
+        this.x()
+        // console.log('from getters',this.$store.getters.position)
         
     },
     computed:{
         isOccupied(){
             return this.parkingDetail.parking.occupiedUntil > Date.now()
-        }
+        },
+
     }
 }
 </script>

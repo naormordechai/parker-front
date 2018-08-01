@@ -5,7 +5,6 @@ const PARKING_URL = '//localhost:3000/parking'
 function query({lat,lng}) {
     return axios.get(PARKING_URL + '?lat='+lat+'&lng='+lng)
     .then(res => {
-        console.log('from fron-end service',res);
         return res.data
     })
 }
