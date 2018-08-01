@@ -1,17 +1,24 @@
 <template>
   <div id="app">
     <div id="nav">
-  <div class="container">
+  <div>
     <el-menu class="el-menu-demo flex" mode="horizontal" 
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b">
-    <router-link  to="/"><el-menu-item index="1">Home</el-menu-item></router-link>
-    <router-link  to="/about"><el-menu-item index="2">About</el-menu-item></router-link>
-    <router-link to="/parking/add"><el-menu-item index="3">add parking</el-menu-item></router-link> 
-    <router-link v-if="!loggedInUser._id" to="/login"><el-menu-item index="4">Login</el-menu-item></router-link>
-    <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`"><el-menu-item index="5">my parkings</el-menu-item></router-link>
-    <div class="logout" v-if="loggedInUser._id" @click="logout"><el-menu-item index="6">Logout</el-menu-item></div>
+    <div class="main-menu flex space-between">
+      <div class="flex">
+          <router-link  to="/"><el-menu-item index="1">Home</el-menu-item></router-link>
+          <router-link  to="/about"><el-menu-item index="2">About</el-menu-item></router-link>
+          <router-link to="/parking/add"><el-menu-item index="3">add parking</el-menu-item></router-link> 
+          <router-link v-if="!loggedInUser._id" to="/login"><el-menu-item index="4">Login</el-menu-item></router-link>
+          <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`"><el-menu-item index="5">my parkings</el-menu-item></router-link>
+          <div class="logout" v-if="loggedInUser._id" @click="logout"><el-menu-item index="6">Logout</el-menu-item></div>
+      </div>
+      <router-link :to="`/user/${loggedInUser._id}`">
+       <button v-show="loggedInUser.firstName" class="profile-icon">{{nameInitials}}</button>
+      </router-link>
+    </div>   
 
 </el-menu>
 </div> 
@@ -35,6 +42,9 @@ export default {
     // this.loadUser() 
     loggedInUser(){
       return this.$store.getters.loggedInUser
+    },
+    nameInitials() {
+      return this.loggedInUser.firstName.charAt(0) + this.loggedInUser.lastName.charAt(0)
     }
   },
 
@@ -120,4 +130,28 @@ footer {
 footer p {
   padding-bottom: 30px;
 }
+
+.profile-icon {
+  border-radius: 50%;
+  border: none;
+  height: 40px; 
+  width: 40px;
+  margin-right: 10px;
+  text-transform: uppercase;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(168, 168, 168, 0.377);
+    color: white;
+    transition: 0.3s
+  }
+
+}
+
+.main-menu {
+  justify-content: center;
+  align-items: center;
+  width:100%;
+}
+
 </style>

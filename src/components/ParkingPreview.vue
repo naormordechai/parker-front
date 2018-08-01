@@ -60,6 +60,8 @@ export default {
 .img-parking {
   height: 150px;
   width: 150px;
+  object-fit: cover;
+  border-radius: 3px;
 }
 
 .mr {

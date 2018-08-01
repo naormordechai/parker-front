@@ -1,19 +1,13 @@
-<template>
-    
+<template>   
+
     <section v-if="user">
-        <div class="my-details">
-                <h2>My Details</h2>
-            <el-card class="box-card">
-                <p>Name: {{user.firstName}} {{user.lastName}}</p>
-                <p>email: {{user.eMail}}</p>
-            </el-card>
-        </div>
-            
-           
-                <div v-show="reservedParkings" class="reserved-parkings">           
+
+         <el-tabs type="border-card">
+            <el-tab-pane label="Reserved Parkings">
+                 <div v-show="reserved" class="reserved-parkings">           
                     <h2 v-if="reservedParkings.length > 0">My Reserved Parkings:</h2>
                     <ul>
-                        <li v-for="parking in reservedParkings" :key="parking._id">                         
+                        <li v-if="parking.occupiedUntil !== 0" v-for="parking in reservedParkings" :key="parking._id">                         
                             <router-link class="no-underline" :to="`/parking/${parking._id}`">
                                 <el-card class="box-card">
                                     <div class="flex space-between">
@@ -47,7 +41,10 @@
                     </ul>
                 </div>
 
-                <div class="owned-parkings">
+            </el-tab-pane>
+
+            <el-tab-pane label="Owned Parkings">
+                 <div class="owned-parkings">
                     <h2>My Owned Parkings</h2>
                     <ul>
                         <li v-for="parking in ownedParkings" :key="parking._id">
@@ -78,6 +75,21 @@
                         </li>
                     </ul>
                 </div>
+            </el-tab-pane> 
+
+            <el-tab-pane label="Profile">
+               <div class="my-details">
+                     <h2>My Details</h2>
+                     <el-card class="box-card">
+                        <p>Name: {{user.firstName}} {{user.lastName}}</p>
+                        <p>email: {{user.eMail}}</p>
+                     </el-card>
+               </div>
+            </el-tab-pane>  
+
+        </el-tabs>
+
+
     </section>
 
 </template>
@@ -114,14 +126,20 @@ export default {
             return moment(timestamp).fromNow();;
         },
         stopParking (parking) {
-            this.$store.dispatch({type:'stopParking', parking: parking})
+           return this.$store.dispatch({type:'stopParking', parking: parking})
+           .then (()=> {
+               this.reservedParkings.filter(parking => parking._id !== parking._id)
+           })
         }
     },
     created() {
         this.loadParkingsActivity()
     },
     computed:{
-        
+        reserved() {
+            console.log('my reserved parkings: ',this.reservedParkings)
+            return this.reservedParkings.length > 0
+        }
     }
 };
 </script>
@@ -142,5 +160,9 @@ export default {
 
 .no-underline {
     text-decoration: none;
+}
+.el-tabs {
+    max-width: 1000px;
+    margin: auto
 }
 </style>

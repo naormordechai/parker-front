@@ -1,29 +1,27 @@
 <template>
-    <section class="reserve-parking">
-        <!-- {{parking}} -->
+    <section class="reserve-parking">   
         <h2>{{parking.address}}</h2>
-        
-        <GmapMap
-            :center="parking.location"
-            :zoom="17"
-            map-type-id="terrain"
-            style="height: 300px"
+            <GmapMap
+                :center="parking.location"
+                :zoom="17"
+                map-type-id="terrain"
+                style="height: 300px"
             >
-        <GmapMarker   
-                 
-            :position="parking.location"
-            :clickable="true"
-            :draggable="true"
-            @click="center=m.position" />
-        </GmapMap>
+            <GmapMarker                 
+                :position="parking.location"
+                :clickable="true"
+                :draggable="true"
+                @click="center=m.position" />
+            </GmapMap>
+            
+           
+        
         <div class="reserve-details">
             <p>How many hours?</p>
             <form submit="setParkingDuration">
-            <el-input-number v-model="hours" :min="1" :max="10"></el-input-number>
-            <!-- <input v-model="hours" class="hours" type="number" min="1" placeholder="number of hours" />  -->
-            <p>Total Price: ₪ {{cost}}</p>       
-            <!-- <button class="reserve-btn">Reserve Parking!</button> -->
-             <el-button type="success" @click="reserveParking(parking)">Reserve Parking!</el-button>
+                <el-input-number v-model="hours" :min="1" :max="10"></el-input-number>               
+                <p>Total Price: ₪ {{cost}}</p>                
+                <el-button type="success" @click="reserveParking(parking)">Reserve Parking!</el-button>
             </form>
         </div>
     </section>
@@ -64,6 +62,7 @@ export default {
         this.$store
           .dispatch({ type: "reserveParking", parking: parking })
           .then(res => {
+              this.showConfirmation()
             console.log("parking has been reserved!");
             this.$router.push(`/navigate/${parking._id}`)
           });
@@ -75,6 +74,12 @@ export default {
       ParkingService.getById(parkingId).then(res => {
         this.parking = res.parking;
       });
+    },
+    showConfirmation() {        
+        this.$message({
+          message: 'Congratulations ' +this.user.firstName+', your parking at ' +this.parking.address+' is waiting for you!',
+          type: 'success'
+        });
     }
   },
   computed: {
@@ -106,7 +111,18 @@ export default {
 .el-button {
   margin: 20px;
 }
-h2 {
-  margin-bottom: 20px;
+.reserve-parking {
+    position: relative;
 }
+
+.reserve-parking h2 {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    z-index:1;    
+    color: white;
+    background-color: rgba(66, 66, 66, 0.57)
+    
+}
+
 </style>

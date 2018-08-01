@@ -1,10 +1,9 @@
 <template>
-    <section>
-        <div class="navigation-header">
+    <section>       
+        <!-- <div class="navigation-header">
             <h2>Congratulations, {{user.firstName}}!</h2>
             <p>Your parking at {{parking.address}} is waiting for you :)</p>
-        </div>
-
+        </div> -->
        <!-- <div id="map" style="float:left;width:70%; height:100%"></div>
         <div id="directionsPanel" style="float:right;width:30%;height 100%"></div>  -->
         
@@ -175,7 +174,7 @@ export default {
     height: 50px;
 }
 
-navigation img:hover {
+.navigation img:hover {
     cursor: pointer;
 }
 
@@ -186,5 +185,7 @@ navigation img:hover {
 .panel {
     width:40%;
     margin: 0 auto;
+    border: 1px solid rgba(101, 99, 99, 0.25);
+    padding: 10px;
 }
 </style>

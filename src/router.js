@@ -4,7 +4,6 @@ import Home from './views/Home.vue'
 import About from './views/About.vue'
 import parkingsPage from './views/ParkingsPage.vue'
 import ParkingDetail from './views/ParkingDetails.vue'
-import signUpPage from './views/SignUpPage.vue'
 import ReserveParking from './views/ReserveParking.vue'
 import MyParkings from './views/MyParkings.vue'
 import LoginPage from './views/LoginPage.vue'
@@ -40,12 +39,7 @@ export default new Router({
       path: '/parking/:id',
       name: 'parking-details',
       component: ParkingDetail
-    },
-    {
-      path: '/signUp',
-      name: 'sign-up',
-      component: signUpPage
-    },
+    },    
     {
       path: '/reserve/:id',
       name: 'reserve-parking',

@@ -10,6 +10,7 @@ export default {
       eMail: '',
       password: ''
     },
+    
     aboutUser:''
   },
   getters: {
@@ -33,6 +34,12 @@ export default {
         eMail: ''
       }
       console.log('state logged in user: ', state.user)
+    },
+    addUser(state, {newUser}) {
+      // state.users.push(newUser)
+      // console.log('state with new user: ', state)
+      state.user = newUser
+      console.log('new user logged in: ', state.user)
     }
   },
   actions: {
@@ -53,10 +60,18 @@ export default {
       })
 
     },
+    signup(context, {newUser}) {
+      UserService.addUser(newUser)
+      .then (newUser => {
+        console.log('new user before committing:', newUser)
+        context.commit({type:'addUser', newUser})
+      })
+    },
     logout(context) {
       context.commit({ type: 'logoutUser' })
       console.log('user logged out successfully')
     }
+    
 
-  },
+  }
 }

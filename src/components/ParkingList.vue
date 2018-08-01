@@ -1,7 +1,7 @@
 <template>
   <section v-if="pos !== null">
     <ParkingFilter />
-    <div class="container flex ">
+    <div class="container flex ">      
       <div class="list-h">
       <ul>
           <li v-for="parking in sortParkings" :key="parking._id">
