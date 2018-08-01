@@ -30,6 +30,7 @@ export default {
         addParking(state, { newParking }) {
             state.parkings.unshift(newParking)
             console.log("parkings form store:",state.parkings)
+            return newParking
         },
     },
     getters: {
@@ -75,7 +76,9 @@ export default {
             return ParkingService.addParking( newParking )
                 .then((res) => {
                     console.log('res in store: ', res)
-                    return context.commit({ type: 'addParking', newParking: res.data })
+                     context.commit({ type: 'addParking', newParking: res.data })
+                     return res.data
+                   // .then ((res) => res.data)
                 })
         },
     }
