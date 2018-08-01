@@ -1,70 +1,98 @@
 import ParkingService from '../../services/ParkingService.js'
 import LocService from '../../services/LocService'
+import { eventBus } from '../../services/EventBusService.js'
 
 
 export default {
     state: {
         parkings: [],
-        positon : {
+        position: {
             lat: 0,
-            lng : 0
-        }
-
+            lng: 0
+        },
+        component: 'ParkingFilter',
+        latLng: {},
+        isSearch: false
     },
     mutations: {
+        
         setParkings(state, { parkings }) {
-            state.parkings = parkings            
-            console.log('state parkings after mutation: ', state.parkings)
+            state.parkings = parkings
         },
-        reserveParking(state,{parking}){
+        reserveParking(state, { parking }) {
             console.log('parking in mutation: ', parking)
             console.log('state before splicing: ', state)
-            var idx= state.parkings.findIndex(currParking => currParking._id === parking._id)
-            console.log('idx: ',idx)
+            var idx = state.parkings.findIndex(currParking => currParking._id === parking._id)
+            console.log('idx: ', idx)
             console.log('state after splicing: ', state)
-            state.parkings.splice(idx,1,parking)
+            state.parkings.splice(idx, 1, parking)
         },
-        stopParking(state, {parking}) {
+        stopParking(state, { parking }) {
             console.log('commit state: ', state)
-            var idx= state.parkings.findIndex(currParking=> currParking._id === parking._id)
-            console.log('idx: ',idx)
-            state.parkings.splice(idx,1,parking)
+            var idx = state.parkings.findIndex(currParking => currParking._id === parking._id)
+            console.log('idx: ', idx)
+            state.parkings.splice(idx, 1, parking)
             console.log('state after stop parking: ', state)
         },
-       
+
         addParking(state, { newParking }) {
             state.parkings.unshift(newParking)
-            console.log("parkings form store:",state.parkings)
+            console.log("parkings form store:", state.parkings)
         },
+        updateVal(state, { input }) {
+            this.val = input
+            console.log('payload input', this.val);
+
+        },
+        setPosition(state, payload) {
+            state.position.lat = payload.lat
+            state.position.lng = payload.lng
+
+            // console.log('paypay',payload.lat);
+            // console.log('paypay',payload.lng);
+            state.latLng.lat = payload.lat
+            state.latLng.lng = payload.lng
+            console.log('state', state.latLng);
+
+        }
     },
     getters: {
         parkingToDisplay(state) {
             return state.parkings
+        },
+        componentToShow(state) {
+            return state.component
+        },
+        p(state) {
+            return state.latLng
+            // return state.latLng
+        },
+        position : (state) => state.position,
+        search(state){
+            return state.isSearch
         }
     },
     actions: {
-        loadParkings(context, {lat,lng}) { 
-    console.log({lat,lng,msg:'in th moudle serviece'})
+        loadParkings(context) {
+            // console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx')
+            // console.log(context.getters.position)
+            return ParkingService.query(context.getters.position)
+                .then((parkings) => {
+                    context.commit({ type: 'setParkings', parkings })
+                    return parkings
 
-            return ParkingService.query({lat,lng})
-            .then((parkings)=> {
-                console.log('parkings returned from backend: ', parkings)
-                context.commit({type: 'setParkings', parkings})
-                console.log('parkings in store: ', context.state.parkings)
-                return parkings
-                
-            })
+                })
         },
-    
-        reserveParking(context, {parking}){
+
+        reserveParking(context, { parking }) {
             console.log('parking to reserve', parking)
             return ParkingService.reserveParking(parking)
-            .then (parking => {              
-                context.commit({type:'reserveParking', parking})
-            })
+                .then(parking => {
+                    context.commit({ type: 'reserveParking', parking })
+                })
         },
 
-        stopParking (context, {parking}) {           
+        stopParking(context, { parking }) {
             console.log('context', context)
             console.log('parking', parking)
             // var storeParking = context.state.parkings.find(currParking=> currParking._id === parking._id)
@@ -73,14 +101,14 @@ export default {
             parking.reserverId = ''
             console.log('store parking after init: ', parking)
             return ParkingService.stopParking(parking)
-            .then((parking) => {
-                context.commit({type: 'stopParking', parking})
-            })
+                .then((parking) => {
+                    context.commit({ type: 'stopParking', parking })
+                })
         },
         addParking(context, { newParking }) {
-            console.log("actions:",newParking);
-            
-            return ParkingService.addParking( newParking )
+            console.log("actions:", newParking);
+
+            return ParkingService.addParking(newParking)
                 .then((res) => {
                     console.log('res in store: ', res)
                     return context.commit({ type: 'addParking', newParking: res.data })

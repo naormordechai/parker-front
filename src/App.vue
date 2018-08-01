@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <!-- <keep-alive>
+    <component :is="x"></component>
+    </keep-alive> -->
+    <!-- <ParkingFilter /> -->
     <div id="nav">
   <div>
     <el-menu class="el-menu-demo flex" mode="horizontal" 
@@ -21,6 +25,7 @@
     </div>   
 
 </el-menu>
+
 </div> 
     </div>
     <router-view/>  
@@ -31,6 +36,7 @@
 <script>
 
 import FooterCmp from '@/components/FooterCmp.vue' 
+// import ParkingFilter from '@/components/ParkingFilter.vue'
 
 export default {
   data () {
@@ -65,7 +71,8 @@ export default {
     },
   },
   components:{
-    FooterCmp
+    FooterCmp,
+    // ParkingFilter
   }
 }
 

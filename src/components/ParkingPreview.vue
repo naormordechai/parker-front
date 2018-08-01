@@ -32,6 +32,10 @@
 
 export default {
     computed:{
+        distance1(){
+            // chekc the distnnace by compring the latlng of the parking 
+            //
+        },
         isOccupied(){
             return this.parking.occupiedUntil > Date.now()
         },
@@ -42,17 +46,13 @@ export default {
     },
     methods: {
         onResrvedClick(){
-            debugger
             if (!this.isOccupied) $router.push('/reserve/'+parking._id)
         },
     },
     props:{
         parking:Object
     },
-    created(){
-        console.log('craeated',this.parking);
-        
-    }
+    
 }
 </script>
 

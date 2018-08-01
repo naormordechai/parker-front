@@ -2,10 +2,18 @@ import axios from 'axios'
 const PARKING_URL = '//localhost:3000/parking'
 
 
+<<<<<<< HEAD
 function query({lat, lng}) {
     // return Promise.resolve(parkings)
     return axios.get(PARKING_URL+`?lat=${lat}&lng=${lng}`)
     .then(res => res.data)
+=======
+function query({lat,lng}) {
+    return axios.get(PARKING_URL + '?lat='+lat+'&lng='+lng)
+    .then(res => {
+        return res.data
+    })
+>>>>>>> 5d5923b6f26f2212226a05a5124e288801b76c39
 }
 
 
