@@ -1,9 +1,13 @@
 <template>
     <section>
         <!-- <input type="text" v-model="filterBy"> -->
-                <input id="pac-input" class="input-location" type="text" ref="input"
+        <div class="flex">
+                <input @keyup.enter="search" id="pac-input" class="input-location el-input__inner" type="text" ref="input"
                     placeholder="Enter a location">
-                    <button @click="search">search</button>
+                    <!-- <button @click="displayMap">Map</button> -->
+                    </div>
+                    <!-- <button @click="search">search</button> -->
+                    <!-- <el-input placeholder="Entar a location" ref="input" id="pac-input"></el-input> -->
     </section>
 </template>
 
@@ -28,9 +32,9 @@ export default {
         search(){
             var geocoder= new google.maps.Geocoder();
             var input  = this.$refs.input.value
-            if (input){
-                this.$store.state.ParkingModule.search = true
-            }
+            // if (input){
+            //     this.$store.state.ParkingModule.search = true
+            // }
             geocoder.geocode( { 'address': input}, (results, status) => {
       if (status === google.maps.GeocoderStatus.OK) {
         this.loc.lat=results[0].geometry.location.lat();
@@ -50,12 +54,18 @@ export default {
     // this line is executed right after creating AJAX request, but not after its response comes
     return this.loc;
             
-        }
+        },
+        // displayMap(){
+        //     console.log('foo');
+            
+        // }
     }
     
 }
 </script>
 
 <style scoped>
-
+/* .input-location{
+    width:100%;
+} */
 </style>
