@@ -143,9 +143,7 @@ h5{
   max-width: 420px;
 }
 
-.parking-list{
-  max-width: 100%;
-}
+
 
 @media(max-width:770px){
   .map{

@@ -57,6 +57,8 @@ export default {
         },
         displayMap(){
             console.log('foo');
+            var x = document.querySelector('.map');
+            x.classList.toggle('block')
             
         }
     }
