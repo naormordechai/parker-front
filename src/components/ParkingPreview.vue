@@ -5,15 +5,18 @@
         <div class="parking-box flex">
             <img class="img-parking mr" :src="parking.imageURL" alt="parking">
             <div class="parking-box-details flex column space-between">
-                <h3>{{parking.address}}</h3>
-                <p>price: {{parking.price}}₪</p>
-                <p>{{distance}} km</p>
-                <div class="flex space-around">
-                    <p>{{parking.amenities.isCovered}}</p>
+                <div class="flex space-between">
+                <h5>{{parking.address}}</h5>
+                <p>{{parking.price}}₪</p>
                 </div>
-                <div>
-                    <el-button type="info">Details</el-button>
-                    <el-button v-if="!isOccupied" type="success" :disabled="isOccupied" @click.prevent="$router.push('/reserve/'+parking._id)">
+                <p class="flex distance">{{distance}} km away</p>
+                <div class="amenities flex">
+                    <p>{{parking.amenities.isCovered}}</p>
+                    <p>{{parking.amenities.isForDisable}}</p>
+                </div>
+                <div class="container-btns" style="display: flex">
+                    <el-button type="info" >Details</el-button>
+                    <el-button v-if="!isOccupied" type="success"  :disabled="isOccupied" @click.prevent="$router.push('/reserve/'+parking._id)">
                             Reserve
                     </el-button>
                 </div>
@@ -32,10 +35,6 @@
 
 export default {
     computed:{
-        distance1(){
-            // chekc the distnnace by compring the latlng of the parking 
-            //
-        },
         isOccupied(){
             return this.parking.occupiedUntil > Date.now()
         },
@@ -57,9 +56,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.box-card .el-card__body {
+    padding: 8px;
+}
+.parking-box-details{
+    flex: 1;
+    h5 {
+        text-align: left;
+    }
+}
+
 .img-parking {
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
   object-fit: cover;
   border-radius: 3px;
 }
@@ -68,8 +78,16 @@ export default {
   margin-right: 20px;
 }
 
+.distance{
+    font-size: 13px;
+}
+
 .box-card:hover {
   background-color: rgb(217, 255, 181);
+}
+
+.amenities p:first-child{
+    margin-right: 5px;
 }
 
 .occupied {
@@ -79,5 +97,21 @@ export default {
             background-color: rgb(219, 219, 219);
         }
 }
+
+@media(max-width: 770px){
+    .amenities{
+        display: none;
+    }
+    .img-parking{
+        height: 80px;
+        width: 80px;
+    }
+
+.container-btns > * {
+    width: 50%;
+}
+
+}
+
 
 </style>

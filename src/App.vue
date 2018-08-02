@@ -161,4 +161,8 @@ footer p {
   width:100%;
 }
 
+@media(max-width: 770px){
+
+}
+
 </style>

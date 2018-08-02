@@ -1,16 +1,19 @@
 <template>
-  <section v-if="pos !== null">
+  <section class="parking-list" v-if="pos !== null">
     <!-- <ParkingFilter /> -->
+    <div class="container-list flex">      
+      <div class="list list-h">
     <ParkingFilter />
-    <div class="container flex ">      
-      <div class="list-h">
       <ul>
           <li v-for="parking in parkings" :key="parking._id">
             <parkingPreview :parking="parking"/>
           </li>
+          <li>
+        <h5 v-if="parkings.length === 0">There are no parking spaces currently try later</h5>
+          </li>
       </ul>
       </div>
-      <GmapMap v-if="pos"
+      <GmapMap class="map" v-if="pos"
   :center="pos"
   :zoom="14"
   map-type-id="terrain"
@@ -68,6 +71,7 @@ export default {
          })
        },
       getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+        
           var R = 6371; // Radius of the earth in km
           var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
           var dLon = this.deg2rad(lon2-lon1); 
@@ -98,6 +102,7 @@ export default {
 
   },
 },
+
   created(){
         this.getMyPos()
          .then(res => {
@@ -113,7 +118,7 @@ export default {
      },
   components:{
     ParkingPreview,
-    ParkingFilter
+    ParkingFilter,
     },
 }
 </script>
@@ -126,10 +131,32 @@ ul {
   text-decoration: none;
 }
 
+h5{
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+}
 .list-h {
   height: 100vh;
   overflow-y: scroll;
+  max-width: 420px;
 }
 
+.parking-list{
+  max-width: 100%;
+}
 
+@media(max-width:770px){
+  .map{
+    display: none;
+  }
+  .list{
+    width: 100%;
+  }
+  .list-h[data-v-49d44f76]{
+    max-width: none;
+  }
+
+}
 </style>
