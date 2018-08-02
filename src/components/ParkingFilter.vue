@@ -4,7 +4,7 @@
         <div class="flex">
                 <input @keyup.enter="search" id="pac-input" class="input-location el-input__inner" type="text" ref="input"
                     placeholder="Enter a location">
-                    <!-- <button @click="displayMap">Map</button> -->
+                    <button @click="displayMap">Map</button>
                     </div>
                     <!-- <button @click="search">search</button> -->
                     <!-- <el-input placeholder="Entar a location" ref="input" id="pac-input"></el-input> -->
@@ -55,10 +55,10 @@ export default {
     return this.loc;
             
         },
-        // displayMap(){
-        //     console.log('foo');
+        displayMap(){
+            console.log('foo');
             
-        // }
+        }
     }
     
 }

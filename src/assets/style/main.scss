@@ -72,3 +72,9 @@ ul{
 .align-end{
     align-items: flex-end;
 }
+
+@media(max-width:770px){
+    .map{
+      display: none;
+    }
+}
