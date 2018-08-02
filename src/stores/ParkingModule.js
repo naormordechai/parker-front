@@ -12,10 +12,41 @@ export default {
         },
         component: 'ParkingFilter',
         latLng: {},
-        isSearch: false
+        isSearch: false,
+        filterBy : {
+            distance: 100
+        }
     },
+    getters: {
+        parkingToDisplay(state) {
+            return state.parkings.filter(parking => {
+                var distance =  LocService.getDistanceFromLatLonInKm(
+                    state.position.lat,
+                    state.position.lng,
+                    parking.location.lat,
+                    parking.location.lng                      
+                )
+                parking.distance =distance
+                return distance  < state.filterBy.distance
+            })
+            .sort((a,b )=> {
+                return a.distance  > b.distance
+            })
+        },
+        componentToShow(state) {
+            return state.component
+        },
+        p(state) {
+            return state.latLng
+            // return state.latLng
+        },
+        position : (state) => state.position,
+        search(state){
+            return state.isSearch
+        }
+    },
+
     mutations: {
-        
         setParkings(state, { parkings }) {
             state.parkings = parkings
         },
@@ -49,24 +80,10 @@ export default {
             state.latLng.lat = payload.lat
             state.latLng.lng = payload.lng
             console.log('state', state.latLng);
+        },
+        // updateFilter(state, {update-filter}){
 
-        }
-    },
-    getters: {
-        parkingToDisplay(state) {
-            return state.parkings
-        },
-        componentToShow(state) {
-            return state.component
-        },
-        p(state) {
-            return state.latLng
-            // return state.latLng
-        },
-        position : (state) => state.position,
-        search(state){
-            return state.isSearch
-        }
+        // }
     },
     actions: {
         loadParkings(context) {

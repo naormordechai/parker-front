@@ -1,9 +1,10 @@
 <template>
-  <section class="parking-list" v-if="pos !== null">
-    <!-- <ParkingFilter /> -->
+  <section class="parking-list" v-if="pos !== null">   
     <div class="container-list flex">      
       <div class="list list-h">
     <ParkingFilter />
+   
+    <FilterBy />
       <ul>
           <li v-for="parking in parkings" :key="parking._id">
             <parkingPreview :parking="parking"/>
@@ -44,6 +45,7 @@
 import ParkingPreview from './ParkingPreview.vue';
 import LocService from '../../services/LocService.js'
 import ParkingFilter from './ParkingFilter.vue' 
+import FilterBy from './FilterByCmp.vue'
 import { eventBus } from '../../services/EventBusService';
 
 export default {
@@ -119,6 +121,7 @@ export default {
   components:{
     ParkingPreview,
     ParkingFilter,
+    FilterBy
     },
 }
 </script>
