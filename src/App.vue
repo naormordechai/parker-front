@@ -122,25 +122,25 @@ export default {
   display: inline-block;
 }
 
-.footer-app{
-  padding: 50px;
-  width: 100%;
-}
+// .footer-app{
+//   padding: 10px;
+//   width: 100%;
+// }
 
-.footer-list-details a{
-  color: black;
-  text-decoration: none;
-}
+// .footer-list-details a{
+//   color: black;
+//   text-decoration: none;
+// }
 
-footer {
-  background-image: linear-gradient(to bottom, 
-  rgba(238, 238, 238, 0.5)5%,
-  rgba(97, 97, 97, 0.8))
-}
+// footer {
+//   background-image: linear-gradient(to bottom, 
+//   rgba(238, 238, 238, 0.5)5%,
+//   rgba(97, 97, 97, 0.8))
+// }
 
-footer p {
-  padding-bottom: 30px;
-}
+// footer p {
+//   padding-bottom: 30px;
+// }
 
 .profile-icon {
   border-radius: 50%;

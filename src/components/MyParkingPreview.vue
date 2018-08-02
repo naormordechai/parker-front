@@ -2,8 +2,8 @@
     <li>                         
         <router-link class="no-underline" :to="`/parking/${parking._id}`">
             <el-card class="box-card">
-                <div class="flex">
-                    <div class="parking-image">                                  
+                <div class="flex space-between">
+                    <div class="image-container">                                  
                         <img  :src="parking.imageURL">
                         <div class="google-maps" :class="{'hidden-map': !mapView}">                                   
                             <GmapMap
@@ -19,18 +19,19 @@
                                 @click.prevent="center=m.position" />
                             </GmapMap> 
                         </div>
-                        <button class="toggle-map-btn" @click.prevent="mapView = !mapView"></button>            
+                        <div class="toggle-map-btn" @click.prevent="mapView = !mapView">
+                         </div>            
                     </div>
-                    <div class="parking-properties flex column space-between">                                            
-                            <ul class="parking-details">
-                                <li><i class="fas fa-map-marker-alt"></i> {{parking.address}}</li>
-                                <li><i class="fas fa-dollar-sign"></i>  ₪ {{parking.price}} per hour</li>
-                                <li><i class="far fa-clock"></i>  ends {{convertTimestamp(parking.occupiedUntil)}}</li>                                                    
-                            </ul>                                      
-                            <div>
-                            <el-button type="success" @click.prevent="stopParking(parking)">Stop Parking</el-button>  
-                            </div>
-                    </div>                                        
+                    <div class="details-container parking-properties flex column space-between">                                            
+                        <ul class="parking-details">
+                            <li><i class="fas fa-map-marker-alt"></i> {{parking.address}}</li>
+                            <li><i class="fas fa-dollar-sign"></i>  ₪ {{parking.price}} per hour</li>
+                            <li v-if="owned">{{(parking.reserverId)? 'Occupied' : 'Available for rent'}}</li>
+                            <li v-else><i class="far fa-clock"></i>  ends {{convertTimestamp(parking.occupiedUntil)}}</li>                                                    
+                        </ul>                        
+                        <el-button v-if="!owned" type="success" @click.prevent="stopParking(parking)">Stop Parking</el-button>  
+                    </div>
+                                                         
                 </div>
             </el-card> 
         </router-link>                          
@@ -42,10 +43,11 @@ import moment from 'moment';
 
 export default {
     name: 'my-parking-preview',
-    props: ['parking'],
+    props: ['parking', 'owned'],
   data () {
     return {
-        mapView: false
+        mapView: false,
+        
     }
   },
 
@@ -65,9 +67,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
-.parking-image {
+.image-container {
     position: relative;
 }
 
@@ -82,17 +84,31 @@ export default {
 .toggle-map-btn {
     position: absolute;
     bottom: 15px;
-    right: 15px;
-    background-color: hotpink;
-    outline: none;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    cursor: pointer;
+    right: 15px;    
+    outline: none;   
+    cursor: pointer;    
+    width: 60px;
+    height: 60px;
+    background-image: url('../assets/images/google-maps-icon.png');   
 }
 
 .hidden-map {
     z-index: -1;
+}
+.parking-properties {
+    text-align: left;    
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+.details-container {
+    flex-basis: 300px;
+}
+
+.parking-details li {
+    padding-bottom: 10px;
 }
 
 </style>
