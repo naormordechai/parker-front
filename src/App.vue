@@ -12,6 +12,7 @@
               active-text-color="#ffd04b">
               <div class="main-menu flex space-between">
                 <div class="flex">
+                    <!-- <img src="../assets/images/logo.png" /> -->
                     <router-link  to="/"><el-menu-item index="1">Home</el-menu-item></router-link>
                     <router-link  to="/parking"><el-menu-item index="2">Find</el-menu-item></router-link>
                     <router-link to="/parking/add"><el-menu-item index="3">add parking</el-menu-item></router-link> 
