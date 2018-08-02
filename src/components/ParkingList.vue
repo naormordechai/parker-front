@@ -1,11 +1,9 @@
 <template>
-  <section class="parking-list" v-if="pos !== null">
-    <!-- <ParkingFilter /> -->
+  <section class="parking-list" v-if="pos !== null">   
     <div class="container-list flex">      
       <div class="list list-h">
     <ParkingFilter />
-    <div class="container flex ">      
-      <div class="list-h">
+   
     <FilterBy />
       <ul>
           <li v-for="parking in parkings" :key="parking._id">

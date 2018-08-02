@@ -58,8 +58,8 @@ export default {
 }
 
 .filter-by {
-    border-top: 1px solid lightgrey;
-    border-bottom: 1px solid lightgrey;
+    /* border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey; */
     padding: 10px;
     margin: 0 20px;    
 }
