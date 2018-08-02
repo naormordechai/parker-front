@@ -71,16 +71,27 @@ export default {
 
   methods: {
       login () {
+        //   UserService.login(this.userInfo).then(
+        //       result=>{
+        //           console.log('71:success')
+        //       }).catch (err => console.log('72-error:',err));
+
+              
+          
           console.log('4-00000',this.$store.state.UserModule.aboutUser);
+
           if (!this.userInfo.email || !this.userInfo.password){
               this.message = 'please enter valid user'
-              return 
-          } 
+              
+          } else
 
               this.$store.dispatch({type: 'login', userInfo : this.userInfo})   
-              .then (_=> {                                
+              .then (_=> {  
+                  console.log('85-login:',_);
+                                                
                   this.$router.go(-1)                 
-                  })          
+                  })
+                  .catch ((err => this.message = 'no such user'))          
           },
         signup() {
             console.log('user signed up')
