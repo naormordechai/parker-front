@@ -90,7 +90,7 @@ export default {
 
     getDistanceByKilometer(){
       var distances = this.parkings.map(parking => {
-        parking.location.distance = this.getDistanceFromLatLonInKm(this.pos.lat,this.pos.lng,parking.location.lat,parking.location.lng)
+        parking.location.distance = this.getDistanceFromLatLonInKm(this.pos.lat,this.pos.lng,parking.location.lat,parking.location.lng).toFixed(1)
         return parking
     })
       // console.log('triend',distances);

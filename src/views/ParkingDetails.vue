@@ -52,7 +52,7 @@
           <div class="parking-details column">
         <h5 class="to-know">things you should know</h5>
         <p>₪ {{parkingDetail.parking.price}}</p>
-        <p>{{distance.toFixed(1)}}km </p>
+        <p>{{distance}} </p>
         <p>{{parkingDetail.parking.description}}</p>
         <div>
             {{parkingDetail.parking.amenities.isCovered}}

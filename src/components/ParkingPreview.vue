@@ -40,7 +40,7 @@ export default {
         },
         distance(){
             var distance = this.parking.location.distance
-            return distance.toFixed(1)
+            return distance
         }
     },
     methods: {
