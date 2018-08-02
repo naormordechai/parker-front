@@ -188,7 +188,7 @@ methods:{
 
 <style scoped lang="scss">
 .parking-details-image {
-    max-width: 80%;
+    max-width: 100%;
 }
  .section-details .box-card{
     //  background-color: red;
@@ -197,9 +197,6 @@ methods:{
      height: 85vh;
 }
 
-.x .el-card__body{
-    // padding: 0;
-}
 
 /* menu-bar */
 .menu-bar {
