@@ -75,6 +75,17 @@ ul{
     align-items: flex-end;
 }
 
+.parking-list{
+    max-width: 100%;
+  }
+
+  .btn-map{
+      display: none;
+  }
+
+  .block{
+      display: block;
+  }
 @media(max-width:770px){
     .map{
       display: none;
