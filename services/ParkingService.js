@@ -1,6 +1,8 @@
 import axios from 'axios'
-const PARKING_URL = '//localhost:3000/parking'
-
+// const PARKING_URL = '//localhost:3000/parking'
+const PARKING_URL = (process.env.NODE_ENV !== 'development')
+    ? '/parking'
+    : '//localhost:3000/parking';
 
 function query({lat, lng}) {
     // return Promise.resolve(parkings)

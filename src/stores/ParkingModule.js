@@ -14,12 +14,37 @@ export default {
         latLng: {},
         isSearch: false,
         filterBy : {
-            distance: 100
+            distance: 100,
+            isPaved: '',
+            isCovered: '',
+            isForDisable: ''            
         }
     },
     getters: {
         parkingToDisplay(state) {
-            return state.parkings.filter(parking => {
+            return state.parkings
+            .filter(parking =>{
+                if (state.filterBy.isPaved){
+                    return parking.amenities.isPaved
+                } else {
+                    return true 
+                }
+            })
+            .filter(parking =>{
+                if (state.filterBy.isCovered){
+                    return parking.amenities.isCovered
+                } else {
+                    return true 
+                }
+            })
+            .filter(parking =>{
+                if (state.filterBy.isForDisable){
+                    return parking.amenities.isForDisable
+                } else {
+                    return true 
+                }
+            })
+            .filter(parking => {
                 var distance =  LocService.getDistanceFromLatLonInKm(
                     state.position.lat,
                     state.position.lng,
@@ -81,9 +106,10 @@ export default {
             state.latLng.lng = payload.lng
             console.log('state', state.latLng);
         },
-        // updateFilter(state, {update-filter}){
-
-        // }
+        updateFilter(state, {filterBy}){
+            console.log('filter: ', filterBy)
+            state.filterBy = filterBy
+        }
     },
     actions: {
         loadParkings(context) {

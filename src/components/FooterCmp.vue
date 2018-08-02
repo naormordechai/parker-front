@@ -50,7 +50,5 @@ footer {
   height: 56px;
 }
 
-footer p {
-  /* padding-bottom: 30px; */
-}
+
 </style>
