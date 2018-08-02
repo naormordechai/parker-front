@@ -73,7 +73,7 @@ export default {
         },
         description: "",
         createdAt: 0,
-        imageURL: ""
+        imageURL: "http://res.cloudinary.com/parker1/image/upload/v1533190733/e8iuj1et9h7mwylwhe5x.jpg"
       },
       isAddParking: true,
       fileLabelTxt: "Load Image",
@@ -112,6 +112,11 @@ export default {
       if (this.user._id === "" || this.user._id === false) {
         this.$router.push("/login");
       } else {
+        if (!this.parkingToAdd.address){
+          console.log("Address is empty, please add address!");
+          
+
+        } else {
         let newParking = this.parkingToEdit;
         if (this.isAddParking) {
           newParking.ownerId = this.user._id;
@@ -129,7 +134,9 @@ export default {
             .catch(err => {
               // show an error msg maybe with elment msg cmp.
             });
+         }
         }
+
       }
     },
     loadImg(elPic, ev) {
