@@ -4,12 +4,9 @@
     <div class="container-list flex">      
       <div class="list list-h">
     <ParkingFilter />
-<<<<<<< HEAD
     <div class="container flex ">      
       <div class="list-h">
     <FilterBy />
-=======
->>>>>>> 138929d5b8c1769bff72d58df6bf0dc3b4684f17
       <ul>
           <li v-for="parking in parkings" :key="parking._id">
             <parkingPreview :parking="parking"/>
@@ -126,10 +123,7 @@ export default {
   components:{
     ParkingPreview,
     ParkingFilter,
-<<<<<<< HEAD
     FilterBy
-=======
->>>>>>> 138929d5b8c1769bff72d58df6bf0dc3b4684f17
     },
 }
 </script>
