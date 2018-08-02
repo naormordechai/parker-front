@@ -46,9 +46,8 @@ export default {
     login(context,  {userInfo}) {
       UserService.login(userInfo)
         .then(user => {
-          console.log('naor mordechaix',user);
           
-          if (!user._id) return Promise.reject()
+          if (!user._id) return Promise.reject(err => err)
           console.log('this user logged in successfullyyyyyyyyyyyy', user)
           context.commit({ type: 'setUser', user: user })
           StorageService.store('loggedInUser', user)
