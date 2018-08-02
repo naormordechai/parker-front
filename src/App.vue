@@ -5,31 +5,29 @@
     </keep-alive> -->
     <!-- <ParkingFilter /> -->
     <div id="nav">
-  <div>
-    <el-menu class="el-menu-demo flex" mode="horizontal" 
-    background-color="#545c64"
-    text-color="#fff"
-    active-text-color="#ffd04b">
-    <div class="main-menu flex space-between">
-      <div class="flex">
-          <router-link  to="/"><el-menu-item index="1">Home</el-menu-item></router-link>
-          <router-link  to="/about"><el-menu-item index="2">About</el-menu-item></router-link>
-          <router-link to="/parking/add"><el-menu-item index="3">add parking</el-menu-item></router-link> 
-          <router-link v-if="!loggedInUser._id" to="/login"><el-menu-item index="4">Login</el-menu-item></router-link>
-          <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`"><el-menu-item index="5">my parkings</el-menu-item></router-link>
-          <div class="logout" v-if="loggedInUser._id" @click="logout"><el-menu-item index="6">Logout</el-menu-item></div>
-      </div>
-      <router-link :to="`/user/${loggedInUser._id}`">
-       <button v-show="loggedInUser.firstName" class="profile-icon">{{nameInitials}}</button>
-      </router-link>
-    </div>   
-
-</el-menu>
-
-</div> 
+        <div>
+          <el-menu class="el-menu-demo flex" mode="horizontal" 
+              background-color="#545c64"
+              text-color="#fff"
+              active-text-color="#ffd04b">
+              <div class="main-menu flex space-between">
+                <div class="flex">
+                    <router-link  to="/"><el-menu-item index="1">Home</el-menu-item></router-link>
+                    <router-link  to="/parking"><el-menu-item index="2">Find</el-menu-item></router-link>
+                    <router-link to="/parking/add"><el-menu-item index="3">add parking</el-menu-item></router-link> 
+                    <router-link v-if="!loggedInUser._id" to="/login"><el-menu-item index="4">Login</el-menu-item></router-link>
+                    <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`"><el-menu-item index="5">my parkings</el-menu-item></router-link>
+                    <div class="logout" v-if="loggedInUser._id" @click="logout"><el-menu-item index="6">Logout</el-menu-item></div>
+                </div>      
+                  <router-link :to="`/user/${loggedInUser._id}`">
+                    <button v-show="loggedInUser.firstName" class="profile-icon">{{nameInitials}}</button>
+                  </router-link>     
+                </div> 
+           </el-menu>
+          </div> 
     </div>
     <router-view/>  
-<FooterCmp /> 
+    <FooterCmp /> 
   </div>
 
 </template>
@@ -81,7 +79,7 @@ export default {
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  // font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -90,12 +88,18 @@ export default {
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
+  font-size: 15px;
 }
 #nav, {
   // padding: 30px;
+    position:fixed;
+    width: 100%;
+    opacity: 0.90;
+    z-index: 1;  
+    top:0;  
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #2c3e50;    
     &.router-link-exact-active {
       color: #42b983;
     }
@@ -118,25 +122,25 @@ export default {
   display: inline-block;
 }
 
-.footer-app{
-  padding: 50px;
-  width: 100%;
-}
+// .footer-app{
+//   padding: 10px;
+//   width: 100%;
+// }
 
-.footer-list-details a{
-  color: black;
-  text-decoration: none;
-}
+// .footer-list-details a{
+//   color: black;
+//   text-decoration: none;
+// }
 
-footer {
-  background-image: linear-gradient(to bottom, 
-  rgba(238, 238, 238, 0.5)5%,
-  rgba(97, 97, 97, 0.8))
-}
+// footer {
+//   background-image: linear-gradient(to bottom, 
+//   rgba(238, 238, 238, 0.5)5%,
+//   rgba(97, 97, 97, 0.8))
+// }
 
-footer p {
-  padding-bottom: 30px;
-}
+// footer p {
+//   padding-bottom: 30px;
+// }
 
 .profile-icon {
   border-radius: 50%;
@@ -156,7 +160,7 @@ footer p {
 }
 
 .main-menu {
-  justify-content: center;
+  
   align-items: center;
   width:100%;
 }

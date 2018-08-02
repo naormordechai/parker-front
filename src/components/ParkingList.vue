@@ -1,9 +1,16 @@
 <template>
-  <section class="parking-list" v-if="pos !== null">
-    <!-- <ParkingFilter /> -->
-    <div class="container-list flex">      
-      <div class="list list-h">
-    <ParkingFilter />
+  <section class="parking-list" v-if="pos !== null">   
+    <div class="container-search flex">
+    </div>
+
+    <button class="btn-map" @click="isMap = !isMap">Map</button>    
+
+    <div class="container-list flex">
+      <div class="list list-h" :class="{showMap: isMap}">
+    <FilterBy />
+          <ParkingFilter style="flex:1" />
+
+
       <ul>
           <li v-for="parking in parkings" :key="parking._id">
             <parkingPreview :parking="parking"/>
@@ -13,21 +20,21 @@
           </li>
       </ul>
       </div>
-      <GmapMap class="map" v-if="pos"
-  :center="pos"
-  :zoom="14"
-  map-type-id="terrain"
-  style="width: 60%; height: 100vh; flex:1"
->
-  <GmapMarker
-    :key="index"
-    v-for="(p, index) in parkings"
-    :position="p.location"
-    :icon="getSymbol(p)"
-    :clickable="true" 
-    :draggable="false"
-    @click="$router.push('/parking/' + p._id)"
-  />
+      <GmapMap v-if="pos"
+            :center="pos"
+            :zoom="14"
+            map-type-id="terrain"
+            style="width: 60%; height: 100vh; flex:1"
+      >
+            <GmapMarker
+              :key="index"
+              v-for="(p, index) in parkings"
+              :position="p.location"
+              :icon="getSymbol(p)"
+              :clickable="true" 
+              :draggable="false"
+              @click="$router.push('/parking/' + p._id)"
+            />
 
   <GmapMarker 
     :position="pos"
@@ -35,7 +42,7 @@
   />
 
 </GmapMap>  
-    </div>
+  </div>
   </section>
 </template>
 
@@ -44,6 +51,7 @@
 import ParkingPreview from './ParkingPreview.vue';
 import LocService from '../../services/LocService.js'
 import ParkingFilter from './ParkingFilter.vue' 
+import FilterBy from './FilterByCmp.vue'
 import { eventBus } from '../../services/EventBusService';
 
 export default {
@@ -51,8 +59,10 @@ export default {
     return {
       pos:null,
       iconBase : 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+      isMap:false
     }
   },
+  
    props:{
      parkings:Array
    },
@@ -119,6 +129,7 @@ export default {
   components:{
     ParkingPreview,
     ParkingFilter,
+    FilterBy
     },
 }
 </script>
@@ -131,7 +142,7 @@ ul {
   text-decoration: none;
 }
 
-h5{
+h5 {
   text-align: center;
   display: flex;
   flex-wrap: wrap;
@@ -143,19 +154,33 @@ h5{
   max-width: 420px;
 }
 
-.parking-list{
-  max-width: 100%;
+.btn-map{
+  display: none;
 }
 
-@media(max-width:770px){
-  .map{
-    display: none;
-  }
-  .list{
-    width: 100%;
-  }
-  .list-h[data-v-49d44f76]{
+@media (max-width: 770px) {
+  .list {
+    width: 100%;  
     max-width: none;
+  }
+
+  .list.showMap {
+    max-width: 0px;
+  }
+
+  .btn-map{
+    display: block;
+    border: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    border: 1px solid grey;
+  }
+
+  .list-h[data-v-49d44f76]{
+    overflow-y: hidden;
+    /* height: 0; */
+    height: auto;
   }
 
 }

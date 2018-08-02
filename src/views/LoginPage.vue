@@ -7,9 +7,12 @@
                 <div class="login">
                     <h3>Login to your account</h3>
                     <form @submit.prevent="login">
-                        <input type="text" v-model="userInfo.email" placeholder="Insert your email"/>   
-                        <input type="password" v-model="userInfo.password" placeholder="password"/>                
-                        <el-button type="success" @click="login">Login</el-button>
+                        <div class="login-container flex column">
+                            <input type="text" v-model="userInfo.email" placeholder="Insert your email"/>   
+                            <input type="password" v-model="userInfo.password" placeholder="password"/>                
+                            <el-button type="success" @click="login">Login</el-button>
+                        </div>
+                       
                     </form>
                     <p>{{message}}</p>
                  </div>
@@ -19,11 +22,13 @@
                 <div class="signup">
                     <h3>Create a new account</h3>
                     <form @submit.prevent="signup">
-                   <input type="text" v-model="newUser.firstName" placeholder="Insert your First Name:"/>   
-                     <input type="text" v-model="newUser.lastName" placeholder="Insert your Last Name:"/>   
-                    <input type="email" v-model="newUser.email" placeholder="Insert your email:"/>   
-                     <input type="password" v-model="newUser.password" placeholder="Set Password"/>                
-                        <el-button type="success" @click="signup">Sign me Up!</el-button>
+                        <div class="signup-container flex column">
+                            <input type="text" v-model="newUser.firstName" placeholder="First Name:"/>   
+                            <input type="text" v-model="newUser.lastName" placeholder="Last Name:"/>   
+                            <input type="email" v-model="newUser.email" placeholder="email:"/>   
+                            <input type="password" v-model="newUser.password" placeholder="Password:"/>                
+                            <el-button type="success" @click="signup">Sign me Up!</el-button>
+                        </div>
                     </form>
                     <p>{{message}}</p>
                  </div>
@@ -113,6 +118,18 @@ export default {
 </script>
 
 <style scoped>
+section {
+    margin-top: 60px;
+}
+
+.login-container, .signup-container {
+    max-width: 50%;
+    margin: 0 auto
+}
+.login-container input, .signup-container input {
+    margin-bottom: 10px;
+}
+
 .login input,
 button {
   padding: 10px;  
@@ -123,6 +140,10 @@ button {
     margin: 10px;
 }
 
+.signup-container .el-button {
+    margin: 0 10px;
+}
+
 .el-tabs {
     max-width: 500px;
     margin: 0 auto;
@@ -130,4 +151,23 @@ button {
 h3 {
     margin: 15px;
 }
+
+
+@media (max-width: 550px) {
+    .el-tabs {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 440px) {
+    .el-tabs {
+        max-width: 300px;
+    }
+    .signup-container, .login-container {
+        max-width: 100%
+    }
+}
+
+
 </style>

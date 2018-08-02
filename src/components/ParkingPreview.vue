@@ -11,8 +11,9 @@
                 </div>
                 <p class="flex distance">{{distance}} km away</p>
                 <div class="amenities flex">
-                    <p>{{parking.amenities.isCovered}}</p>
-                    <p>{{parking.amenities.isForDisable}}</p>
+                    <p v-if="parking.amenities.isPaved"><i class="fas fa-road"></i></p>
+                    <p v-if="parking.amenities.isForDisable"><i class="fas fa-wheelchair"></i></p>
+                    <p v-if="parking.amenities.isCovered"><i class="fas fa-parking"></i></p>
                 </div>
                 <div class="container-btns" style="display: flex">
                     <el-button type="info" >Details</el-button>
@@ -86,8 +87,8 @@ export default {
   background-color: rgb(217, 255, 181);
 }
 
-.amenities p:first-child{
-    margin-right: 5px;
+.amenities p{
+    margin-right: 15px;
 }
 
 .occupied {

@@ -4,7 +4,6 @@
         <div class="flex">
                 <input @keyup.enter="search" id="pac-input" class="input-location el-input__inner" type="text" ref="input"
                     placeholder="Enter a location">
-                    <!-- <button @click="displayMap">Map</button> -->
                     </div>
                     <!-- <button @click="search">search</button> -->
                     <!-- <el-input placeholder="Entar a location" ref="input" id="pac-input"></el-input> -->
@@ -20,8 +19,12 @@ export default {
         return {
             filterBy:'',
             loc:{},
+            
         }
     },
+    // props:{
+    //     isMap:Boolean,
+    // },
     mounted: async function(){
         var google  = await this.$gmapApiPromiseLazy()
         var input  = this.$refs.input
@@ -55,10 +58,6 @@ export default {
     return this.loc;
             
         },
-        // displayMap(){
-        //     console.log('foo');
-            
-        // }
     }
     
 }
@@ -68,4 +67,15 @@ export default {
 /* .input-location{
     width:100%;
 } */
+
+.icon-search{
+    border: none;
+    margin-left: -50px;
+}
+
+@media (max-width: 770px) {
+  .btn-map {
+    display: block;
+  }
+}
 </style>

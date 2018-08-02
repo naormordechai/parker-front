@@ -1,5 +1,6 @@
 <template>
     <section v-if="parkingDetail">
+
 <!-- <el-button-group class="box-btns-nav">
   <el-button @click="$router.push('/parking')" type="info" plain>List <i class="el-icon-arrow-right el-icon-more"></i></el-button>
   <el-button type="info" plain icon="el-icon-arrow-left">Previous Page</el-button>
@@ -45,6 +46,7 @@
              <!-- <el-button @click="$router.push('/reserve/'+parkingDetail.parking._id)" 
              class="btn-reserve" type="success" :disabled="isOccupied">Reserve Now!</el-button> -->
 <div class="section-details flex align-end">
+
     <el-card class="box-card">
         <h5 class="address">{{parkingDetail.parking.address}}</h5>
       <img :src="parkingDetail.parking.imageURL" class="parking-details-image image">
@@ -188,7 +190,7 @@ methods:{
 
 <style scoped lang="scss">
 .parking-details-image {
-    max-width: 80%;
+    max-width: 100%;
 }
  .section-details .box-card{
     //  background-color: red;
@@ -197,9 +199,6 @@ methods:{
      height: 85vh;
 }
 
-.x .el-card__body{
-    // padding: 0;
-}
 
 /* menu-bar */
 .menu-bar {

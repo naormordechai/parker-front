@@ -19,6 +19,8 @@ html {
 
 body {
     height: 100%;
+    margin-top: 56px;
+    font-family: 'Open Sans', sans-serif;
 }
 /* globals */
 
@@ -71,4 +73,21 @@ ul{
 
 .align-end{
     align-items: flex-end;
+}
+
+.parking-list{
+    max-width: 100%;
+  }
+
+  .btn-map{
+      display: none;
+  }
+
+  .block{
+      display: block;
+  }
+@media(max-width:770px){
+    .map{
+      display: none;
+    }
 }
