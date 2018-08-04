@@ -40,13 +40,14 @@
         </form>
 
 
-        
+        <FooterCmp />
     </section>
 </template>
 
 <script>
 //import VueGoogleAutocomplete from "vue-google-autocomplete";
 import CloudinaryService from "../../services/CloudinaryService.js";
+import FooterCmp from '@/components/FooterCmp.vue'
 
 
 
@@ -79,6 +80,10 @@ export default {
       fileLabelTxt: "Load Image",
       
     };
+  },
+  components:{
+  FooterCmp,
+
   },
   computed: {
     parkingToEdit() {

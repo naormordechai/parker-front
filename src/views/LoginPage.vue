@@ -43,6 +43,7 @@
         <button>login</button>
         <input type="submit" value="Login" @click="login">
     </form> -->
+    <FooterCmp />
     </section>
 </template>
 
@@ -50,6 +51,8 @@
 
 import UserService from '../../services/UserService.js'
 import eventBus from '../../services/EventBusService.js'
+import FooterCmp from '@/components/FooterCmp.vue'
+
 
 export default {
   data() {
@@ -109,8 +112,9 @@ export default {
                 })  
             }                      
         },
-          created() {                          
-          }
+        components:{
+            FooterCmp
+        }
   }
 
 

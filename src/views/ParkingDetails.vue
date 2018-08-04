@@ -35,7 +35,7 @@
   :center="parkingDetail.parking.location"
   :zoom="16"
   map-type-id="terrain"
-  style="flex:1; height: 85vh"
+  style="flex:1;"
 >
   <GmapMarker
     :position="parkingDetail.parking.location"
@@ -220,6 +220,17 @@ margin-top: 10px;
 
 .about-owner > *:not(:last-child){
     margin-bottom: 5px;
+}
+
+@media(max-width: 770px){
+    .section-details .box-card{
+        max-width: none;
+        width: 100%;
+    }
+    img[data-v-bc4679b8]{
+        width: 100%;
+        height: 180px;
+    }
 }
 
 </style>
