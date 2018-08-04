@@ -35,6 +35,12 @@ ul{
 
 /* helpers */
 
+.line {
+    height: 1px;
+    background-color: rgb(224, 221, 221);
+    margin:10px 0;
+}
+
 .flex{
     display: flex;
 }

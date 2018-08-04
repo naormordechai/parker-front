@@ -1,77 +1,35 @@
 <template>
     <section v-if="parkingDetail">
 
-<!-- <el-button-group class="box-btns-nav">
-  <el-button @click="$router.push('/parking')" type="info" plain>List <i class="el-icon-arrow-right el-icon-more"></i></el-button>
-  <el-button type="info" plain icon="el-icon-arrow-left">Previous Page</el-button>
-  <el-button type="info" plain>Next Page<i class="el-icon-arrow-right el-icon-right"></i></el-button>
-</el-button-group> -->
-<!-- <div class="cards-details flex space-between">
-    <el-card>
-        <div>
-           <p>{{parkingDetail.parking.address}}</p>
-           <p>0.4 km</p>
-           <p>₪ {{parkingDetail.parking.price}}</p>
-        </div>
-    </el-card>
-
-    <el-card>
-        <div>
-            <p>{{parkingDetail.owner.firstName}}</p>
-            <p>{{parkingDetail.owner.lastName}}</p>
-            <p>{{parkingDetail.owner.eMail}}</p>
-        </div>
-    </el-card>
-</div> -->
-    <!-- <img class="img-parking-car" :src="parkingDetail.parking.imageURL" alt="parking">
-        <el-card>
-        <div>
-            <p>avilible from</p>
-        </div>
-    </el-card> -->
-            <!-- <el-card>
-            <p>Amenties</p>
-                <div class="box-amenties flex justify-content-c">
-                    <p>{{parkingDetail.parking.amenities.isCovered}}</p> -->
-                    <!-- <font-awesome-icon icon="wheelchair" />
-                    <font-awesome-icon icon="road" /> -->
-    <!-- </el-card> -->
-
-    <!-- <el-card>
-        <div>
-            <p>{{parkingDetail.parking.description}}</p>
-        </div>
-    </el-card> -->
-        
-             <!-- <el-button @click="$router.push('/reserve/'+parkingDetail.parking._id)" 
-             class="btn-reserve" type="success" :disabled="isOccupied">Reserve Now!</el-button> -->
-<div class="section-details flex align-end">
+<div class="section-details flex">
 
     <el-card class="box-card">
-        <h5 class="address">{{parkingDetail.parking.address}}</h5>
-      <img :src="parkingDetail.parking.imageURL" class="parking-details-image image">
-      <div style="padding: 25px;">
-          <div class="parking-details column">
-        <h5 class="to-know">things you should know</h5>
-        <p>₪ {{parkingDetail.parking.price}}</p>
-        <p>{{distance}} </p>
-        <p>{{parkingDetail.parking.description}}</p>
-        <div>
-            {{parkingDetail.parking.amenities.isCovered}}
-            {{parkingDetail.parking.amenities.isCovered}}
-            {{parkingDetail.parking.amenities.isCovered}}
-        </div>
-        </div>
-        <div class="about-owner flex column space-between">
-            <h5>About owner</h5>
-            <p>{{parkingDetail.owner.firstName}} {{parkingDetail.owner.lastName}}</p>
-            <p>{{parkingDetail.owner.eMail}}</p>
-            <div>
-                     <el-button @click="$router.push('/reserve/'+parkingDetail.parking._id)" 
-             class="btn-reserve" type="success" :disabled="isOccupied">Reserve Now!</el-button>
+        <h3 class="address">{{parkingDetail.parking.address}}</h3>
+        <img :src="parkingDetail.parking.imageURL" class="parking-details-image image">
+        <div style="padding: 25px;">
+            <div class="parking-details column">
+                <h5 class="to-know">things you should know:</h5>
+                <p><i class="fas fa-dollar-sign"></i>  ₪ {{parkingDetail.parking.price}}</p>
+                <p><i class="fas fa-map-marker-alt"></i>  {{calcDistance}} </p>
+                <div class="line"></div>
+                <p>{{parkingDetail.parking.description}}</p>
+                <div class="line"></div>
+                <div class="amenities flex">
+                    <p v-if="parkingDetail.parking.amenities.isPaved"><i class="fas fa-road"></i></p>
+                    <p v-if="parkingDetail.parking.amenities.isForDisable"><i class="fas fa-wheelchair"></i></p>
+                    <p v-if="parkingDetail.parking.amenities.isCovered"><i class="fas fa-parking"></i></p>
+                </div>       
             </div>
-        </div>
-
+            <div class="line"></div>
+            <div class="about-owner flex column space-between">
+                <h5>Owner details</h5>
+                <p>{{parkingDetail.owner.firstName}} {{parkingDetail.owner.lastName}}</p>
+                <p>{{parkingDetail.owner.eMail}}</p>
+            <div>
+                <el-button @click="$router.push('/reserve/'+parkingDetail.parking._id)" 
+                 class="btn-reserve" type="success" :disabled="isOccupied">Reserve Now!</el-button>
+            </div>
+            </div>
         </div>
 
     </el-card>
@@ -79,7 +37,7 @@
   :center="parkingDetail.parking.location"
   :zoom="16"
   map-type-id="terrain"
-  style="flex:1; height: 85vh"
+  style="flex:1;"
 >
   <GmapMarker
     :position="parkingDetail.parking.location"
@@ -106,7 +64,7 @@ data(){
         lat:0,
         lng:0,
         markers:[],
-        distance: 0
+        distance: 0,
     }
 },
 methods:{
@@ -183,6 +141,14 @@ methods:{
         isOccupied(){
             return this.parkingDetail.parking.occupiedUntil > Date.now()
         },
+        calcDistance() {
+            if (this.distance>1) {
+                return this.distance.toFixed(2) + "km from you"
+            }
+            else {
+                return this.distance.toFixed(3)*1000 + " meters from you"
+            }
+        }
 
     }
 }
@@ -196,7 +162,7 @@ methods:{
     //  background-color: red;
      max-width: 450px;
      padding: 0;
-     height: 85vh;
+    //  height: 85vh;
 }
 
 
@@ -254,7 +220,7 @@ margin-top: 10px;
 }
 
 .parking-details > *:not(:last-child){
-    margin-bottom: 5px;
+    margin-bottom: 5px;    
 }
 
 .about-owner{
@@ -266,4 +232,25 @@ margin-top: 10px;
     margin-bottom: 5px;
 }
 
+<<<<<<< HEAD
+@media(max-width: 770px){
+    .section-details .box-card{
+        max-width: none;
+        width: 100%;
+    }
+    img[data-v-bc4679b8]{
+        width: 100%;
+        height: 180px;
+    }
+}
+
+=======
+.amenities p{
+    margin-right: 5px;
+}
+
+.parking-details i{
+        margin-right: 10px;
+    }
+>>>>>>> 49a81f983351560541958e6ba205a1c485ffff53
 </style>

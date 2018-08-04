@@ -58,6 +58,10 @@ export default {
 
 <style scoped lang="scss">
 
+.text-decoration:hover{
+    text-decoration: none;
+}
+
 .box-card .el-card__body {
     padding: 8px;
 }

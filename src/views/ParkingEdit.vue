@@ -39,13 +39,18 @@
         </form>
 
 
-        
+        <FooterCmp />
     </section>
 </template>
 
 <script>
 //import VueGoogleAutocomplete from "vue-google-autocomplete";
 import CloudinaryService from "../../services/CloudinaryService.js";
+<<<<<<< HEAD
+import FooterCmp from '@/components/FooterCmp.vue'
+=======
+import StorageService from '../../services/StorageService.js';
+>>>>>>> 49a81f983351560541958e6ba205a1c485ffff53
 
 
 
@@ -79,6 +84,10 @@ export default {
       
     };
   },
+  components:{
+  FooterCmp,
+
+  },
   computed: {
     parkingToEdit() {
       return this.parkingToAdd;
@@ -86,6 +95,9 @@ export default {
     user() {
       return this.$store.getters.loggedInUser;
     }
+  },
+  created() {
+    this.reLoadParkingToAdd()     
   },
   mounted() {
 
@@ -109,6 +121,7 @@ export default {
   methods: {
     addParking() {
       if (this.user._id === "" || this.user._id === false) {
+        StorageService.store('parking-to-add', this.parkingToEdit)    
         this.$router.push("/login");
       } else {
         if (!this.parkingToAdd.address){
@@ -141,6 +154,16 @@ export default {
       }
       
     },
+
+    reLoadParkingToAdd () {
+      var parkingToAdd = StorageService.load('parking-to-add')
+      if (parkingToAdd) {
+        this.parkingToAdd = parkingToAdd
+      } else {
+        return
+      }
+    },
+
     addressIsEmpty() {
         this.$alert('The address is empty, please add address', 'Alert', {
           confirmButtonText: 'OK',

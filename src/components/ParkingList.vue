@@ -3,7 +3,7 @@
     <div class="container-search flex">
     </div>
 
-    <button class="btn-map" @click="isMap = !isMap">Map</button>    
+    <button class="btn-map" @click="isMap = !isMap">{{toggle}}</button>    
 
     <div class="container-list flex">
       <div class="list list-h" :class="{showMap: isMap}">
@@ -43,11 +43,12 @@
 
 </GmapMap>  
   </div>
+  <FooterCmp />
   </section>
 </template>
 
 <script>
-
+import FooterCmp from '@/components/FooterCmp.vue' 
 import ParkingPreview from './ParkingPreview.vue';
 import LocService from '../../services/LocService.js'
 import ParkingFilter from './ParkingFilter.vue' 
@@ -59,7 +60,8 @@ export default {
     return {
       pos:null,
       iconBase : 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-      isMap:false
+      isMap:false,
+      msg:''
     }
   },
   
@@ -124,12 +126,20 @@ export default {
      computed:{
        sortParkings(){
          return this.getDistanceByKilometer()
+       },
+       toggle(){
+         if(this.isMap){
+           return 'List'
+         } else {
+           return 'Map'
+         }
        }
      },
   components:{
     ParkingPreview,
     ParkingFilter,
-    FilterBy
+    FilterBy,
+    FooterCmp
     },
 }
 </script>
@@ -168,13 +178,14 @@ h5 {
     max-width: 0px;
   }
 
+
   .btn-map{
     display: block;
     border: 0;
     width: 100%;
     height: 50px;
     background-color: #fff;
-    border: 1px solid grey;
+    border-bottom: 1px solid grey;
   }
 
   .list-h[data-v-49d44f76]{

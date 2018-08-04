@@ -5,6 +5,7 @@
     </keep-alive> -->
     <!-- <ParkingFilter /> -->
     <div id="nav">
+
         <div>
           <el-menu class="el-menu-demo flex" mode="horizontal" 
               background-color="#545c64"
@@ -12,22 +13,29 @@
               active-text-color="#ffd04b">
               <div class="main-menu flex space-between">
                 <div class="flex">
-                    <router-link  to="/"><el-menu-item index="1">Home</el-menu-item></router-link>
-                    <router-link  to="/parking"><el-menu-item index="2">Find</el-menu-item></router-link>
-                    <router-link to="/parking/add"><el-menu-item index="3">add parking</el-menu-item></router-link> 
-                    <router-link v-if="!loggedInUser._id" to="/login"><el-menu-item index="4">Login</el-menu-item></router-link>
-                    <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`"><el-menu-item index="5">my parkings</el-menu-item></router-link>
-                    <div class="logout" v-if="loggedInUser._id" @click="logout"><el-menu-item index="6">Logout</el-menu-item></div>
-                </div>      
-                  <router-link :to="`/user/${loggedInUser._id}`">
-                    <button v-show="loggedInUser.firstName" class="profile-icon">{{nameInitials}}</button>
+                  <div class="hamburger" @click="foo">
+                        <div class="span"></div>
+                        <div class="span"></div>
+                        <div class="span"></div>
+                  </div>
+                  <div class="container-nav"  ref="nav">
+                    <router-link  to="/"><el-menu-item @click.native="goo" index="1">Home</el-menu-item></router-link>
+                    <router-link  to="/parking"><el-menu-item @click.native="goo" index="2">Find</el-menu-item></router-link>
+                    <router-link to="/parking/add"><el-menu-item @click.native="goo" index="3">add parking</el-menu-item></router-link> 
+                    <router-link v-if="!loggedInUser._id" to="/login"><el-menu-item @click.native="goo" index="4">Login</el-menu-item></router-link>
+                    <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`"><el-menu-item @click.native="goo" index="5">my parkings</el-menu-item></router-link>
+                    <div class="logout" v-if="loggedInUser._id" @click="logout"><el-menu-item @click.native="goo"  index="6">Logout</el-menu-item></div>
+                  </div>      
+                </div>
+                  <router-link class="btn-profile" :to="`/user/${loggedInUser._id}`">
+                    <button  v-show="loggedInUser.firstName" class="profile-icon">{{nameInitials}}</button>
                   </router-link>     
                 </div> 
            </el-menu>
           </div> 
     </div>
     <router-view/>  
-    <FooterCmp /> 
+    <!-- <FooterCmp />  -->
   </div>
 
 </template>
@@ -39,7 +47,7 @@ import FooterCmp from '@/components/FooterCmp.vue'
 export default {
   data () {
     return {
-
+      block:true
     }
   },
   computed: {
@@ -61,6 +69,16 @@ export default {
     //   })
 
     // }
+    foo(){
+      // console.log(this.$refs.nav);
+      this.$refs.nav.classList.toggle('active')
+      
+    },
+    goo(){
+      console.log('goo');
+      this.$refs.nav.classList.toggle('active')
+      
+    },
     logout() {
       this.$store.dispatch({type:'logout'})
       localStorage.removeItem('loggedInUser')
@@ -95,7 +113,7 @@ export default {
     position:fixed;
     width: 100%;
     opacity: 0.90;
-    z-index: 1;  
+    z-index: 2000;  
     top:0;  
   a {
     font-weight: bold;
@@ -114,33 +132,12 @@ export default {
     cursor: pointer;
   }
 }
-// .logout:hover {
-//   cursor: pointer;
-// }
+
 
 .inline-block{
   display: inline-block;
 }
 
-// .footer-app{
-//   padding: 10px;
-//   width: 100%;
-// }
-
-// .footer-list-details a{
-//   color: black;
-//   text-decoration: none;
-// }
-
-// footer {
-//   background-image: linear-gradient(to bottom, 
-//   rgba(238, 238, 238, 0.5)5%,
-//   rgba(97, 97, 97, 0.8))
-// }
-
-// footer p {
-//   padding-bottom: 30px;
-// }
 
 .profile-icon {
   border-radius: 50%;
@@ -160,12 +157,59 @@ export default {
 }
 
 .main-menu {
-  
   align-items: center;
   width:100%;
 }
 
+.container-nav{
+  display: flex;
+  height: auto; 
+}
+
+
+
 @media(max-width: 770px){
+  
+  // .el-menu-item{
+  //   display: none;
+  // }
+  .span{
+    width: 35px;
+    height: 2px;
+    background-color: black;
+    margin: 6px 0;
+  }
+  .hamburger{
+    margin-left: 30px;
+  }
+
+ .el-menu{
+    padding: 3px;
+  }
+
+
+.container-nav{
+  display: none;
+  height: 100vh;
+}
+
+    .active{
+        display: block;
+    }
+}
+
+
+
+
+
+@media(max-width:600px){
+  //   .el-menu-item{
+  //   display: block;
+  // }
+  // div.d-none{
+  //   display: block
+  // }
+
 
 }
 
