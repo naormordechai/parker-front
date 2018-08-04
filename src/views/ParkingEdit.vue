@@ -47,6 +47,7 @@
 <script>
 //import VueGoogleAutocomplete from "vue-google-autocomplete";
 import CloudinaryService from "../../services/CloudinaryService.js";
+import StorageService from '../../services/StorageService.js';
 
 
 
@@ -88,6 +89,9 @@ export default {
       return this.$store.getters.loggedInUser;
     }
   },
+  created() {
+    this.reLoadParkingToAdd()     
+  },
   mounted() {
 
     //for loading map
@@ -110,6 +114,7 @@ export default {
   methods: {
     addParking() {
       if (this.user._id === "" || this.user._id === false) {
+        StorageService.store('parking-to-add', this.parkingToEdit)    
         this.$router.push("/login");
       } else {
         if (!this.parkingToAdd.address){
@@ -142,6 +147,16 @@ export default {
       }
       
     },
+
+    reLoadParkingToAdd () {
+      var parkingToAdd = StorageService.load('parking-to-add')
+      if (parkingToAdd) {
+        this.parkingToAdd = parkingToAdd
+      } else {
+        return
+      }
+    },
+
     addressIsEmpty() {
         this.$alert('The address is empty, please add address', 'Alert', {
           confirmButtonText: 'OK',

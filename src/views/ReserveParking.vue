@@ -29,7 +29,8 @@
 
 <script>
 import ParkingService from "../../services/ParkingService.js";
-import {eventBus} from '../../services/EventBusService.js'
+import {eventBus} from '../../services/EventBusService.js';
+import StorageService from '../../services/StorageService.js'
 
 export default {
   data() {
@@ -46,11 +47,14 @@ export default {
   created() {
     // this.initMarker()
     this.loadParking();
+    this.loadHours()
   },
   // this.status = this.$store.state.UserModuls.isAdmin;
   methods: {
     reserveParking(parking) {
-      if (this.user._id === "" || this.user._id === false) {          
+      
+      if (this.user._id === "" || this.user._id === false) { 
+        StorageService.store('parking-duration', this.hours)         
         this.$router.push("/login");
       } else {
         var occupiedUntil = Date.now() + this.hours * 60 * 60 * 1000;
@@ -80,6 +84,11 @@ export default {
           message: 'Congratulations ' +this.user.firstName+', your parking at ' +this.parking.address+' is waiting for you!',
           type: 'success'
         });
+    },
+    loadHours () {
+      const parkingDuration = StorageService.load('parking-duration')
+      console.log('parking duration: ', parkingDuration)
+      if (parkingDuration) this.hours = parkingDuration
     }
   },
   computed: {

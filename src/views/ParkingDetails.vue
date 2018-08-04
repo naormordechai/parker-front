@@ -4,30 +4,32 @@
 <div class="section-details flex">
 
     <el-card class="box-card">
-        <h5 class="address">{{parkingDetail.parking.address}}</h5>
-      <img :src="parkingDetail.parking.imageURL" class="parking-details-image image">
-      <div style="padding: 25px;">
-          <div class="parking-details column">
-        <h5 class="to-know">things you should know</h5>
-        <p>₪ {{parkingDetail.parking.price}}</p>
-        <p>{{distance}} </p>
-        <p>{{parkingDetail.parking.description}}</p>
-        <div>
-            {{parkingDetail.parking.amenities.isCovered}}
-            {{parkingDetail.parking.amenities.isCovered}}
-            {{parkingDetail.parking.amenities.isCovered}}
-        </div>
-        </div>
-        <div class="about-owner flex column space-between">
-            <h5>About owner</h5>
-            <p>{{parkingDetail.owner.firstName}} {{parkingDetail.owner.lastName}}</p>
-            <p>{{parkingDetail.owner.eMail}}</p>
-            <div>
-                     <el-button @click="$router.push('/reserve/'+parkingDetail.parking._id)" 
-             class="btn-reserve" type="success" :disabled="isOccupied">Reserve Now!</el-button>
+        <h3 class="address">{{parkingDetail.parking.address}}</h3>
+        <img :src="parkingDetail.parking.imageURL" class="parking-details-image image">
+        <div style="padding: 25px;">
+            <div class="parking-details column">
+                <h5 class="to-know">things you should know:</h5>
+                <p><i class="fas fa-dollar-sign"></i>  ₪ {{parkingDetail.parking.price}}</p>
+                <p><i class="fas fa-map-marker-alt"></i>  {{calcDistance}} </p>
+                <div class="line"></div>
+                <p>{{parkingDetail.parking.description}}</p>
+                <div class="line"></div>
+                <div class="amenities flex">
+                    <p v-if="parkingDetail.parking.amenities.isPaved"><i class="fas fa-road"></i></p>
+                    <p v-if="parkingDetail.parking.amenities.isForDisable"><i class="fas fa-wheelchair"></i></p>
+                    <p v-if="parkingDetail.parking.amenities.isCovered"><i class="fas fa-parking"></i></p>
+                </div>       
             </div>
-        </div>
-
+            <div class="line"></div>
+            <div class="about-owner flex column space-between">
+                <h5>Owner details</h5>
+                <p>{{parkingDetail.owner.firstName}} {{parkingDetail.owner.lastName}}</p>
+                <p>{{parkingDetail.owner.eMail}}</p>
+            <div>
+                <el-button @click="$router.push('/reserve/'+parkingDetail.parking._id)" 
+                 class="btn-reserve" type="success" :disabled="isOccupied">Reserve Now!</el-button>
+            </div>
+            </div>
         </div>
 
     </el-card>
@@ -62,7 +64,7 @@ data(){
         lat:0,
         lng:0,
         markers:[],
-        distance: 0
+        distance: 0,
     }
 },
 methods:{
@@ -139,6 +141,14 @@ methods:{
         isOccupied(){
             return this.parkingDetail.parking.occupiedUntil > Date.now()
         },
+        calcDistance() {
+            if (this.distance>1) {
+                return this.distance.toFixed(2) + "km from you"
+            }
+            else {
+                return this.distance.toFixed(3)*1000 + " meters from you"
+            }
+        }
 
     }
 }
@@ -210,7 +220,7 @@ margin-top: 10px;
 }
 
 .parking-details > *:not(:last-child){
-    margin-bottom: 5px;
+    margin-bottom: 5px;    
 }
 
 .about-owner{
@@ -222,4 +232,11 @@ margin-top: 10px;
     margin-bottom: 5px;
 }
 
+.amenities p{
+    margin-right: 5px;
+}
+
+.parking-details i{
+        margin-right: 10px;
+    }
 </style>
