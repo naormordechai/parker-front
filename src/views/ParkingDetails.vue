@@ -232,7 +232,15 @@ margin-top: 10px;
     margin-bottom: 5px;
 }
 
-<<<<<<< HEAD
+.amenities p{
+    margin-right: 5px;
+}
+
+.parking-details i{
+        margin-right: 10px;
+    }
+
+
 @media(max-width: 770px){
     .section-details .box-card{
         max-width: none;
@@ -244,13 +252,5 @@ margin-top: 10px;
     }
 }
 
-=======
-.amenities p{
-    margin-right: 5px;
-}
 
-.parking-details i{
-        margin-right: 10px;
-    }
->>>>>>> 49a81f983351560541958e6ba205a1c485ffff53
 </style>
