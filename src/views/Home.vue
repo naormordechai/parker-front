@@ -3,8 +3,9 @@
     <div class="home flex column justify-content-c">
       <div class="header">
         <h2>Parker - Your Parking Friend!</h2>  
-        <p>Wasting too much time finding an available parking? Parker helps you find one in just a few clicks!</p>
-        <p>Simply set the preferred area, choose the parking that suits you, 
+        <p>Wasting too much time finding an available parking?
+          Parker helps you find one in just a few clicks!</p>
+         <P class="2nd-p">Simply set the preferred area, choose the parking that suits you, 
         and click RESERVE - the parking will be waiting for you!</p>
         <router-link to="/parking"><el-button type="success">Find me a Parking!</el-button></router-link>
       </div>
@@ -55,7 +56,12 @@ export default {
 
   p {
     margin-bottom: 20px;
-    width:50%
+    max-width:50%
+  }
+
+  @media (max-width: 500px) {
+
+     
   }
 
 </style>

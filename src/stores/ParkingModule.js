@@ -22,6 +22,7 @@ export default {
     },
     getters: {
         parkingToDisplay(state) {
+            console.log('****** the state parkings: ', state.parkings)
             return state.parkings
             .filter(parking =>{
                 if (state.filterBy.isPaved){
@@ -112,9 +113,7 @@ export default {
         }
     },
     actions: {
-        loadParkings(context) {
-            // console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx')
-            // console.log(context.getters.position)
+        loadParkings(context) {            
             return ParkingService.query(context.getters.position)
                 .then((parkings) => {
                     context.commit({ type: 'setParkings', parkings })
@@ -123,22 +122,16 @@ export default {
                 })
         },
 
-        reserveParking(context, { parking }) {
-            console.log('parking to reserve', parking)
+        reserveParking(context, { parking }) {           
             return ParkingService.reserveParking(parking)
                 .then(parking => {
                     context.commit({ type: 'reserveParking', parking })
                 })
         },
 
-        stopParking(context, { parking }) {
-            console.log('context', context)
-            console.log('parking', parking)
-            // var storeParking = context.state.parkings.find(currParking=> currParking._id === parking._id)
-            console.log('store parking before stopping: ', parking)
+        stopParking(context, { parking }) {            
             parking.occupiedUntil = 0
-            parking.reserverId = ''
-            console.log('store parking after init: ', parking)
+            parking.reserverId = ''           
             return ParkingService.stopParking(parking)
                 .then((parking) => {
                     context.commit({ type: 'stopParking', parking })

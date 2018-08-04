@@ -248,7 +248,7 @@ img {
   position: relative;
 }
 
-.google-maps {
+.google-maps {  
   position: absolute;
   top: 0;
   left: 0;
@@ -277,7 +277,7 @@ img {
 }
 
 @media (max-width: 1060px) {
-    
+
 }
 
 </style>
