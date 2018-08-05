@@ -123,7 +123,8 @@ export default {
       } else {
         if (!this.parkingToAdd.address){
           console.log("Address is empty, please add address!");
-          this.addressIsEmpty();
+         // this.addressIsEmpty();
+         this.alert('The address is empty, please add address');
 
         } else {
         let newParking = this.parkingToEdit;
@@ -143,7 +144,8 @@ export default {
             })
             .catch(err => {
               // show an error msg maybe with elment msg cmp.
-              this.failedToCreate() 
+             // this.failedToCreate() 
+             this.alert('Failed to save parking, please try later');
               
             });
          }
@@ -161,6 +163,11 @@ export default {
         return
       }
     },
+
+     alert(message) {
+      this.$alert(message, "Alert", {
+        confirmButtonText: "OK",
+      })},
 
     addressIsEmpty() {
         this.$alert('The address is empty, please add address', 'Alert', {

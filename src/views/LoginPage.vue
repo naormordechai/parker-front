@@ -116,12 +116,6 @@ export default {
     alert(message) {
       this.$alert(message, "Alert", {
         confirmButtonText: "OK",
-      //   // callback: action => {
-      //   //   this.$message({
-      //   //     type: "info",
-      //   //     message: `action: ${action}`
-      //   //   });
-      //   // }
       });
  
       
