@@ -23,11 +23,7 @@ Vue.use(VueGoogleMaps, {
   },
 })
 
-<<<<<<< HEAD
-//Vue.use(VueMaterial)
-=======
 // Vue.use(VueMaterial)
->>>>>>> 8cdccf40853af4bba4a8f80b7d02a818a0bfb8fc
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);

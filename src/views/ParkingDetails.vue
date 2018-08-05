@@ -233,10 +233,7 @@ margin-top: 10px;
     margin-bottom: 5px;
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 8cdccf40853af4bba4a8f80b7d02a818a0bfb8fc
+
 .amenities p{
     margin-right: 5px;
 }
@@ -245,12 +242,7 @@ margin-top: 10px;
         margin-right: 10px;
     }
 
-<<<<<<< HEAD
-=======
 
-=======
->>>>>>> b020748603d907dd4cc174426d94dffdbf88f20e
->>>>>>> 8cdccf40853af4bba4a8f80b7d02a818a0bfb8fc
 @media(max-width: 770px){
     .section-details .box-card{
         max-width: none;
@@ -262,11 +254,9 @@ margin-top: 10px;
     }
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
+
+
 .amenities p{
     margin-right: 5px;
 }
@@ -274,6 +264,5 @@ margin-top: 10px;
 .parking-details i:not(:last-child){
         margin-right: 10px;
     }
->>>>>>> b020748603d907dd4cc174426d94dffdbf88f20e
->>>>>>> 8cdccf40853af4bba4a8f80b7d02a818a0bfb8fc
+
 </style>
