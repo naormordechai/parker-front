@@ -2,7 +2,7 @@
     <li>                         
         <router-link class="no-underline" :to="`/parking/${parking._id}`">
             <el-card class="box-card">
-                <div class="flex space-between">
+                <div class="my-parkings-container flex space-between">
                     <div class="image-container">                                  
                         <img  :src="parking.imageURL">
                         <div class="google-maps" :class="{'hidden-map': !mapView}">                                   
@@ -25,7 +25,7 @@
                     <div class="details-container parking-properties flex column space-between">                                            
                         <ul class="parking-details">
                             <li><i class="fas fa-map-marker-alt"></i> {{parking.address}}</li>
-                            <li><i class="fas fa-dollar-sign"></i>  ₪ {{parking.price}} per hour</li>
+                            <li><i class="fas fa-shekel-sign"></i> {{parking.price}} per hour</li>
                             <li v-if="owned">{{(parking.reserverId)? 'Occupied' : 'Available for rent'}}</li>
                             <li v-else><i class="far fa-clock"></i>  ends {{convertTimestamp(parking.occupiedUntil)}}</li>                                                    
                         </ul>                        
@@ -72,6 +72,11 @@ export default {
 .image-container {
     position: relative;
 }
+.image-container img {
+    width: 408px;
+    height: 200px;
+    border-radius: 5px;
+}
 
 .google-maps {
     position: absolute;
@@ -109,6 +114,27 @@ export default {
 
 .parking-details li {
     padding-bottom: 10px;
+}
+
+@media (max-width: 880px) {
+    .details-container {
+        flex-basis: auto;
+    }
+}
+
+@media (max-width: 770px) {
+    .my-parkings-container {
+        flex-direction: column;
+        max-width: 408px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 560px) {
+    .image-container img {
+        width: 100%;
+        height: auto;
+    }
 }
 
 </style>

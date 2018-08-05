@@ -188,4 +188,12 @@ export default {
     border: 1px solid rgba(101, 99, 99, 0.25);
     padding: 10px;
 }
+
+@media (max-width: 890px) {
+  .panel {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
 </style>

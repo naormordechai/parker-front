@@ -20,7 +20,7 @@
             <p>How many hours?</p>
             <form submit="setParkingDuration">
                 <el-input-number v-model="hours" :min="1" :max="10"></el-input-number>               
-                <p>Total Price: ₪ {{cost}}</p>                
+                <p class="price">Total Price: ₪ {{cost}}</p>                
                 <el-button type="success" @click="reserveParking(parking)">Reserve Parking!</el-button>
             </form>
         </div>
@@ -122,6 +122,10 @@ export default {
 }
 .reserve-parking {
     position: relative;
+}
+
+.price {
+  margin-bottom: 20px;
 }
 
 .reserve-parking h2 {

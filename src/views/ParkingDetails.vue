@@ -9,7 +9,7 @@
         <div style="padding: 25px;">
             <div class="parking-details column">
                 <h5 class="to-know">things you should know:</h5>
-                <p><i class="fas fa-dollar-sign"></i>  ₪ {{parkingDetail.parking.price}}</p>
+                <p><i class="fas fa-shekel-sign"></i> {{parkingDetail.parking.price}}</p>
                 <p><i class="fas fa-map-marker-alt"></i>  {{calcDistance}} </p>
                 <div class="line"></div>
                 <p>{{parkingDetail.parking.description}}</p>
@@ -142,8 +142,8 @@ methods:{
             return this.parkingDetail.parking.occupiedUntil > Date.now()
         },
         calcDistance() {
-            if (this.distance>1) {
-                return this.distance.toFixed(2) + "km from you"
+            if (this.distance > 1) {
+                return this.distance.toFixed(2) + " km from you"
             }
             else {
                 return this.distance.toFixed(3)*1000 + " meters from you"

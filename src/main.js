@@ -23,7 +23,7 @@ Vue.use(VueGoogleMaps, {
   },
 })
 
-Vue.use(VueMaterial)
+// Vue.use(VueMaterial)
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
