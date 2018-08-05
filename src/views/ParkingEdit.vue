@@ -47,11 +47,8 @@
 <script>
 //import VueGoogleAutocomplete from "vue-google-autocomplete";
 import CloudinaryService from "../../services/CloudinaryService.js";
-<<<<<<< HEAD
 import FooterCmp from '@/components/FooterCmp.vue'
-=======
 import StorageService from '../../services/StorageService.js';
->>>>>>> 49a81f983351560541958e6ba205a1c485ffff53
 
 
 
