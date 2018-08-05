@@ -44,10 +44,10 @@ export default {
   },
   actions: {
     login(context,  {userInfo}) {
-      UserService.login(userInfo)
+      return UserService.login(userInfo)
         .then(user => {
           
-          console.log('UserModule-50-this user', user)
+          console.log('UserModule -50-this user', user)
           if (!user) {
             console.log('UserModule-52-this user', user)
             return Promise.reject(err => err)
@@ -59,7 +59,7 @@ export default {
         })
       .catch (err => {
         console.log('wrong login details')
-        //return Promise.reject()
+        return Promise.reject()
         console.log(err)
        })
 
