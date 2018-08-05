@@ -6,7 +6,7 @@
           <h3> Add New Parking </h3>
           <div v-if="isAddParking" class="add-parking">
             <div class="add-margin">
-             <input placeholder="Please input Adress" type="text" ref="placeAutocomplete" class="el-input__inner"> 
+             <input placeholder="Please input Adress" v-model="parkingToEdit.adress" type="text" ref="placeAutocomplete" class="el-input__inner"> 
              </div>          
             <div>
             <p>Price in ₪:</p>  <el-input-number v-model="parkingToEdit.price" :min="1" ></el-input-number>
@@ -168,33 +168,13 @@ export default {
         confirmButtonText: "OK",
       })},
 
-    addressIsEmpty() {
-        this.$alert('The address is empty, please add address', 'Alert', {
-          confirmButtonText: 'OK',
-          callback: action => {
-            this.$message({
-              type: 'info',
-              message: `action: ${ action }`
-            });
-          }
-        });
-      },
-
-      failedToCreate() {
-        this.$alert('Failed to save parking, please try later', 'Alert', {
-          confirmButtonText: 'OK',
-          callback: action => {
-            this.$message({
-              type: 'info',
-              message: `action: ${ action }`
-            });
-          }
-        });
-      },
+    
     loadImg(elPic, ev) {
       
 
       CloudinaryService.uploadImg(elPic, ev).then(res => {
+        console.log('elPic:',ev);
+        
         this.parkingToEdit.imageURL = res;
         console.log(
           " this.parkingToEdit.imageURL",
