@@ -51,7 +51,6 @@ export default {
             })
         }
     },
-
     created (){
        this.$store.dispatch({type:'loadParkings'});
        if (this.$root.demoDummyNotify) {

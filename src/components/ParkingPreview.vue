@@ -43,7 +43,7 @@ export default {
             // var distance = this.parking.location.distance
 
             var distance = this.parking.distance
-            console.log('distance: ', distance)
+            // console.log('distance: ', distance)
              if (distance > 1) {
                 return distance.toFixed(2) + " km from you"
             }
