@@ -155,7 +155,7 @@ export default {
     color: white;
     transition: 0.3s;
   }
-}
+} 
 
 .main-menu {
   align-items: center;
@@ -209,9 +209,10 @@ export default {
     top: 100%;
     height: 100vh;
     left: 0;
-    background-color: #2c3e50;
+    width: 100vw;
+    background-color: rgb(84, 92, 100);;
     transition:visibility 0s linear 0.5s,opacity 0.5s linear;
-    margin-left: 0;
+    // margin-left: 0;
     background-color: 0;
     padding-right: 0;
     
