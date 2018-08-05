@@ -13,13 +13,13 @@
               active-text-color="#ffd04b">
               <div class="main-menu flex space-between">
                 <div class="flex">
+                  <img src="/img/app/logo-50x50.png" />
                   <div class="hamburger" @click="doToggle">
                         <div class="span"></div>
                         <div class="span"></div>
                         <div class="span"></div>
                   </div>
-                  <div class="container-nav"  ref="nav">
-                    <!-- <el-menu-item index="0"><img src="/img/app/logo-50x50.png" /></el-menu-item> -->
+                  <div class="container-nav"  ref="nav">                   
                     <router-link  to="/"><el-menu-item @click.native="doToggle" index="1">Home</el-menu-item></router-link>
                     <router-link  to="/parking"><el-menu-item @click.native="doToggle" index="2">Find</el-menu-item></router-link>
                     <router-link to="/parking/add"><el-menu-item @click.native="doToggle" index="3">add parking</el-menu-item></router-link> 
@@ -192,12 +192,12 @@ export default {
     padding: 3px;
   }
 
-  // #nav{
-  //   padding: 10px
-  // }
 
   .main-menu {
-    padding: 10px;
+    padding: 5px;
+    img {
+      margin-top: -10px;
+    }
   }
 
   .container-nav {
