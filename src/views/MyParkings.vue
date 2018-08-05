@@ -10,61 +10,9 @@
                         <my-parking-preview v-for="parking in reservedParkings" :key="parking._id"
                             :parking="parking" :owned="false"
                             @stop-parking="stopParking">
-
-                        </my-parking-preview>
-                        <!-- <li v-if="parking.occupiedUntil !== 0" v-for="parking in reservedParkings" :key="parking._id">                         
-                            <router-link class="no-underline" :to="`/parking/${parking._id}`">
-                                <el-card class="box-card">
-                                    <div class="flex">
-                                        <div class="parking-image">                                  
-                                            <img  :src="parking.imageURL">
-                                            <div class="google-maps" :class="{'hidden-map': !mapView}">                                   
-                                                <GmapMap
-                                                    :center="parking.location"
-                                                    :zoom="15"
-                                                    map-type-id="terrain"
-                                                    style="width: 100%; height: 100%"
-                                                >
-                                                <GmapMarker                                               
-                                                    :position="parking.location"
-                                                    :clickable="true"
-                                                    :draggable="false"
-                                                    @click.prevent="center=m.position" />
-                                                </GmapMap> 
-                                            </div>
-                                            <button class="toggle-map-btn" @click.prevent="mapView = !mapView"></button>            
-                                        </div> -->
-                                        <!-- <div class="google-maps">                                   
-                                            <GmapMap
-                                                :center="parking.location"
-                                                :zoom="15"
-                                                map-type-id="terrain"
-                                                style="width: 300px"
-                                            >
-                                            <GmapMarker                                               
-                                                :position="parking.location"
-                                                :clickable="true"
-                                                :draggable="false"
-                                                @click.prevent="center=m.position" />
-                                            </GmapMap> 
-                                        </div>                                        -->
-                                        <!-- <div class="parking-properties flex column space-between">                                            
-                                                <ul class="parking-details">
-                                                    <li><i class="fas fa-map-marker-alt"></i> {{parking.address}}</li>
-                                                    <li><i class="fas fa-dollar-sign"></i>  ₪ {{parking.price}} per hour</li>
-                                                    <li><i class="far fa-clock"></i>  ends {{convertTimestamp(parking.occupiedUntil)}}</li>                                                    
-                                                </ul>                                      
-                                                <div>
-                                                <el-button type="success" @click.prevent="stopParking(parking)">Stop Parking</el-button>  
-                                                </div>
-                                        </div>                                        
-                                    </div>
-                                </el-card> 
-                            </router-link>                          
-                        </li> -->
+                        </my-parking-preview>                        
                     </ul>
                 </div>
-
             </el-tab-pane>
 
             <el-tab-pane label="Owned Parkings">
@@ -74,39 +22,7 @@
                         <my-parking-preview v-for="parking in ownedParkings" :key="parking._id"
                             :parking="parking" :owned="true"
                             @stop-parking="stopParking">
-
-                        </my-parking-preview>
-                        <!-- <li v-for="parking in ownedParkings" :key="parking._id">
-                            <router-link class="no-underline" :to="`/parking/${parking._id}`">
-                                <el-card class="box-card">
-                                    <div class="flex space-between">
-                                        <img  :src="parking.imageURL">
-                                        <GmapMap
-                                            :center="parking.location"
-                                            :zoom="15"
-                                            map-type-id="terrain"
-                                            style="width: 300px"
-                                        >
-                                        <GmapMarker                                               
-                                            :position="parking.location"
-                                            :clickable="true"
-                                            :draggable="false"
-                                            @click.prevent="center=m.position" />
-                                        </GmapMap>
-                                        <div class="flex column space-between">                                            
-                                                <ul class="parking-details">
-                                                    <li><i class="fas fa-map-marker-alt"></i> {{parking.address}}</li>
-                                                    <li><i class="fas fa-dollar-sign"></i>  ₪ {{parking.price}} per hour</li>
-                                                    <li><i class="far fa-clock"></i>  ends {{convertTimestamp(parking.occupiedUntil)}}</li>                                                    
-                                                </ul>                                      
-                                            <div>
-                                              <el-button type="success" @click.prevent="stopParking(parking)">Stop Parking</el-button>  
-                                            </div>
-                                        </div>                                        
-                                    </div>
-                                </el-card>
-                            </router-link>
-                        </li> -->
+                        </my-parking-preview>                        
                     </ul>
                 </div>
             </el-tab-pane> 
@@ -277,7 +193,35 @@ img {
 }
 
 @media (max-width: 1060px) {
+    section {
+        margin: 30px;
+    }    
+}
 
+@media (max-width: 650px) {
+    .profile-details {
+        flex-direction: column;
+    }
+    .profile-image {
+        margin: 30px auto
+    }
+}
+
+@media (max-width: 440px) {
+    .profile-details {
+        max-width: 100%;
+    }
+    .profile-image {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 350px) {    
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
 }
 
 </style>

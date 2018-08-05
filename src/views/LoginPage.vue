@@ -4,7 +4,7 @@
         
         <el-tabs type="border-card">
             <el-tab-pane label="Login">
-                <div class="login">
+                <div class="login">                   
                     <h3>Login to your account</h3>
                     <form @submit.prevent="login">
                         <div class="login-container flex column">

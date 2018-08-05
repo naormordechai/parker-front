@@ -22,22 +22,25 @@ export default {
     },
     methods: {
         showNewParking() {
-        setTimeout(this.showNewParkingNotification, 60000)
+        setTimeout(this.showNewParkingNotification, 6000)
         },
         showNewParkingNotification() {
             this.$notify({
             title: `We have great news for you!`,
-            message: 'a new parking was just added to the list! Be the first to rent it',
+            message: 'a new parking - at Anne Frank 16, Ramat Gan - was just added to the list! \
+            Be the first to rent it',
             type: 'success', 
             duration: 8000                
             });
         },
         showAvailableParking() {
-            setTimeout(this.showAvailableParkingMsg, 30000)            
+            setTimeout(this.showAvailableParkingMsg, 3000)            
         },
         showAvailableParkingMsg() {
             DemoService.addRandomParking()
-            .then (_ => {
+            .then (res => {
+                var parkingToAdd = res.data
+                this.$store.commit({type: 'addNewParking', parkingToAdd: parkingToAdd})
                 this.$notify({
                     title: `it's your lucky day!`, 
                     message: 'a new parking near your location has just become available! \

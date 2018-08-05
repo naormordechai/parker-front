@@ -4,12 +4,13 @@
 <div class="section-details flex">
 
     <el-card class="box-card">
+         <el-button @click.native="$router.push('/parking')" style="display:flex;" type="info" plain>List</el-button>
         <h3 class="address">{{parkingDetail.parking.address}}</h3>
         <img :src="parkingDetail.parking.imageURL" class="parking-details-image image">
         <div style="padding: 25px;">
             <div class="parking-details column">
                 <h5 class="to-know">things you should know:</h5>
-                <p><i class="fas fa-dollar-sign"></i>  ₪ {{parkingDetail.parking.price}}</p>
+                <p><i class="fas fa-shekel-sign"></i> {{parkingDetail.parking.price}}</p>
                 <p><i class="fas fa-map-marker-alt"></i>  {{calcDistance}} </p>
                 <div class="line"></div>
                 <p>{{parkingDetail.parking.description}}</p>
@@ -142,8 +143,8 @@ methods:{
             return this.parkingDetail.parking.occupiedUntil > Date.now()
         },
         calcDistance() {
-            if (this.distance>1) {
-                return this.distance.toFixed(2) + "km from you"
+            if (this.distance > 1) {
+                return this.distance.toFixed(2) + " km from you"
             }
             else {
                 return this.distance.toFixed(3)*1000 + " meters from you"
@@ -232,6 +233,10 @@ margin-top: 10px;
     margin-bottom: 5px;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 8cdccf40853af4bba4a8f80b7d02a818a0bfb8fc
 .amenities p{
     margin-right: 5px;
 }
@@ -240,6 +245,12 @@ margin-top: 10px;
         margin-right: 10px;
     }
 
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> b020748603d907dd4cc174426d94dffdbf88f20e
+>>>>>>> 8cdccf40853af4bba4a8f80b7d02a818a0bfb8fc
 @media(max-width: 770px){
     .section-details .box-card{
         max-width: none;
@@ -251,4 +262,18 @@ margin-top: 10px;
     }
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+.amenities p{
+    margin-right: 5px;
+}
+
+.parking-details i:not(:last-child){
+        margin-right: 10px;
+    }
+>>>>>>> b020748603d907dd4cc174426d94dffdbf88f20e
+>>>>>>> 8cdccf40853af4bba4a8f80b7d02a818a0bfb8fc
 </style>

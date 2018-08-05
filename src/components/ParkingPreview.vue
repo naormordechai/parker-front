@@ -9,7 +9,7 @@
                 <h5>{{parking.address}}</h5>
                 <p>{{parking.price}}₪</p>
                 </div>
-                <p class="flex distance">{{distance}} km away</p>
+                <p class="flex distance">{{distance}} </p>
                 <div class="amenities flex">
                     <p v-if="parking.amenities.isPaved"><i class="fas fa-road"></i></p>
                     <p v-if="parking.amenities.isForDisable"><i class="fas fa-wheelchair"></i></p>
@@ -40,9 +40,21 @@ export default {
             return this.parking.occupiedUntil > Date.now()
         },
         distance(){
-            var distance = this.parking.location.distance
-            return distance
+            // var distance = this.parking.location.distance
+
+            var distance = this.parking.distance
+            console.log('distance: ', distance)
+             if (distance > 1) {
+                return distance.toFixed(2) + " km from you"
+            }
+            else {
+                return distance.toFixed(3)*1000 + " meters from you"
+            }          
+        
+            // return distance
         }
+
+        
     },
     methods: {
         onResrvedClick(){

@@ -6,8 +6,8 @@ import store from './stores/store.js'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
-import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.min.css'
+// import VueMaterial from 'vue-material'
+// import 'vue-material/dist/vue-material.min.css'
 
 import './registerServiceWorker'
 import './assets/style/main.scss'
@@ -23,7 +23,11 @@ Vue.use(VueGoogleMaps, {
   },
 })
 
+<<<<<<< HEAD
 //Vue.use(VueMaterial)
+=======
+// Vue.use(VueMaterial)
+>>>>>>> 8cdccf40853af4bba4a8f80b7d02a818a0bfb8fc
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);

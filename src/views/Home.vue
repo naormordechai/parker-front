@@ -30,13 +30,27 @@ export default {
 <style scoped lang="scss">
 
 
+// .home {
+//   background-image: url('../assets/images/parker.png');
+//   background-size: cover;
+//   background-attachment: fixed;
+//   height: 100vh;
+//   width: 100%;  
+// }
+
+
 .home {
-  background-image: url('../assets/images/parker.png');
-  background-size: cover;
-  background-attachment: fixed;
+  background: 
+  linear-gradient(rgba(255, 255, 255, 0) 30%, rgba(0, 0, 0, 0.62) 90%), 
+  linear-gradient(to top, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.25) 90%, rgba(0, 0, 0, 0.7) 100%), 
+  linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.7) 85%), 
+  url('../assets/images/parker.png') 90% center / cover no-repeat;
   height: 100vh;
   width: 100%;  
+  background-attachment: fixed;
+  background-size: cover;
 }
+
 
 .header{
   color: white;
@@ -60,7 +74,12 @@ export default {
   }
 
   @media (max-width: 500px) {
-
+    .header p {
+      max-width: 100%;
+    }
+    .home {
+      justify-content: flex-start;
+    }
      
   }
 

@@ -110,7 +110,14 @@ export default {
         updateFilter(state, {filterBy}){
             console.log('filter: ', filterBy)
             state.filterBy = filterBy
+        },
+        addNewParking(state, {parkingToAdd}) {
+            state.parkings.unshift(parkingToAdd)
+            console.log('store after new parking added: ', state.parkings)
+            
         }
+
+
     },
     actions: {
         loadParkings(context) {            
