@@ -139,6 +139,7 @@ export default {
               console.log("res._id: ", res._id);
               // reditect to the parking details page with vue router.push
               this.$router.push(`/parking/${res._id}`);
+              localStorage.removeItem('parking-to-add')
               //console.log('_id:',this.$store.state.parkings[0]._id);
             })
             .catch(err => {

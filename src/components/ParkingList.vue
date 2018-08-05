@@ -12,7 +12,7 @@
 
 
       <ul>
-          <li class="animated bounce" v-for="parking in parkings" :key="parking._id">
+          <li v-for="parking in parkings" :key="parking._id">
             <parkingPreview :parking="parking"/>
           </li>
           <li>
@@ -119,14 +119,14 @@ export default {
         this.getMyPos()
          .then(res => {
           this.pos = res
-          this.getDistanceByKilometer()
+          // this.getDistanceByKilometer()
         //  console.log('getArratForParkings',this.getDistanceByKilometer())
          });
      },
      computed:{
-       sortParkings(){
-         return this.getDistanceByKilometer()
-       },
+      //  sortParkings(){
+      //    return this.getDistanceByKilometer()
+      //  },
        toggle(){
          if(this.isMap){
            return 'List'

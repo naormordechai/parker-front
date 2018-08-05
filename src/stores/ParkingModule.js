@@ -22,7 +22,7 @@ export default {
     },
     getters: {
         parkingToDisplay(state) {
-            console.log('****** the state parkings: ', state.parkings)
+            // console.log('****** the state parkings: ', state.parkings)
             return state.parkings
             .filter(parking =>{
                 if (state.filterBy.isPaved){
@@ -53,10 +53,13 @@ export default {
                     parking.location.lng                      
                 )
                 parking.distance =distance
+                console.log({adress: parking.address, distance})
                 return distance  < state.filterBy.distance
             })
             .sort((a,b )=> {
-                return a.distance  > b.distance
+                // debugger
+                if  (+a.distance  > +b.distance) return 1
+                else return -1 
             })
         },
         componentToShow(state) {
@@ -77,24 +80,24 @@ export default {
             state.parkings = parkings
         },
         reserveParking(state, { parking }) {
-            console.log('parking in mutation: ', parking)
-            console.log('state before splicing: ', state)
+            // console.log('parking in mutation: ', parking)
+            // console.log('state before splicing: ', state)
             var idx = state.parkings.findIndex(currParking => currParking._id === parking._id)
-            console.log('idx: ', idx)
-            console.log('state after splicing: ', state)
+            // console.log('idx: ', idx)
+            // console.log('state after splicing: ', state)
             state.parkings.splice(idx, 1, parking)
         },
         stopParking(state, { parking }) {
-            console.log('commit state: ', state)
+            // console.log('commit state: ', state)
             var idx = state.parkings.findIndex(currParking => currParking._id === parking._id)
-            console.log('idx: ', idx)
+            // console.log('idx: ', idx)
             state.parkings.splice(idx, 1, parking)
-            console.log('state after stop parking: ', state)
+            // console.log('state after stop parking: ', state)
         },
 
         addParking(state, { newParking }) {
             state.parkings.unshift(newParking)
-            console.log("parkings form store:",state.parkings)
+            // console.log("parkings form store:",state.parkings)
             return newParking
         },
         setPosition(state, payload) {
@@ -105,15 +108,13 @@ export default {
             // console.log('paypay',payload.lng);
             state.latLng.lat = payload.lat
             state.latLng.lng = payload.lng
-            console.log('state', state.latLng);
+            // console.log('state', state.latLng);
         },
         updateFilter(state, {filterBy}){
-            console.log('filter: ', filterBy)
             state.filterBy = filterBy
         },
         addNewParking(state, {parkingToAdd}) {
-            state.parkings.unshift(parkingToAdd)
-            console.log('store after new parking added: ', state.parkings)
+            state.parkings.push(parkingToAdd)
             
         }
 
