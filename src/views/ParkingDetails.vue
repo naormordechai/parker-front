@@ -44,7 +44,8 @@
     :position="parkingDetail.parking.location"
     :clickable="true"
     :draggable="false"
-    @click="$router.push('/reserve')"
+    @click="$router.push('/reserve/'+parkingDetail.parking._id)"
+    icon='http://maps.google.com/mapfiles/ms/icons/green-dot.png'
   />
 </GmapMap>
 
@@ -233,7 +234,6 @@ margin-top: 10px;
     margin-bottom: 5px;
 }
 
-
 .amenities p{
     margin-right: 5px;
 }
@@ -253,16 +253,5 @@ margin-top: 10px;
         height: 180px;
     }
 }
-
-
-
-
-.amenities p{
-    margin-right: 5px;
-}
-
-.parking-details i:not(:last-child){
-        margin-right: 10px;
-    }
 
 </style>

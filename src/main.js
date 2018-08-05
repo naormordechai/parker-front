@@ -11,6 +11,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import './registerServiceWorker'
 import './assets/style/main.scss'
+import '../node_modules/animate.css/animate.min.css'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
 import StorageService from '../services/StorageService.js'
