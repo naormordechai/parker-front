@@ -22,7 +22,7 @@ export default {
     },
     methods: {
         showNewParking() {
-        setTimeout(this.showNewParkingNotification, 6000)
+        setTimeout(this.showNewParkingNotification, 120000)
         },
         showNewParkingNotification() {
             this.$notify({
@@ -34,7 +34,7 @@ export default {
             });
         },
         showAvailableParking() {
-            setTimeout(this.showAvailableParkingMsg, 3000)            
+            setTimeout(this.showAvailableParkingMsg, 60000)            
         },
         showAvailableParkingMsg() {
             DemoService.addRandomParking()

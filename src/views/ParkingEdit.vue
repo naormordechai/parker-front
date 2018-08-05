@@ -123,7 +123,8 @@ export default {
       } else {
         if (!this.parkingToAdd.address){
           console.log("Address is empty, please add address!");
-          this.addressIsEmpty();
+         // this.addressIsEmpty();
+         this.alert('The address is empty, please add address');
 
         } else {
         let newParking = this.parkingToEdit;
@@ -138,11 +139,13 @@ export default {
               console.log("res._id: ", res._id);
               // reditect to the parking details page with vue router.push
               this.$router.push(`/parking/${res._id}`);
+              localStorage.removeItem('parking-to-add')
               //console.log('_id:',this.$store.state.parkings[0]._id);
             })
             .catch(err => {
               // show an error msg maybe with elment msg cmp.
-              this.failedToCreate() 
+             // this.failedToCreate() 
+             this.alert('Failed to save parking, please try later');
               
             });
          }
@@ -160,6 +163,11 @@ export default {
         return
       }
     },
+
+     alert(message) {
+      this.$alert(message, "Alert", {
+        confirmButtonText: "OK",
+      })},
 
     addressIsEmpty() {
         this.$alert('The address is empty, please add address', 'Alert', {
