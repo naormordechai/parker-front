@@ -121,7 +121,9 @@ export default {
       
     }
   },
-  created() {}
+  components:{
+    FooterCmp
+  }
 };
 </script>
 

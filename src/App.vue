@@ -19,7 +19,7 @@
                         <div class="span"></div>
                   </div>
                   <div class="container-nav"  ref="nav">
-                    <el-menu-item><img src="/img/app/logo-50x50.png" /></el-menu-item>
+                    <!-- <el-menu-item index="0"><img src="/img/app/logo-50x50.png" /></el-menu-item> -->
                     <router-link  to="/"><el-menu-item @click.native="doToggle" index="1">Home</el-menu-item></router-link>
                     <router-link  to="/parking"><el-menu-item @click.native="doToggle" index="2">Find</el-menu-item></router-link>
                     <router-link to="/parking/add"><el-menu-item @click.native="doToggle" index="3">add parking</el-menu-item></router-link> 
