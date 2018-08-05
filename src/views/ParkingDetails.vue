@@ -233,7 +233,6 @@ margin-top: 10px;
     margin-bottom: 5px;
 }
 
-<<<<<<< HEAD
 .amenities p{
     margin-right: 5px;
 }
@@ -243,8 +242,6 @@ margin-top: 10px;
     }
 
 
-=======
->>>>>>> b020748603d907dd4cc174426d94dffdbf88f20e
 @media(max-width: 770px){
     .section-details .box-card{
         max-width: none;
@@ -256,15 +253,4 @@ margin-top: 10px;
     }
 }
 
-<<<<<<< HEAD
-
-=======
-.amenities p{
-    margin-right: 5px;
-}
-
-.parking-details i:not(:last-child){
-        margin-right: 10px;
-    }
->>>>>>> b020748603d907dd4cc174426d94dffdbf88f20e
 </style>

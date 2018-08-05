@@ -72,6 +72,7 @@ export default {
     doToggle(){
       // console.log(this.$refs.nav);
       this.$refs.nav.classList.toggle('active')
+      console.log(this.$refs.nav)
       
     },
     goo(){
@@ -108,24 +109,24 @@ export default {
   justify-content: space-between;
   font-size: 15px;
 }
-#nav, {
+#nav {
   // padding: 30px;
-    position:fixed;
-    width: 100%;
-    opacity: 0.90;
-    z-index: 2000;  
-    top:0;  
+  position: fixed;
+  width: 100%;
+  opacity: 0.9;
+  z-index: 2000;
+  top: 0;
   a {
     font-weight: bold;
-    color: #2c3e50;    
+    color: #2c3e50;
     &.router-link-exact-active {
       color: #42b983;
     }
   }
 }
 
-.logout{
-  display: inline; 
+.logout {
+  display: inline;
   font-weight: bold;
   text-decoration: underline;
   &:hover {
@@ -133,16 +134,14 @@ export default {
   }
 }
 
-
-.inline-block{
+.inline-block {
   display: inline-block;
 }
-
 
 .profile-icon {
   border-radius: 50%;
   border: none;
-  height: 40px; 
+  height: 40px;
   width: 40px;
   margin-right: 10px;
   text-transform: uppercase;
@@ -151,64 +150,75 @@ export default {
     cursor: pointer;
     background-color: rgba(168, 168, 168, 0.377);
     color: white;
-    transition: 0.3s
+    transition: 0.3s;
   }
-
 }
 
 .main-menu {
   align-items: center;
-  width:100%;
+  width: 100%;
 }
 
-.container-nav{
+.container-nav {
   display: flex;
-  height: auto; 
+  height: auto;
 }
 
-.btn-profile{
+.btn-profile {
   position: absolute;
   top: 8.2px;
   right: 10px;
 }
 
-
-
-@media(max-width: 770px){
-  
+@media (max-width: 770px) {
   // .el-menu-item{
   //   display: none;
   // }
-  .span{
+  .span {
     width: 35px;
     height: 2px;
     background-color: black;
     margin: 6px 0;
   }
-  .hamburger{
+  .hamburger {
     margin-left: 30px;
   }
 
- .el-menu{
+  .el-menu {
     padding: 3px;
   }
 
-// #nav{
-//   padding: 10px
-// }
+  // #nav{
+  //   padding: 10px
+  // }
 
-.main-menu{
-  padding: 10px;
+  .main-menu {
+    padding: 10px;
+  }
+
+  .container-nav {
+
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    height: 100vh;
+    left: 0;
+    background-color: #2c3e50;
+    transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+    margin-left: 0;
+    background-color: 0;
+    padding-right: 0;
+    
+
+  }
+
+  .active {
+    visibility: visible;
+    opacity: 1;
+    transition-delay:0s;
+  }
 }
-
-.container-nav{
-  display: none;
-  height: 100vh;
-}
-
-    .active{
-        display: block;
-    }
-}
-
 </style>
