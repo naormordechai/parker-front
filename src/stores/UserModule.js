@@ -47,16 +47,21 @@ export default {
       UserService.login(userInfo)
         .then(user => {
           
-          if (!user._id) return Promise.reject(err => err)
-          console.log('this user logged in successfullyyyyyyyyyyyy', user)
+          console.log('UserModule-50-this user', user)
+          if (!user) {
+            console.log('UserModule-52-this user', user)
+            return Promise.reject(err => err)
+          } 
+          console.log('UserModule-55-this user logged in successfully', user)
           context.commit({ type: 'setUser', user: user })
           StorageService.store('loggedInUser', user)
           return Promise.resolve(user)
         })
       .catch (err => {
         console.log('wrong login details')
-        return Promise.reject()
-      })
+        //return Promise.reject()
+        console.log(err)
+       })
 
     },
     signup(context, {newUser}) {

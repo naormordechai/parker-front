@@ -4,6 +4,7 @@
 <div class="section-details flex">
 
     <el-card class="box-card">
+         <el-button @click.native="$router.push('/parking')" style="display:flex;" type="info" plain>List</el-button>
         <h3 class="address">{{parkingDetail.parking.address}}</h3>
         <img :src="parkingDetail.parking.imageURL" class="parking-details-image image">
         <div style="padding: 25px;">
@@ -232,6 +233,7 @@ margin-top: 10px;
     margin-bottom: 5px;
 }
 
+<<<<<<< HEAD
 .amenities p{
     margin-right: 5px;
 }
@@ -241,6 +243,8 @@ margin-top: 10px;
     }
 
 
+=======
+>>>>>>> b020748603d907dd4cc174426d94dffdbf88f20e
 @media(max-width: 770px){
     .section-details .box-card{
         max-width: none;
@@ -252,5 +256,15 @@ margin-top: 10px;
     }
 }
 
+<<<<<<< HEAD
 
+=======
+.amenities p{
+    margin-right: 5px;
+}
+
+.parking-details i:not(:last-child){
+        margin-right: 10px;
+    }
+>>>>>>> b020748603d907dd4cc174426d94dffdbf88f20e
 </style>

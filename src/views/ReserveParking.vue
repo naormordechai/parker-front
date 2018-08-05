@@ -13,8 +13,6 @@
                 :draggable="true"
                 @click="center=m.position" />
             </GmapMap>
-            
-           
         
         <div class="reserve-details">
             <p>How many hours?</p>

@@ -6,11 +6,10 @@
           <h3> Add New Parking </h3>
           <div v-if="isAddParking" class="add-parking">
             <div class="add-margin">
-             <input placeholder="Please input Adress" type="text" ref="placeAutocomplete" class="el-input__inner">  
-         <!-- <el-input placeholder="Please input Adress" type="text" ref="placeAutocomplete" />  -->
+             <input placeholder="Please input Adress" type="text" ref="placeAutocomplete" class="el-input__inner"> 
              </div>          
             <div>
-            <p>Price:</p>  <el-input-number v-model="parkingToEdit.price" :min="1" ></el-input-number>
+            <p>Price in ₪:</p>  <el-input-number v-model="parkingToEdit.price" :min="1" ></el-input-number>
             </div>
             <div class="add-margin">
              <el-checkbox v-model="parkingToEdit.amenities.isCovered">IsCovered</el-checkbox>
@@ -186,7 +185,7 @@ export default {
         });
       },
     loadImg(elPic, ev) {
-      // debugger
+      
 
       CloudinaryService.uploadImg(elPic, ev).then(res => {
         this.parkingToEdit.imageURL = res;
@@ -238,6 +237,7 @@ p{
   justify-content:center;
   align-items: center;
   border-style: solid;
+  margin-top:50px;
   border-width: 1px;
   border-color:lightsteelblue;
   padding: 10px;

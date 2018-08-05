@@ -13,18 +13,18 @@
               active-text-color="#ffd04b">
               <div class="main-menu flex space-between">
                 <div class="flex">
-                  <div class="hamburger" @click="foo">
+                  <div class="hamburger" @click="doToggle">
                         <div class="span"></div>
                         <div class="span"></div>
                         <div class="span"></div>
                   </div>
                   <div class="container-nav"  ref="nav">
-                    <router-link  to="/"><el-menu-item @click.native="goo" index="1">Home</el-menu-item></router-link>
-                    <router-link  to="/parking"><el-menu-item @click.native="goo" index="2">Find</el-menu-item></router-link>
-                    <router-link to="/parking/add"><el-menu-item @click.native="goo" index="3">add parking</el-menu-item></router-link> 
-                    <router-link v-if="!loggedInUser._id" to="/login"><el-menu-item @click.native="goo" index="4">Login</el-menu-item></router-link>
+                    <router-link  to="/"><el-menu-item @click.native="doToggle" index="1">Home</el-menu-item></router-link>
+                    <router-link  to="/parking"><el-menu-item @click.native="doToggle" index="2">Find</el-menu-item></router-link>
+                    <router-link to="/parking/add"><el-menu-item @click.native="doToggle" index="3">add parking</el-menu-item></router-link> 
+                    <router-link v-if="!loggedInUser._id" to="/login"><el-menu-item @click.native="doToggle" index="4">Login</el-menu-item></router-link>
                     <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`"><el-menu-item @click.native="goo" index="5">my parkings</el-menu-item></router-link>
-                    <div class="logout" v-if="loggedInUser._id" @click="logout"><el-menu-item @click.native="goo"  index="6">Logout</el-menu-item></div>
+                    <div class="logout" v-if="loggedInUser._id" @click="logout"><el-menu-item @click.native="doToggle"  index="6">Logout</el-menu-item></div>
                   </div>      
                 </div>
                   <router-link class="btn-profile" :to="`/user/${loggedInUser._id}`">
@@ -69,7 +69,7 @@ export default {
     //   })
 
     // }
-    foo(){
+    doToggle(){
       // console.log(this.$refs.nav);
       this.$refs.nav.classList.toggle('active')
       
@@ -166,6 +166,12 @@ export default {
   height: auto; 
 }
 
+.btn-profile{
+  position: absolute;
+  top: 8.2px;
+  right: 10px;
+}
+
 
 
 @media(max-width: 770px){
@@ -187,6 +193,13 @@ export default {
     padding: 3px;
   }
 
+// #nav{
+//   padding: 10px
+// }
+
+.main-menu{
+  padding: 10px;
+}
 
 .container-nav{
   display: none;
@@ -196,21 +209,6 @@ export default {
     .active{
         display: block;
     }
-}
-
-
-
-
-
-@media(max-width:600px){
-  //   .el-menu-item{
-  //   display: block;
-  // }
-  // div.d-none{
-  //   display: block
-  // }
-
-
 }
 
 </style>
