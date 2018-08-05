@@ -11,10 +11,10 @@
             <div>
             <p>Price in ₪:</p>  <el-input-number v-model="parkingToEdit.price" :min="1" ></el-input-number>
             </div>
-            <div class="add-margin">
-             <el-checkbox v-model="parkingToEdit.amenities.isCovered">IsCovered</el-checkbox>
-             <el-checkbox v-model="parkingToEdit.amenities.isPaved">isPaved</el-checkbox>
-             <el-checkbox v-model="parkingToEdit.amenities.isForDisable">isForDisable</el-checkbox>
+            <div class="amenities-section add-margin">
+             <div><el-checkbox v-model="parkingToEdit.amenities.isCovered">IsCovered</el-checkbox></div>
+             <div><el-checkbox v-model="parkingToEdit.amenities.isPaved">isPaved</el-checkbox></div>
+             <div><el-checkbox v-model="parkingToEdit.amenities.isForDisable">isForDisable</el-checkbox></div>
              </div>
              <div class="flex align-center">
             <el-input
@@ -231,13 +231,18 @@ p{
   text-align: center;
 }
 
+.amenities-section{
+  text-align: left;
+  padding-left: 40px;
+}
+
 .add-parking-form{
   width: 300px;
   display: inline-block;
   justify-content:center;
   align-items: center;
   border-style: solid;
-  margin-top:50px;
+  margin-top:70px;
   border-width: 1px;
   border-color:lightsteelblue;
   padding: 10px;

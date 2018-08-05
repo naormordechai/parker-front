@@ -54,8 +54,11 @@ export default {
 
     created (){
        this.$store.dispatch({type:'loadParkings'});
-       this.showNewParking()
-       this.showAvailableParking()
+       if (this.$root.demoDummyNotify) {
+           this.showNewParking()
+           this.showAvailableParking()
+           this.$root.demoDummyNotify = false;
+       }
     //    DemoService.addRandomParking()     
 
     },

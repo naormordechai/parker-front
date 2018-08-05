@@ -50,6 +50,9 @@ export default {
       block:true
     }
   },
+  created() {
+    this.$root.demoDummyNotify = true;
+  },
   computed: {
     // this.loadUser() 
     loggedInUser(){

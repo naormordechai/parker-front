@@ -44,7 +44,8 @@
     :position="parkingDetail.parking.location"
     :clickable="true"
     :draggable="false"
-    @click="$router.push('/reserve')"
+    @click="$router.push('/reserve/'+parkingDetail.parking._id)"
+    icon='http://maps.google.com/mapfiles/ms/icons/green-dot.png'
   />
 </GmapMap>
 

@@ -74,10 +74,6 @@ export default {
 
   methods: {
     login() {
-      //   UserService.login(this.userInfo).then(
-      //       result=>{
-      //           console.log('71:success')
-      //       }).catch (err => console.log('72-error:',err));
 
       console.log("4-00000", this.$store.state.UserModule.aboutUser);
 
@@ -92,7 +88,10 @@ export default {
 
             this.$router.go(-1);
           })
-          .catch(err => (this.message = "no such user"));
+          .catch(err => {
+              // this.message = "no such user"
+            this.alert("The User or Password is wrong! please try again") 
+          });
     },
     signup() {
       console.log("user signed up");
@@ -117,13 +116,15 @@ export default {
     alert(message) {
       this.$alert(message, "Alert", {
         confirmButtonText: "OK",
-        callback: action => {
-          this.$message({
-            type: "info",
-            message: `action: ${action}`
-          });
-        }
+      //   // callback: action => {
+      //   //   this.$message({
+      //   //     type: "info",
+      //   //     message: `action: ${action}`
+      //   //   });
+      //   // }
       });
+ 
+      
     }
   },
   created() {}
@@ -131,6 +132,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 section {
   margin-top: 60px;
 }
@@ -182,5 +185,10 @@ h3 {
   .login-container {
     max-width: 100%;
   }
+
+  .el-message-box{
+    width:20px;
+  }
+
 }
 </style>
