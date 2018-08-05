@@ -92,6 +92,10 @@ ul{
   .block{
       display: block;
   }
+
+  .el-message-box{
+      width: 300px;
+  }
 @media(max-width:770px){
     .map{
       display: none;
