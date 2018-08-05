@@ -12,7 +12,7 @@
 
 
       <ul>
-          <li class="animated bounce" v-for="parking in parkings" :key="parking._id">
+          <li v-for="parking in parkings" :key="parking._id">
             <parkingPreview :parking="parking"/>
           </li>
           <li>

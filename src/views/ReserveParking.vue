@@ -11,6 +11,7 @@
                 :position="parking.location"
                 :clickable="true"
                 :draggable="true"
+                icon='http://maps.google.com/mapfiles/ms/icons/green-dot.png'
                 @click="center=m.position" />
             </GmapMap>
         
@@ -67,6 +68,7 @@ export default {
               this.showConfirmation()
             console.log("parking has been reserved!");
             this.$router.push(`/navigate/${parking._id}`)
+            localStorage.removeItem('parking-duration')
           });
       }
     },
