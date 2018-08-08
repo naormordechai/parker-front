@@ -76,11 +76,7 @@ export default {
         },
         reserveParking(state, { parking }) {
             var idx = state.parkings.findIndex(currParking => currParking._id === parking._id)
-<<<<<<< HEAD
             state.parkings[idx] = parking
-=======
-            state.parkings.splice(idx, 1, parking)            
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
         },
         stopParking(state, { parking }) {
             var idx = state.parkings.findIndex(currParking => currParking._id === parking._id)
@@ -89,11 +85,8 @@ export default {
 
         addParking(state, { newParking }) {
             state.parkings.unshift(newParking)
-<<<<<<< HEAD
             // console.log("parkings form store:",state.parkings)
             // return newParking
-=======
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
         },
         setPosition(state, payload) {
             state.position.lat = payload.lat

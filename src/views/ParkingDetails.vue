@@ -13,7 +13,7 @@
                 <p><i class="fas fa-shekel-sign"></i> {{parkingDetail.parking.price}}</p>
                 <p><i class="fas fa-map-marker-alt"></i>  {{calcDistance}} </p>
                 <div class="line"></div>
-                <p>{{parkingDetail.parking.description}}</p>
+                <p class="description">{{parkingDetail.parking.description}}</p>
                 <div class="line"></div>
                 <div class="amenities flex">
                     <p v-if="parkingDetail.parking.amenities.isPaved"><i class="fas fa-road"></i></p>
@@ -134,6 +134,11 @@ methods:{
 </script>
 
 <style scoped lang="scss">
+
+.description{
+    line-height: 25px;
+}
+
 .parking-details-image {
     max-width: 100%;
 }
