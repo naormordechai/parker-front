@@ -64,24 +64,15 @@ export default {
   methods: {
     login() {
       if (!this.userInfo.email || !this.userInfo.password) {
-<<<<<<< HEAD
-        this.alert("The user or Password is empty! Please insert and try again");
-      } else
-        this.$store
-          .dispatch({ type: "login", userInfo: this.userInfo })
-          .then(_ => {
-            this.$router.go(-1);
-          })
-=======
         this.alert("The User or Password is empty! Plaese insert and try again");
-      } else
+      } else{
         this.$store
           .dispatch({ type: "login", userInfo: this.userInfo })
           .then(_ => { this.$router.go(-1); })
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
           .catch(err => {
             this.alert("The User or Password is wrong! please try again") 
-          });
+          })
+      };
     },
     signup() {
       console.log("user signed up");
