@@ -34,8 +34,12 @@
   </div>
 
 </template>
-<script>
 
+<<<<<<< HEAD
+=======
+
+<script>
+>>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
 export default {
   data () {
     return {
@@ -46,7 +50,6 @@ export default {
     this.$root.demoDummyNotify = true;
   },
   computed: {
-    // this.loadUser() 
     loggedInUser(){
       return this.$store.getters.loggedInUser
     },
@@ -56,19 +59,32 @@ export default {
   },
 
   methods: {
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
     doToggle(){
       this.$refs.nav.classList.toggle('active')
       
     },
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
     logout() {
       this.$store.commit({type:'logoutUser'})
       localStorage.removeItem('loggedInUser')
       this.$router.push('/login')
 
     },
+<<<<<<< HEAD
   },
+=======
+  }
+  
+>>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
 }
 
 </script>
@@ -76,7 +92,6 @@ export default {
 
 <style lang="scss">
 #app {
-  // font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -88,8 +103,7 @@ export default {
   font-size: 15px;
 }
 #nav {
-  // padding: 30px;
-  position: fixed;
+  position: fixed;  
   width: 100%;
   opacity: 0.9;
   z-index: 2000;
@@ -100,7 +114,7 @@ export default {
     &.router-link-exact-active {
       color: #42b983;
     }
-  }
+  }  
 }
 
 .logout {

@@ -5,7 +5,7 @@ var UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
 // on submit call to this function
 async function uploadImg(elForm, ev) {
    // ev.preventDefault();
-                                                                                                        // A function to be called if request succeeds
+   // A function to be called if request succeeds
     function onSuccess(res) {
         console.log('uploadedImg', res);
         console.log('uploadedImg', res.url);

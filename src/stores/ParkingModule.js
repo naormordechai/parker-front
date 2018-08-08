@@ -22,9 +22,7 @@ export default {
     },
     getters: {
         parkingToDisplay(state) {
-            // console.log('****** the state parkings: ', state.parkings)
-            return state.parkings
-            .filter(parking =>{
+            return state.parkings.filter(parking =>{                
                 if (state.filterBy.isPaved){
                     return parking.amenities.isPaved
                 } else {
@@ -53,11 +51,9 @@ export default {
                     parking.location.lng                      
                 )
                 parking.distance =distance
-                console.log({adress: parking.address, distance})
                 return distance  < state.filterBy.distance
             })
             .sort((a,b )=> {
-                // debugger
                 if  (+a.distance  > +b.distance) return 1
                 else return -1 
             })
@@ -65,10 +61,9 @@ export default {
         componentToShow(state) {
             return state.component
         },
-        p(state) {
-            return state.latLng
-            // return state.latLng
-        },
+
+        p : (state) => state.latLng,
+
         position : (state) => state.position,
         search(state){
             return state.isSearch
@@ -81,30 +76,31 @@ export default {
         },
         reserveParking(state, { parking }) {
             var idx = state.parkings.findIndex(currParking => currParking._id === parking._id)
+<<<<<<< HEAD
             state.parkings[idx] = parking
+=======
+            state.parkings.splice(idx, 1, parking)            
+>>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
         },
         stopParking(state, { parking }) {
-            // console.log('commit state: ', state)
             var idx = state.parkings.findIndex(currParking => currParking._id === parking._id)
-            // console.log('idx: ', idx)
             state.parkings.splice(idx, 1, parking)
-            // console.log('state after stop parking: ', state)
         },
 
         addParking(state, { newParking }) {
             state.parkings.unshift(newParking)
+<<<<<<< HEAD
             // console.log("parkings form store:",state.parkings)
             // return newParking
+=======
+>>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
         },
         setPosition(state, payload) {
             state.position.lat = payload.lat
             state.position.lng = payload.lng
 
-            // console.log('paypay',payload.lat);
-            // console.log('paypay',payload.lng);
             state.latLng.lat = payload.lat
             state.latLng.lng = payload.lng
-            // console.log('state', state.latLng);
         },
         updateFilter(state, {filterBy}){
             state.filterBy = filterBy

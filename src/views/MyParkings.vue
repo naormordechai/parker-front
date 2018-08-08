@@ -73,6 +73,7 @@ export default {
         this.user = res.user;
         this.reservedParkings = res.reservedParkings;
         this.ownedParkings = res.ownedParkings;
+        console.log('my owned parkings: ', this.ownedParkings)
       });
     },
     convertTimestamp(timestamp) {

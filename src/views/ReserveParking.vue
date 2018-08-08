@@ -52,20 +52,17 @@ export default {
   methods: {
     reserveParking(parking) {
       
-      if (this.user._id === "" || this.user._id === false) { 
+      if (!this.user._id) { 
         StorageService.store('parking-duration', this.hours)         
         this.$router.push("/login");
       } else {
         var occupiedUntil = Date.now() + this.hours * 60 * 60 * 1000;
-        console.log("occupied until: ", occupiedUntil);
-        parking.reserverId = this.user._id;
+        parking.reserverId = this.user._id;       
         parking.occupiedUntil = occupiedUntil;
-        console.log("parking before reservation: ", parking);
         this.$store
           .dispatch({ type: "reserveParking", parking: parking })
           .then(res => {
               this.showConfirmation()
-            console.log("parking has been reserved!");
             this.$router.push(`/navigate/${parking._id}`)
             localStorage.removeItem('parking-duration')
           });
@@ -73,7 +70,6 @@ export default {
     },
     loadParking() {    
       var parkingId = this.$route.params.id;
-      console.log("this route URL: ", this.$route);
       ParkingService.getById(parkingId).then(res => {
         this.parking = res.parking;
       });
@@ -81,12 +77,12 @@ export default {
     showConfirmation() {        
         this.$message({
           message: 'Congratulations ' +this.user.firstName+', your parking at ' +this.parking.address+' is waiting for you!',
-          type: 'success'
+          type: 'success',
+          duration: 2000
         });
     },
     loadHours () {
       let parkingDuration = StorageService.load('parking-duration')
-      console.log('parking duration: ', parkingDuration)
       if (parkingDuration) this.hours = parkingDuration
     }
   },
