@@ -11,10 +11,9 @@
                             <input type="text" v-model="userInfo.email" placeholder="Insert your email"/>   
                             <input type="password" v-model="userInfo.password" placeholder="password"/>                
                             <el-button type="success" @click="login">Login</el-button>
+                            <!-- <input type="submit"> -->
                         </div>
-                       
                     </form>
-                    <p>{{message}}</p>
                  </div>
             </el-tab-pane>
 
@@ -28,21 +27,13 @@
                             <input type="email" v-model="newUser.email" placeholder="email:"/>   
                             <input type="password" v-model="newUser.password" placeholder="Password:"/>                
                             <el-button type="success" @click="signup">Sign me Up!</el-button>
+                            <!-- <input type="submit"> -->
                         </div>
                     </form>
                     <p>{{message}}</p>
                  </div>
             </el-tab-pane>        
         </el-tabs>
-
-
-   
-    
-    <!-- <form type="submit" @click="login">
-        <input type="text" v-model="email">
-        <button>login</button>
-        <input type="submit" value="Login" @click="login">
-    </form> -->
     <FooterCmp />
     </section>
 </template>
@@ -70,22 +61,15 @@ export default {
       }
     };
   },
-  // this.status = this.$store.state.UserModuls.isAdmin;
 
   methods: {
     login() {
-
-      console.log("4-00000", this.$store.state.UserModule.aboutUser);
-
       if (!this.userInfo.email || !this.userInfo.password) {
-       // this.message = "please enter valid user";
-        this.alert("The User or Password is empty! plese insert and try again");
+        this.alert("The user or Password is empty! Please insert and try again");
       } else
         this.$store
           .dispatch({ type: "login", userInfo: this.userInfo })
           .then(_ => {
-            console.log("85-login:", _);
-
             this.$router.go(-1);
           })
           .catch(err => {

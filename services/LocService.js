@@ -3,7 +3,6 @@ import axios from 'axios';
  
 
 function getPosition() {
-
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject)
     })
@@ -39,11 +38,6 @@ function calcRoute(userLocation, parkingLocation) {
           destination:end,
           travelMode: 'DRIVING'
         };
-        // directionsService.route(request, function(response, status) {
-        //   if (status == 'OK') {
-        //     directionsDisplay.setDirections(response);
-        //   }
-        // });
 }
 
 

@@ -1,12 +1,9 @@
 <template>
     <section>
-        <!-- <input type="text" v-model="filterBy"> -->
         <div class="flex">
                 <input @keyup.enter="search" id="pac-input" class="input-location el-input__inner" type="text" ref="input"
                     placeholder="Enter a location">
                     </div>
-                    <!-- <button @click="search">search</button> -->
-                    <!-- <el-input placeholder="Entar a location" ref="input" id="pac-input"></el-input> -->
     </section>
 </template>
 
@@ -17,14 +14,10 @@ import StorageService from '../../services/StorageService.js'
 export default {
     data(){
         return {
-            filterBy:'',
             loc:{},
-            
         }
     },
-    // props:{
-    //     isMap:Boolean,
-    // },
+
     mounted: async function(){
         var google  = await this.$gmapApiPromiseLazy()
         var input  = this.$refs.input
@@ -35,9 +28,7 @@ export default {
         search(){
             var geocoder= new google.maps.Geocoder();
             var input  = this.$refs.input.value
-            // if (input){
-            //     this.$store.state.ParkingModule.search = true
-            // }
+
             geocoder.geocode( { 'address': input}, (results, status) => {
       if (status === google.maps.GeocoderStatus.OK) {
         this.loc.lat=results[0].geometry.location.lat();
@@ -52,9 +43,6 @@ export default {
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
-
-    // pretty meaningless, because it always will be []
-    // this line is executed right after creating AJAX request, but not after its response comes
     return this.loc;
             
         },
@@ -64,9 +52,6 @@ export default {
 </script>
 
 <style scoped>
-/* .input-location{
-    width:100%;
-} */
 
 .icon-search{
     border: none;

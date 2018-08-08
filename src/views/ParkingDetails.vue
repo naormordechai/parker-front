@@ -25,7 +25,7 @@
             <div class="about-owner flex column space-between">
                 <h5>Owner details</h5>
                 <p>{{parkingDetail.owner.firstName}} {{parkingDetail.owner.lastName}}</p>
-                <p>{{parkingDetail.owner.eMail}}</p>
+                <p>{{parkingDetail.owner.email}}</p>
             <div>
                 <el-button @click="$router.push('/reserve/'+parkingDetail.parking._id)" 
                  class="btn-reserve" type="success" :disabled="isOccupied">Reserve Now!</el-button>
@@ -101,22 +101,6 @@ methods:{
 
 
 },
-// created :async function(){
-//         var parkingPrm = this.loadParkingId();
-//         var locationPrm =  LocService.getPosition().then(pos => {
-//             let lat = pos.coords.latitude;
-//             let lng = pos.coords.longitude;
-//             return {lat , lng}
-//          })
-//         var  [ _ , loc] = await Promise.all([parkingPrm, locationPrm])
-// this.distance  = this.getDistanceFromLatLonInKm(
-//         this.parkingDetail.parking.location.lat,
-//         this.parkingDetail.parking.location.lng,
-//         loc.lat,
-//         loc.lng
-//     )
-        
-//     },
 
     created : async function (){
         var parkignPrm = this.loadParkingId()

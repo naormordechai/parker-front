@@ -21,7 +21,7 @@
                     <ul>
                         <my-parking-preview v-for="parking in ownedParkings" :key="parking._id"
                             :parking="parking" :owned="true"
-                            @stop-parking="stopParking">
+                           >
                         </my-parking-preview>                        
                     </ul>
                 </div>
@@ -35,7 +35,7 @@
                             <div class="profile-image"></div>
                             <div class="profile-details flex column">
                                 <h2>{{user.firstName}} {{user.lastName}}</h2>
-                                <p>{{user.eMail}}</p>
+                                <p>{{user.email}}</p>
                             </div>  
                         </div>                     
                                                
@@ -62,7 +62,6 @@ export default {
       user: null,
       reservedParkings: null,
       ownedParkings: null
-      // isAvailable:null
     };
   },
   methods: {
@@ -81,7 +80,7 @@ export default {
     },
     stopParking(parking) {
         // could not figure out why 'this' was undefined in the 'then' cb'
-        var self = this;
+      var self = this;
       return this.$store
         .dispatch({ type: "stopParking", parking: parking })
         .then(() => {

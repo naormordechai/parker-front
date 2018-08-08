@@ -1,11 +1,6 @@
 <template>
   <div id="app">
-    <!-- <keep-alive>
-    <component :is="x"></component>
-    </keep-alive> -->
-    <!-- <ParkingFilter /> -->
     <div id="nav">
-
         <div>
           <el-menu class="el-menu-demo flex" mode="horizontal" 
               background-color="#545c64"
@@ -13,7 +8,7 @@
               active-text-color="#ffd04b">
               <div class="main-menu flex space-between">
                 <div class="flex">
-                  <img src="/img/app/logo-50x50.png" />
+                  <img class="img-app" src="/img/app/logo-50x50.png" />
                   <div class="hamburger" @click="doToggle">
                         <div class="span"></div>
                         <div class="span"></div>
@@ -24,7 +19,7 @@
                     <router-link  to="/parking"><el-menu-item @click.native="doToggle" index="2">Find</el-menu-item></router-link>
                     <router-link to="/parking/add"><el-menu-item @click.native="doToggle" index="3">add parking</el-menu-item></router-link> 
                     <router-link v-if="!loggedInUser._id" to="/login"><el-menu-item @click.native="doToggle" index="4">Login</el-menu-item></router-link>
-                    <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`"><el-menu-item @click.native="goo" index="5">my parkings</el-menu-item></router-link>
+                    <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`"><el-menu-item @click.native="doToggle" index="5">my parkings</el-menu-item></router-link>
                     <div class="logout" v-if="loggedInUser._id" @click="logout"><el-menu-item @click.native="doToggle"  index="6">Logout</el-menu-item></div>
                   </div>      
                 </div>
@@ -36,14 +31,10 @@
           </div> 
     </div>
     <router-view/>  
-    <!-- <FooterCmp />  -->
   </div>
 
 </template>
 <script>
-
-import FooterCmp from '@/components/FooterCmp.vue' 
-// import ParkingFilter from '@/components/ParkingFilter.vue'
 
 export default {
   data () {
@@ -65,36 +56,19 @@ export default {
   },
 
   methods: {
-    // loadUser() {
-    //   loggedInUser = this.$store.getters.loggedInUser
-    //   .then (user => {
-    //     console.log('logged in user brought from store: ', user)
-    //     this.user = user
-    //   })
 
-    // }
     doToggle(){
-      // console.log(this.$refs.nav);
-      this.$refs.nav.classList.toggle('active')
-      console.log(this.$refs.nav)
-      
-    },
-    goo(){
-      console.log('goo');
       this.$refs.nav.classList.toggle('active')
       
     },
+
     logout() {
-      this.$store.dispatch({type:'logout'})
+      this.$store.commit({type:'logoutUser'})
       localStorage.removeItem('loggedInUser')
       this.$router.push('/login')
 
     },
   },
-  components:{
-    FooterCmp,
-    // ParkingFilter
-  }
 }
 
 </script>
@@ -137,7 +111,6 @@ export default {
     cursor: pointer;
   }
 }
-
 .inline-block {
   display: inline-block;
 }
@@ -175,9 +148,9 @@ export default {
 }
 
 @media (max-width: 770px) {
-  // .el-menu-item{
-  //   display: none;
-  // }
+.img-app{
+  display: none;
+}
   .span {
     width: 35px;
     height: 2px;
@@ -194,14 +167,13 @@ export default {
 
 
   .main-menu {
-    padding: 5px;
+    padding: 10px;
     img {
       margin-top: -10px;
     }
   }
 
   .container-nav {
-
     opacity: 0;
     visibility: hidden;
     display: flex;
@@ -213,11 +185,8 @@ export default {
     width: 100vw;
     background-color: rgb(84, 92, 100);;
     transition:visibility 0s linear 0.5s,opacity 0.5s linear;
-    // margin-left: 0;
     background-color: 0;
     padding-right: 0;
-    
-
   }
 
   .active {

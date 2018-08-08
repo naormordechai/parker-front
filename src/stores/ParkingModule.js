@@ -80,12 +80,8 @@ export default {
             state.parkings = parkings
         },
         reserveParking(state, { parking }) {
-            // console.log('parking in mutation: ', parking)
-            // console.log('state before splicing: ', state)
             var idx = state.parkings.findIndex(currParking => currParking._id === parking._id)
-            // console.log('idx: ', idx)
-            // console.log('state after splicing: ', state)
-            state.parkings.splice(idx, 1, parking)
+            state.parkings[idx] = parking
         },
         stopParking(state, { parking }) {
             // console.log('commit state: ', state)
@@ -98,7 +94,7 @@ export default {
         addParking(state, { newParking }) {
             state.parkings.unshift(newParking)
             // console.log("parkings form store:",state.parkings)
-            return newParking
+            // return newParking
         },
         setPosition(state, payload) {
             state.position.lat = payload.lat

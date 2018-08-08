@@ -14,30 +14,12 @@
 </template>
 
 <script>
-
 export default {
-  data () {
-    return {
-     
-    }
-  },
   name: 'home',
-  components: {
-  }
 }
 </script>
 
 <style scoped lang="scss">
-
-
-// .home {
-//   background-image: url('../assets/images/parker.png');
-//   background-size: cover;
-//   background-attachment: fixed;
-//   height: 100vh;
-//   width: 100%;  
-// }
-
 
 .home {
   background: 
@@ -57,10 +39,9 @@ export default {
   text-align: left;
   padding: 50px; 
   font-family: 'Open Sans', sans-serif;
- 
 }
+
  h2 {
-   
     font-size: 48px;
     font-weight: 300;
     text-transform: uppercase;

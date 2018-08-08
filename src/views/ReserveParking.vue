@@ -59,7 +59,6 @@ export default {
         var occupiedUntil = Date.now() + this.hours * 60 * 60 * 1000;
         console.log("occupied until: ", occupiedUntil);
         parking.reserverId = this.user._id;
-        parking._id = this.parking._id;
         parking.occupiedUntil = occupiedUntil;
         console.log("parking before reservation: ", parking);
         this.$store
@@ -86,7 +85,7 @@ export default {
         });
     },
     loadHours () {
-      const parkingDuration = StorageService.load('parking-duration')
+      let parkingDuration = StorageService.load('parking-duration')
       console.log('parking duration: ', parkingDuration)
       if (parkingDuration) this.hours = parkingDuration
     }

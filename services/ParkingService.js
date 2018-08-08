@@ -15,6 +15,7 @@ function getById(parkingId) {
     return axios.get(`${PARKING_URL}/${parkingId}`)
     .then(res => res.data)
     .then(data => {
+        console.log('data',data);
         data.parking.location.lat = +data.parking.location.lat
         data.parking.location.lng = +data.parking.location.lng
         
@@ -25,29 +26,24 @@ function getById(parkingId) {
 }
 
 function addParking(newParking) {
-    console.log('25-serice', newParking)
     return axios.post(PARKING_URL + '/add', newParking)
 }
 
 function reserveParking(parkingReserved){
-    console.log('parking reserved: ', parkingReserved)
+    console.log('parking reserved: ', parkingReserved.parkingId)
     return axios.put(`${PARKING_URL}/reserve/${parkingReserved.parkingId}`, parkingReserved)
         .then(res => {
             console.log('parking service res: ', res)
             console.log('parking service res data: ', res.data)
-           return res.data})
+           return res.data
+        })
 }
 
 
 
 function stopParking(parking) {  
-    console.log('front end service parking: ', parking)  
     return axios.put(`${PARKING_URL}/stop`, parking)
     .then(res => res.data)
-    .then(data => {  
-        console.log('data: ', data)           
-        return data
-    })
 }
 
 export default {
