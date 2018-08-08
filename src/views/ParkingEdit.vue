@@ -57,8 +57,8 @@ export default {
     return {
       parkingToAdd: {
         location: {
-          lat: "0",
-          lng: "0"
+          lat: 0,
+          lng: 0
         },
         address: "",
         occupiedUntil: "0",
