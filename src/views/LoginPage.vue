@@ -65,13 +65,14 @@ export default {
     login() {
       if (!this.userInfo.email || !this.userInfo.password) {
         this.alert("The User or Password is empty! Plaese insert and try again");
-      } else
+      } else {
         this.$store
           .dispatch({ type: "login", userInfo: this.userInfo })
           .then(_ => { this.$router.go(-1); })
           .catch(err => {
             this.alert("The User or Password is wrong! please try again") 
           });
+      }
     },
     signup() {
       console.log("user signed up");

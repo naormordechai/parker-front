@@ -35,11 +35,8 @@
 
 </template>
 
-<<<<<<< HEAD
-=======
 
 <script>
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
 export default {
   data () {
     return {
@@ -59,32 +56,19 @@ export default {
   },
 
   methods: {
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
     doToggle(){
       this.$refs.nav.classList.toggle('active')
       
     },
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
     logout() {
       this.$store.commit({type:'logoutUser'})
       localStorage.removeItem('loggedInUser')
       this.$router.push('/login')
 
     },
-<<<<<<< HEAD
-  },
-=======
-  }
-  
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
+  }  
 }
 
 </script>

@@ -21,11 +21,6 @@ export default {
 
 <style scoped lang="scss">
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
 .home {
   background: 
   linear-gradient(rgba(255, 255, 255, 0) 30%, rgba(0, 0, 0, 0.62) 90%), 
