@@ -1,9 +1,5 @@
 <template>
-<<<<<<< HEAD
   <div id="app">
-=======
-  <div id="app">  
->>>>>>> dd5a21b8b9967fb08ef5717fdac5af7b373bab70
     <div id="nav">
         <div>
           <el-menu class="el-menu-demo flex" mode="horizontal" 
@@ -39,10 +35,6 @@
 
 </template>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> dd5a21b8b9967fb08ef5717fdac5af7b373bab70
 
 <script>
 export default {
@@ -64,19 +56,8 @@ export default {
   },
 
   methods: {
-<<<<<<< HEAD
-  
-    doToggle(){
-      this.$refs.nav.classList.toggle('active')
-      console.log(this.$refs.nav)
-      
-    },
-    goo(){
-      console.log('goo');
-=======
     
     doToggle(){
->>>>>>> dd5a21b8b9967fb08ef5717fdac5af7b373bab70
       this.$refs.nav.classList.toggle('active')
       
     },
@@ -87,12 +68,6 @@ export default {
       this.$router.push('/login')
 
     },
-<<<<<<< HEAD
-  },
-  components:{
-   
-=======
->>>>>>> dd5a21b8b9967fb08ef5717fdac5af7b373bab70
   }
   
 }
