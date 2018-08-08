@@ -1,5 +1,9 @@
 <template>
+<<<<<<< HEAD
   <div id="app">
+=======
+  <div id="app">  
+>>>>>>> dd5a21b8b9967fb08ef5717fdac5af7b373bab70
     <div id="nav">
         <div>
           <el-menu class="el-menu-demo flex" mode="horizontal" 
@@ -19,7 +23,7 @@
                     <router-link  to="/parking"><el-menu-item @click.native="doToggle" index="2">Find</el-menu-item></router-link>
                     <router-link to="/parking/add"><el-menu-item @click.native="doToggle" index="3">add parking</el-menu-item></router-link> 
                     <router-link v-if="!loggedInUser._id" to="/login"><el-menu-item @click.native="doToggle" index="4">Login</el-menu-item></router-link>
-                    <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`"><el-menu-item @click.native="goo" index="5">my parkings</el-menu-item></router-link>
+                    <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`"><el-menu-item @click.native="doToggle" index="5">my parkings</el-menu-item></router-link>
                     <div class="logout" v-if="loggedInUser._id" @click="logout"><el-menu-item @click.native="doToggle"  index="6">Logout</el-menu-item></div>
                   </div>      
                 </div>
@@ -34,10 +38,13 @@
   </div>
 
 </template>
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> dd5a21b8b9967fb08ef5717fdac5af7b373bab70
+
 <script>
-
-
-
 export default {
   data () {
     return {
@@ -57,6 +64,7 @@ export default {
   },
 
   methods: {
+<<<<<<< HEAD
   
     doToggle(){
       this.$refs.nav.classList.toggle('active')
@@ -65,19 +73,28 @@ export default {
     },
     goo(){
       console.log('goo');
+=======
+    
+    doToggle(){
+>>>>>>> dd5a21b8b9967fb08ef5717fdac5af7b373bab70
       this.$refs.nav.classList.toggle('active')
       
     },
+    
     logout() {
       this.$store.commit({type:'logoutUser'})
       localStorage.removeItem('loggedInUser')
       this.$router.push('/login')
 
     },
+<<<<<<< HEAD
   },
   components:{
    
+=======
+>>>>>>> dd5a21b8b9967fb08ef5717fdac5af7b373bab70
   }
+  
 }
 
 </script>
@@ -85,7 +102,6 @@ export default {
 
 <style lang="scss">
 #app {
-  // font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -97,8 +113,7 @@ export default {
   font-size: 15px;
 }
 #nav {
-  // padding: 30px;
-  position: fixed;
+  position: fixed;  
   width: 100%;
   opacity: 0.9;
   z-index: 2000;
@@ -109,7 +124,7 @@ export default {
     &.router-link-exact-active {
       color: #42b983;
     }
-  }
+  }  
 }
 
 .logout {
@@ -158,9 +173,7 @@ export default {
 }
 
 @media (max-width: 770px) {
-  // .el-menu-item{
-  //   display: none;
-  // }
+  
   .span {
     width: 35px;
     height: 2px;

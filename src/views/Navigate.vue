@@ -1,12 +1,5 @@
 <template>
-    <section>       
-        <!-- <div class="navigation-header">
-            <h2>Congratulations, {{user.firstName}}!</h2>
-            <p>Your parking at {{parking.address}} is waiting for you :)</p>
-        </div> -->
-       <!-- <div id="map" style="float:left;width:70%; height:100%"></div>
-        <div id="directionsPanel" style="float:right;width:30%;height 100%"></div>  -->
-        
+    <section>           
         <GmapMap
             :center="parking.location"
             :zoom="11"
@@ -16,7 +9,7 @@
         >
         </GmapMap>
         <div class="navigation flex space-between">              
-            <!-- <el-button type="success" @click="navigate">Open Waze</el-button>                              -->
+            
             <img src="../assets/images/waze.png" @click="navigate" />                             
             <el-button type="success" @click="toggleDirections">{{(!directions.show)? 'Show' : 'Hide'}} Directions</el-button>            
         </div>
@@ -134,26 +127,6 @@ export default {
         this.directions.show = !this.directions.show
     }
  },
-
-
-    //   var userLoc = [
-    //     this.userLocation.location.lat,
-    //     this.userLocation.location.lng
-    //   ];
-    //   console.log("userLoc: ", userLoc);
-    //   LocService.calcRoute(userLoc, this.parking.address);
-
-      // var parkingAdd = this.parking.address
-      // console.log('parking address: ', parkingAdd)
-
-      // LocService.getDirections(userLoc, parkingAdd)
-      // .then (res => {
-      //     console.log('res: ', res)
-      //     this.directions = res
-      // })
-    
-    
- 
 
   computed: {
     user() {

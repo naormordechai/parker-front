@@ -1,6 +1,6 @@
 <template>
     <section class="filter">
-        <div class="filter-by" @click.stop="toggleFilter">
+        <div class="filter-by" @click="toggleFilter">
             <i class="fas fa-filter"></i>Filter
             <p class="clear-filter-btn" @click.stop="clearFilter">clear</p>
         </div>
@@ -8,7 +8,6 @@
             <div class="filter-options flex column">   
                     <p>Distance in km:</p>         
                     <el-slider v-model="filterBy.distance" show-input> </el-slider>            
-                    <!-- <el-checkbox v-model="filterBy.distance">distance from me</el-checkbox> -->
                     <el-checkbox v-model="filterBy.isPaved">paved</el-checkbox>
                     <el-checkbox v-model="filterBy.isForDisable">for disabled</el-checkbox>
                     <el-checkbox v-model="filterBy.isCovered">covered</el-checkbox>
@@ -69,9 +68,7 @@ export default {
     padding-bottom: 10px;
 }
 
-.filter-by {
-    /* border-top: 1px solid lightgrey;
-    border-bottom: 1px solid lightgrey; */
+.filter-by {  
     padding: 10px;
     margin: 0 20px;    
 }
@@ -85,7 +82,7 @@ export default {
 }
 
 .el-checkbox+.el-checkbox {
-    margin-left: 0;
+    margin-left: 0;  
 }
 
 </style>

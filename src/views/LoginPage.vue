@@ -70,7 +70,6 @@ export default {
           .dispatch({ type: "login", userInfo: this.userInfo })
           .then(_ => { this.$router.go(-1); })
           .catch(err => {
-              // this.message = "no such user"
             this.alert("The User or Password is wrong! please try again") 
           });
     },

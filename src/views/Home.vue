@@ -30,14 +30,6 @@ export default {
 <style scoped lang="scss">
 
 
-// .home {
-//   background-image: url('../assets/images/parker.png');
-//   background-size: cover;
-//   background-attachment: fixed;
-//   height: 100vh;
-//   width: 100%;  
-// }
-
 
 .home {
   background: 

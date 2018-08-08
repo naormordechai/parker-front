@@ -4,10 +4,10 @@
 <div class="section-details flex">
 
     <el-card class="box-card">
-         <el-button @click.native="$router.push('/parking')" style="display:flex;" type="info" plain>List</el-button>
+         <el-button @click.native="$router.push('/parking')" style="display:flex;" type="info" plain>Back</el-button>
         <h3 class="address">{{parkingDetail.parking.address}}</h3>
         <img :src="parkingDetail.parking.imageURL" class="parking-details-image image">
-        <div style="padding: 25px;">
+        <div>
             <div class="parking-details column">
                 <h5 class="to-know">things you should know:</h5>
                 <p><i class="fas fa-shekel-sign"></i> {{parkingDetail.parking.price}}</p>
@@ -25,7 +25,7 @@
             <div class="about-owner flex column space-between">
                 <h5>Owner details</h5>
                 <p>{{parkingDetail.owner.firstName}} {{parkingDetail.owner.lastName}}</p>
-                <p>{{parkingDetail.owner.eMail}}</p>
+                <p>{{parkingDetail.owner.email}}</p>
             <div>
                 <el-button @click="$router.push('/reserve/'+parkingDetail.parking._id)" 
                  class="btn-reserve" type="success" :disabled="isOccupied">Reserve Now!</el-button>
@@ -72,13 +72,9 @@ data(){
 methods:{
     loadParkingId(){
         var parkingId = this.$route.params.id
-        console.log('parkingId',parkingId)
         return ParkingService.getById(parkingId)
         .then(res => {
-            console.log('res',res)
             this.parkingDetail = res
-            console.log('parking detail:', this.parkingDetail)
-
         })
     },
 
@@ -92,7 +88,6 @@ methods:{
             Math.sin(dLon/2) * Math.sin(dLon/2); 
           var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
           var d = R * c; // Distance in km
-          // return console.log('ddddd!!!',d + 'kilometers');
           return d;
     },
     deg2rad(deg) {
@@ -101,31 +96,13 @@ methods:{
 
 
 },
-// created :async function(){
-//         var parkingPrm = this.loadParkingId();
-//         var locationPrm =  LocService.getPosition().then(pos => {
-//             let lat = pos.coords.latitude;
-//             let lng = pos.coords.longitude;
-//             return {lat , lng}
-//          })
-//         var  [ _ , loc] = await Promise.all([parkingPrm, locationPrm])
-// this.distance  = this.getDistanceFromLatLonInKm(
-//         this.parkingDetail.parking.location.lat,
-//         this.parkingDetail.parking.location.lng,
-//         loc.lat,
-//         loc.lng
-//     )
-        
-//     },
 
     created : async function (){
         var parkignPrm = this.loadParkingId()
         var locationPrm = LocService.getPosition()
         .then(pos => {
-            // console.log('pos me',pos.coords);
             let lat = pos.coords.latitude
             let lng = pos.coords.longitude
-            // console.log('pos me ',{lat:lat, lng:lng});
             return {lat , lng}
         })
         var [_ , loc] = await Promise.all([
@@ -161,31 +138,14 @@ methods:{
     max-width: 100%;
 }
  .section-details .box-card{
-    //  background-color: red;
      max-width: 450px;
      padding: 0;
-    //  height: 85vh;
 }
 
-
-/* menu-bar */
-.menu-bar {
-  border: 1px solid gray;
-}
 
 .address{
     margin-bottom: 10px;
 }
-
-.menu-bar > * {
-  height: 30px;
-  line-height: 28px;
-}
-
-/* card-details */
-// .cards-details > * {
-//   flex-basis: 50%;
-// }
 
 /* img-parking */
 .img-parking-car {
@@ -204,11 +164,6 @@ methods:{
 
 /*buttons */
 .btn-reserve {
-//   width: 350px;
-//   margin-top: 30px;
-//   position: fixed;
-//   top: 88%;
-//   left: 30%;
 width: 100%;
 margin-top: 10px;
 }
@@ -248,10 +203,12 @@ margin-top: 10px;
         max-width: none;
         width: 100%;
     }
-    img[data-v-bc4679b8]{
+
+    .box-card img {
+        background-size: cover;
         width: 100%;
         height: 180px;
-    }
+    }   
 }
 
 </style>
