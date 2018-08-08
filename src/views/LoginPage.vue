@@ -30,19 +30,9 @@
                             <el-button type="success" @click="signup">Sign me Up!</el-button>
                         </div>
                     </form>
-                    <p>{{message}}</p>
                  </div>
             </el-tab-pane>        
         </el-tabs>
-
-
-   
-    
-    <!-- <form type="submit" @click="login">
-        <input type="text" v-model="email">
-        <button>login</button>
-        <input type="submit" value="Login" @click="login">
-    </form> -->
     <FooterCmp />
     </section>
 </template>
@@ -70,24 +60,15 @@ export default {
       }
     };
   },
-  // this.status = this.$store.state.UserModuls.isAdmin;
 
   methods: {
     login() {
-
-      console.log("4-00000", this.$store.state.UserModule.aboutUser);
-
       if (!this.userInfo.email || !this.userInfo.password) {
-       // this.message = "please enter valid user";
-        this.alert("The User or Password is empty! plese insert and try again");
+        this.alert("The User or Password is empty! Plaese insert and try again");
       } else
         this.$store
           .dispatch({ type: "login", userInfo: this.userInfo })
-          .then(_ => {
-            console.log("85-login:", _);
-
-            this.$router.go(-1);
-          })
+          .then(_ => { this.$router.go(-1); })
           .catch(err => {
               // this.message = "no such user"
             this.alert("The User or Password is wrong! please try again") 

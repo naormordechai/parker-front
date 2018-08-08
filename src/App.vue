@@ -1,11 +1,6 @@
 <template>
   <div id="app">
-    <!-- <keep-alive>
-    <component :is="x"></component>
-    </keep-alive> -->
-    <!-- <ParkingFilter /> -->
     <div id="nav">
-
         <div>
           <el-menu class="el-menu-demo flex" mode="horizontal" 
               background-color="#545c64"
@@ -36,14 +31,12 @@
           </div> 
     </div>
     <router-view/>  
-    <!-- <FooterCmp />  -->
   </div>
 
 </template>
 <script>
 
-import FooterCmp from '@/components/FooterCmp.vue' 
-// import ParkingFilter from '@/components/ParkingFilter.vue'
+
 
 export default {
   data () {
@@ -55,7 +48,6 @@ export default {
     this.$root.demoDummyNotify = true;
   },
   computed: {
-    // this.loadUser() 
     loggedInUser(){
       return this.$store.getters.loggedInUser
     },
@@ -65,16 +57,8 @@ export default {
   },
 
   methods: {
-    // loadUser() {
-    //   loggedInUser = this.$store.getters.loggedInUser
-    //   .then (user => {
-    //     console.log('logged in user brought from store: ', user)
-    //     this.user = user
-    //   })
-
-    // }
+  
     doToggle(){
-      // console.log(this.$refs.nav);
       this.$refs.nav.classList.toggle('active')
       console.log(this.$refs.nav)
       
@@ -85,15 +69,14 @@ export default {
       
     },
     logout() {
-      this.$store.dispatch({type:'logout'})
+      this.$store.commit({type:'logoutUser'})
       localStorage.removeItem('loggedInUser')
       this.$router.push('/login')
 
     },
   },
   components:{
-    FooterCmp,
-    // ParkingFilter
+   
   }
 }
 

@@ -33,7 +33,6 @@ export default {
         lastName: '',
         eMail: ''
       }
-      console.log('state logged in user: ', state.user)
     },
     addUser(state, {newUser}) {
       // state.users.push(newUser)
