@@ -30,7 +30,7 @@
               :position="p.location"              
               :icon="p.iconUrl"
               :clickable="true"  
-              :label="'₪' + p.price"           
+              :label="'₪' + p.price"                        
               :draggable="false"
               @click="$router.push('/parking/' + p._id)"
             />
@@ -128,6 +128,8 @@ h5 {
 .btn-map{
   display: none;
 }
+
+
 
 @media (max-width: 770px) {
   .list {

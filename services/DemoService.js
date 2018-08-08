@@ -24,6 +24,7 @@ function addRandomParking() {
             },
             description: "A covered parking 2 minutes walking from the Bursa area in Ramat Gan. Low rates, optional full day renting.",
             createdAt: Date.now(),
+            iconUrl: "/img/available-position-48x48.png",
             imageURL: "https://geo3.ggpht.com/maps/photothumb/fd/v1?bpb=ChAKDnNlYXJjaC5UQUNUSUxFEmUKNwm3urAoxEsdFRHphEl1w6dxThojCxDThbhCGhoSGAoUChIJt7qwKMRLHRURU3v3Q1x0N8MQEAwSCg2ibiATFWCkvhQaEgmdOFVqxEsdFRHdQklRXTc45SoKDYNrIBMVPKC-FBoGCMgBEJgD&gl=IL"
           }
           return axios.post(PARKING_URL + '/add', newParking)

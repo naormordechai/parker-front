@@ -76,7 +76,7 @@ export default {
         },
         reserveParking(state, { parking }) {
             var idx = state.parkings.findIndex(currParking => currParking._id === parking._id)
-            state.parkings.splice(idx, 1, parking)            
+            state.parkings.splice(idx, 1, parking)                        
         },
         stopParking(state, { parking }) {
             var idx = state.parkings.findIndex(currParking => currParking._id === parking._id)
@@ -116,6 +116,7 @@ export default {
         reserveParking(context, { parking }) {           
             return ParkingService.reserveParking(parking)
                 .then(parking => {
+                    console.log('parking after returning from MDB: ', parking)
                     context.commit({ type: 'reserveParking', parking })
                 })
         },
