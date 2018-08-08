@@ -1,5 +1,5 @@
 <template>
-    <section>       
+    <section>           
         <GmapMap
             :center="parking.location"
             :zoom="11"

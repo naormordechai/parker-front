@@ -71,8 +71,8 @@ export default {
           .then(_ => { this.$router.go(-1); })
           .catch(err => {
             this.alert("The User or Password is wrong! please try again") 
-          });
-      }
+          })
+      };
     },
     signup() {
       console.log("user signed up");
