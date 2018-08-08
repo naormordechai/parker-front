@@ -1,15 +1,9 @@
 <template>
     <section>
         <div class="flex">
-<<<<<<< HEAD:src/components/ParkingFilter.vue
-                <input @keyup.enter="search" id="pac-input" class="input-location el-input__inner" type="text" ref="input"
-                    placeholder="Enter a location">
-                    </div>
-=======
                 <input @keyup.enter="search" id="pac-input" class="input-location el-input__inner"
                  type="text" ref="input" placeholder="Enter a location">
         </div>
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04:src/components/Search-cmp.vue
     </section>
 </template>
 
@@ -18,18 +12,10 @@ import StorageService from '../../services/StorageService.js'
 
 export default {
     data(){
-<<<<<<< HEAD:src/components/ParkingFilter.vue
-        return {
-            loc:{},
-        }
-    },
-
-=======
         return {            
             loc:{}            
         }
     },    
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04:src/components/Search-cmp.vue
     mounted: async function(){
         var google  = await this.$gmapApiPromiseLazy()
         var input  = this.$refs.input
@@ -39,10 +25,6 @@ export default {
         search(){
             var geocoder = new google.maps.Geocoder();
             var input  = this.$refs.input.value
-<<<<<<< HEAD:src/components/ParkingFilter.vue
-
-=======
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04:src/components/Search-cmp.vue
             geocoder.geocode( { 'address': input}, (results, status) => {
       if (status === google.maps.GeocoderStatus.OK) {
         this.loc.lat=results[0].geometry.location.lat();
@@ -55,14 +37,8 @@ export default {
 
       } else {
         alert("Geocode was not successful for the following reason: " + status);
-<<<<<<< HEAD:src/components/ParkingFilter.vue
-      }
-    });
-    return this.loc;
-=======
               }
          });
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04:src/components/Search-cmp.vue
             
     },
     }

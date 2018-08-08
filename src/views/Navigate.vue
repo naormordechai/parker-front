@@ -1,9 +1,5 @@
 <template>
-<<<<<<< HEAD
-    <section>       
-=======
     <section>           
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
         <GmapMap
             :center="parking.location"
             :zoom="11"
@@ -13,10 +9,7 @@
         >
         </GmapMap>
         <div class="navigation flex space-between">              
-<<<<<<< HEAD
-=======
             
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
             <img src="../assets/images/waze.png" @click="navigate" />                             
             <el-button type="success" @click="toggleDirections">{{(!directions.show)? 'Show' : 'Hide'}} Directions</el-button>            
         </div>
@@ -118,11 +111,6 @@ export default {
         this.directions.show = !this.directions.show
     }
  },
-<<<<<<< HEAD
-   
- 
-=======
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
 
   computed: {
     google: gmapApi    
