@@ -40,28 +40,15 @@ export default {
             return this.parking.occupiedUntil > Date.now()
         },
         distance(){
-<<<<<<< HEAD
             var distance = this.parking.distance
-=======
-            var distance = this.parking.distance            
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
              if (distance > 1) {
                 return distance.toFixed(2) + " km from you"
             }
             else {
                 return distance.toFixed(3)*1000 + " meters from you"
-<<<<<<< HEAD
             }          
         }
     },
-=======
-            }                  
-        }
-
-        
-    },
-  
->>>>>>> 806fdf7bbc16896596244122f96c2b2d2361ed04
     props:{
         parking:Object
     },
