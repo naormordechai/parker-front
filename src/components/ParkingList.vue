@@ -58,7 +58,7 @@ export default {
     return {
       pos:null,
       // iconBase : 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-      iconBase : 'img/icons/my-position-64x64.png',
+      iconBase : 'img/my-position-64x64.png',
       isMap:false,
       msg:''
     }
@@ -69,10 +69,8 @@ export default {
    },
    methods:{
        getSymbol(parking){
-         return  (parking.occupiedUntil < Date.now()) 
-                          ? 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
-                          : ''
-       }, 
+         return  (parking.occupiedUntil < Date.now())?  '/img/occupied-48x48.png' : '/img/available-position-48x48.png' 
+         },            
        getMyPos(){
         return LocService.getPosition()
        .then(pos => {
