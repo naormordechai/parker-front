@@ -8,13 +8,12 @@
                     <h3>Login to your account</h3>
                     <form @submit.prevent="login">
                         <div class="login-container flex column">
-                            <input type="text" v-model="userInfo.email" placeholder="Insert your email"/>   
-                            <input type="password" v-model="userInfo.password" placeholder="password"/>                
-                            <el-button type="success" @click="login">Login</el-button>
+                            <input type="email" v-model="userInfo.email" required placeholder="Insert your email"/>   
+                            <input type="password" v-model="userInfo.password" required placeholder="password"/>                        
+                            <input type="submit" class="el-button el-button--success" value="Login" />
                         </div>
                        
                     </form>
-                    <p>{{message}}</p>
                  </div>
             </el-tab-pane>
 
@@ -23,14 +22,14 @@
                     <h3>Create a new account</h3>
                     <form @submit.prevent="signup">
                         <div class="signup-container flex column">
-                            <input type="text" v-model="newUser.firstName" placeholder="First Name:"/>   
-                            <input type="text" v-model="newUser.lastName" placeholder="Last Name:"/>   
-                            <input type="email" v-model="newUser.email" placeholder="email:"/>   
-                            <input type="password" v-model="newUser.password" placeholder="Password:"/>                
-                            <el-button type="success" @click="signup">Sign me Up!</el-button>
+                            <input type="text" v-model="newUser.firstName" required placeholder="First Name:"/>   
+                            <input type="text" v-model="newUser.lastName" required placeholder="Last Name:"/>   
+                            <input type="email" v-model="newUser.email" required placeholder="email:"/>   
+                            <input type="password" v-model="newUser.password" required placeholder="Password:"/> 
+                            <input type="submit" class="el-button el-button--success" value="Sign me Up!" />               
+                            
                         </div>
-                    </form>
-                    <p>{{message}}</p>
+                    </form>                   
                  </div>
             </el-tab-pane>        
         </el-tabs>
@@ -38,11 +37,7 @@
 
    
     
-    <!-- <form type="submit" @click="login">
-        <input type="text" v-model="email">
-        <button>login</button>
-        <input type="submit" value="Login" @click="login">
-    </form> -->
+    
     <FooterCmp />
     </section>
 </template>
@@ -70,40 +65,20 @@ export default {
       }
     };
   },
-  // this.status = this.$store.state.UserModuls.isAdmin;
 
   methods: {
-    login() {
-
-      console.log("4-00000", this.$store.state.UserModule.aboutUser);
-
-      if (!this.userInfo.email || !this.userInfo.password) {
-       // this.message = "please enter valid user";
-        this.alert("The User or Password is empty! plese insert and try again");
-      } else
+    login() {      
         this.$store
           .dispatch({ type: "login", userInfo: this.userInfo })
           .then(_ => {
-            console.log("85-login:", _);
-
             this.$router.go(-1);
           })
           .catch(err => {
-              // this.message = "no such user"
             this.alert("The User or Password is wrong! please try again") 
           });
     },
     signup() {
-      console.log("user signed up");
-      if (
-        !this.newUser.firstName ||
-        !this.newUser.lastName ||
-        !this.newUser.email ||
-        !this.newUser.password
-      ) {
-        this.message = "Please insert all details";
-        return;
-      }
+  
       this.$store
         .dispatch({ type: "signup", newUser: this.newUser })
         .then(_ => {

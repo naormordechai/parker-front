@@ -1,7 +1,5 @@
 <template>
 <section>
-    <!-- <ParkingFilter /> -->
-
     <ParkingList :parkings ="parkings"/>
     </section>
 </template>
@@ -10,16 +8,9 @@
 import ParkingList from '@/components/ParkingList.vue' 
 import LocService from '../../services/LocService'
 import DemoService from '../../services/DemoService.js'
-// import ParkingFilter from '@/components/ParkingFilter.vue'
 
 
-export default {
-    data(){
-        return{
-            filter :'',
-
-        }
-    },
+export default {  
     methods: {
         showNewParking() {
         setTimeout(this.showNewParkingNotification, 120000)
@@ -58,7 +49,6 @@ export default {
            this.showAvailableParking()
            this.$root.demoDummyNotify = false;
        }
-    //    DemoService.addRandomParking()     
 
     },
     computed:{
@@ -68,7 +58,6 @@ export default {
     },
         components:{
             ParkingList,
-            // ParkingFilter
     },
 }
 </script>

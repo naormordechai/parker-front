@@ -20,8 +20,7 @@
                     <h2>My Owned Parkings</h2>
                     <ul>
                         <my-parking-preview v-for="parking in ownedParkings" :key="parking._id"
-                            :parking="parking" :owned="true"
-                            @stop-parking="stopParking">
+                            :parking="parking" :owned="true">
                         </my-parking-preview>                        
                     </ul>
                 </div>
@@ -35,7 +34,7 @@
                             <div class="profile-image"></div>
                             <div class="profile-details flex column">
                                 <h2>{{user.firstName}} {{user.lastName}}</h2>
-                                <p>{{user.eMail}}</p>
+                                <p>{{user.email}}</p>
                             </div>  
                         </div>                     
                                                
@@ -74,6 +73,7 @@ export default {
         this.user = res.user;
         this.reservedParkings = res.reservedParkings;
         this.ownedParkings = res.ownedParkings;
+        console.log('my owned parkings: ', this.ownedParkings)
       });
     },
     convertTimestamp(timestamp) {

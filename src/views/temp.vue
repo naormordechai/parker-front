@@ -82,7 +82,7 @@
                      <h2>My Details</h2>
                      <el-card class="box-card">
                         <p>Name: {{user.firstName}} {{user.lastName}}</p>
-                        <p>email: {{user.eMail}}</p>
+                        <p>email: {{user.email}}</p>
                      </el-card>
                </div>
             </el-tab-pane>  

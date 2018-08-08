@@ -6,9 +6,6 @@ import store from './stores/store.js'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
-// import VueMaterial from 'vue-material'
-// import 'vue-material/dist/vue-material.min.css'
-
 import './registerServiceWorker'
 import './assets/style/main.scss'
 import '../node_modules/animate.css/animate.min.css'
@@ -19,13 +16,10 @@ import LocService from '../services/LocService.js'
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyC6AifY9XewU3b2wEp0Dr7XKyOjSS1oebQ',
-    // key: 'AIzaSyB3Inkvn9bFPdIultjxNHMjPqxwU_X0b40',
+    key: 'AIzaSyC6AifY9XewU3b2wEp0Dr7XKyOjSS1oebQ',   
     libraries: 'places', // This is required if you use the Autocomplete plugin
   },
 })
-
-// Vue.use(VueMaterial)
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);

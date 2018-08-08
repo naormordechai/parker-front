@@ -1,9 +1,5 @@
 <template>
-  <div id="app">
-    <!-- <keep-alive>
-    <component :is="x"></component>
-    </keep-alive> -->
-    <!-- <ParkingFilter /> -->
+  <div id="app">  
     <div id="nav">
 
         <div>
@@ -24,7 +20,7 @@
                     <router-link  to="/parking"><el-menu-item @click.native="doToggle" index="2">Find</el-menu-item></router-link>
                     <router-link to="/parking/add"><el-menu-item @click.native="doToggle" index="3">add parking</el-menu-item></router-link> 
                     <router-link v-if="!loggedInUser._id" to="/login"><el-menu-item @click.native="doToggle" index="4">Login</el-menu-item></router-link>
-                    <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`"><el-menu-item @click.native="goo" index="5">my parkings</el-menu-item></router-link>
+                    <router-link v-if="loggedInUser._id" :to="`/user/${loggedInUser._id}`"><el-menu-item @click.native="doToggle" index="5">my parkings</el-menu-item></router-link>
                     <div class="logout" v-if="loggedInUser._id" @click="logout"><el-menu-item @click.native="doToggle"  index="6">Logout</el-menu-item></div>
                   </div>      
                 </div>
@@ -36,15 +32,12 @@
           </div> 
     </div>
     <router-view/>  
-    <!-- <FooterCmp />  -->
   </div>
 
 </template>
+
+
 <script>
-
-import FooterCmp from '@/components/FooterCmp.vue' 
-// import ParkingFilter from '@/components/ParkingFilter.vue'
-
 export default {
   data () {
     return {
@@ -55,7 +48,6 @@ export default {
     this.$root.demoDummyNotify = true;
   },
   computed: {
-    // this.loadUser() 
     loggedInUser(){
       return this.$store.getters.loggedInUser
     },
@@ -65,36 +57,20 @@ export default {
   },
 
   methods: {
-    // loadUser() {
-    //   loggedInUser = this.$store.getters.loggedInUser
-    //   .then (user => {
-    //     console.log('logged in user brought from store: ', user)
-    //     this.user = user
-    //   })
-
-    // }
+    
     doToggle(){
-      // console.log(this.$refs.nav);
-      this.$refs.nav.classList.toggle('active')
-      console.log(this.$refs.nav)
-      
-    },
-    goo(){
-      console.log('goo');
       this.$refs.nav.classList.toggle('active')
       
     },
+    
     logout() {
-      this.$store.dispatch({type:'logout'})
+      this.$store.commit({type:'logoutUser'})
       localStorage.removeItem('loggedInUser')
       this.$router.push('/login')
 
     },
-  },
-  components:{
-    FooterCmp,
-    // ParkingFilter
   }
+  
 }
 
 </script>
@@ -102,7 +78,6 @@ export default {
 
 <style lang="scss">
 #app {
-  // font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -114,8 +89,7 @@ export default {
   font-size: 15px;
 }
 #nav {
-  // padding: 30px;
-  position: fixed;
+  position: fixed;  
   width: 100%;
   opacity: 0.9;
   z-index: 2000;
@@ -126,7 +100,7 @@ export default {
     &.router-link-exact-active {
       color: #42b983;
     }
-  }
+  }  
 }
 
 .logout {
@@ -175,9 +149,7 @@ export default {
 }
 
 @media (max-width: 770px) {
-  // .el-menu-item{
-  //   display: none;
-  // }
+  
   .span {
     width: 35px;
     height: 2px;

@@ -1,26 +1,25 @@
 <template>
     <section class="parking-section">
  
-<!--     <button @click="isAddParking = true">Add Parking</button> -->
        <form @submit.prevent="addParking" class="add-parking-form" > 
           <h3> Add New Parking </h3>
           <div v-if="isAddParking" class="add-parking">
             <div class="add-margin">
-             <input placeholder="Please input Adress" v-model="parkingToEdit.adress" type="text" ref="placeAutocomplete" class="el-input__inner"> 
+             <input placeholder="Please input Address" v-model="parkingToEdit.address" type="text" ref="placeAutocomplete" class="el-input__inner"> 
              </div>          
             <div>
             <p>Price in ₪:</p>  <el-input-number v-model="parkingToEdit.price" :min="1" ></el-input-number>
             </div>
             <div class="amenities-section add-margin">
-             <div><el-checkbox v-model="parkingToEdit.amenities.isCovered">IsCovered</el-checkbox></div>
-             <div><el-checkbox v-model="parkingToEdit.amenities.isPaved">isPaved</el-checkbox></div>
-             <div><el-checkbox v-model="parkingToEdit.amenities.isForDisable">isForDisable</el-checkbox></div>
+             <div><el-checkbox v-model="parkingToEdit.amenities.isCovered">Covered</el-checkbox></div>
+             <div><el-checkbox v-model="parkingToEdit.amenities.isPaved">Paved</el-checkbox></div>
+             <div><el-checkbox v-model="parkingToEdit.amenities.isForDisable">For disabled</el-checkbox></div>
              </div>
              <div class="flex align-center">
             <el-input
                     type="textarea"
-                    :rows="2"
-                    placeholder="Please input Description"
+                    :rows="3"
+                    placeholder="Please insert a description"
                     v-model="parkingToEdit.description"
                     >
                     </el-input>     
@@ -33,8 +32,7 @@
                <label for="LoadImageBtn" class="load-img-lbl el-button el-button--primary el-button--small">{{fileLabelTxt}}</label>
             </div>
             
-             <el-button type="success" @click="addParking">Confirm New Parking</el-button> 
-            
+             <el-button type="success" @click="addParking">Confirm New Parking</el-button>             
           </div>
         </form>
 
@@ -65,7 +63,7 @@ export default {
         address: "",
         occupiedUntil: "0",
         reserverId: "",
-        ownerId: "5b583081f6d632e56ebd6a45",
+        ownerId: "",
         price: "0",
         amenities: {
           isCovered: false,
@@ -94,10 +92,11 @@ export default {
     }
   },
   created() {
-    this.reLoadParkingToAdd()     
+    this.reLoadParkingToAdd()  
+    // this.ownerId = this.user._id   
   },
   mounted() {
-
+    console.log('gmap promise lazy: ', this.$gmapApiPromiseLazy())
     //for loading map
     this.$gmapApiPromiseLazy().then(google => {
       var autocomplete = new google.maps.places.Autocomplete(
@@ -105,11 +104,8 @@ export default {
       );
       autocomplete.addListener("place_changed", x => {
         var place = autocomplete.getPlace();
-        console.log({ place });
         this.parkingToAdd.location.lat = place.geometry.location.lat();
         this.parkingToAdd.location.lng = place.geometry.location.lng();
-        console.log(this.parkingToAdd.location.lat);
-        console.log(this.parkingToAdd.location.lng);
         this.parkingToAdd.address = place.formatted_address;
       });
     });
@@ -117,34 +113,25 @@ export default {
 
   methods: {
     addParking() {
-      if (this.user._id === "" || this.user._id === false) {
+      if (!this.user._id) {
         StorageService.store('parking-to-add', this.parkingToEdit)    
         this.$router.push("/login");
       } else {
         if (!this.parkingToAdd.address){
-          console.log("Address is empty, please add address!");
-         // this.addressIsEmpty();
          this.alert('The address is empty, please add address');
-
         } else {
         let newParking = this.parkingToEdit;
         if (this.isAddParking) {
           newParking.ownerId = this.user._id;
-          console.log("ownerID:", newParking.ownerId);
 
           this.$store
             .dispatch({ type: "addParking", newParking })
             .then(res => {
-              console.log("new parking added: ", res);
-              console.log("res._id: ", res._id);
               // reditect to the parking details page with vue router.push
               this.$router.push(`/parking/${res._id}`);
               localStorage.removeItem('parking-to-add')
-              //console.log('_id:',this.$store.state.parkings[0]._id);
             })
             .catch(err => {
-              // show an error msg maybe with elment msg cmp.
-             // this.failedToCreate() 
              this.alert('Failed to save parking, please try later');
               
             });
@@ -170,23 +157,14 @@ export default {
       })},
 
     
-    loadImg(elPic, ev) {
-      
-
-      CloudinaryService.uploadImg(elPic, ev).then(res => {
-        console.log('elPic:',ev);
-        
-        this.parkingToEdit.imageURL = res;
-        console.log(
-          " this.parkingToEdit.imageURL",
-          this.parkingToEdit.imageURL
-        );
+    loadImg(elPic, ev) {  
+      CloudinaryService.uploadImg(elPic, ev).then(res => {  
+        console.log('img url res: ', res)      
+        this.parkingToEdit.imageURL = res;        
       });
 
       this.fileLabelTxt = ev.target.value.split( '\\' ).pop();
-      if(!this.fileLabelTxt) this.fileLabelTxt = "Load Image";
-      
-      //this.parkingToEdit.imageURL = newImg.url;
+      if(!this.fileLabelTxt) this.fileLabelTxt = "Load Image";      
     }
   }
 };
