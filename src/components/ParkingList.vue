@@ -16,14 +16,13 @@
               <li>
                  <h5 v-if="parkings.length === 0">There are no parking spaces at the moment - please try later</h5>
               </li>
-        </ul>
+           </ul>
       </div>
       <GmapMap v-if="pos"
             :center="pos"
             :zoom="14"
             map-type-id="terrain"
-            style="width: 60%; height: 100vh; flex:1"
-      >
+            style="width: 60%; height: 100vh; flex:1" >
             <GmapMarker
               :key="index"
               v-for="(p, index) in parkings"
@@ -32,17 +31,14 @@
               :clickable="true"  
               :label="'₪' + p.price"           
               :draggable="false"
-              @click="$router.push('/parking/' + p._id)"
-            />
+              @click="$router.push('/parking/' + p._id)"/>
 
-  <GmapMarker 
-    :position="pos"
-    :icon="iconBase"
-  />
-
-</GmapMap>  
-  </div>
-  <FooterCmp />
+            <GmapMarker 
+              :position="pos"
+              :icon="iconBase" />
+      </GmapMap>  
+    </div>
+    <FooterCmp />
   </section>
 </template>
 

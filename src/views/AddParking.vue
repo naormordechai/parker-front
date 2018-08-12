@@ -51,7 +51,7 @@ import StorageService from '../../services/StorageService.js';
 
 export default {
   props: ["parking"],
-  name: "ParkingEdit",
+  name: "AddParking",
   // components: { VueGoogleAutocomplete },
   data() {
     return {
@@ -114,12 +114,15 @@ export default {
 
   methods: {
     addParking() {
+
+      console.log('this.parkingToAdd.location.lat',this.parkingToAdd.location.lat);
+      
       if (!this.user._id) {
         StorageService.store('parking-to-add', this.parkingToEdit)    
         this.$router.push("/login");
       } else {
-        if (!this.parkingToAdd.address){
-         this.alert('The address is empty, please add address');
+        if ((!this.parkingToAdd.address) || (this.parkingToAdd.location.lat === 0) || (this.parkingToAdd.location.lng === 0)){
+         this.alert('The address not valid!  please insert valid address');
         } else {
         let newParking = this.parkingToEdit;
         if (this.isAddParking) {
@@ -134,6 +137,7 @@ export default {
             })
             .catch(err => {
              this.alert('Failed to save parking, please try later');
+             console.log('Failed to save parking, please try later');
               
             });
          }
