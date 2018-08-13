@@ -4,12 +4,13 @@
 
          <el-tabs type="border-card">
             <el-tab-pane label="Reserved Parkings">
+              <h2 v-show="!reserved">You haven't reserved any parking yet.</h2>
                  <div v-show="reserved" class="reserved-parkings">           
                     <h2 v-if="reservedParkings.length > 0">My Reserved Parkings:</h2>
                     <ul>
                         <my-parking-preview v-for="parking in reservedParkings" :key="parking._id"
                             :parking="parking" :owned="false"
-                            @stop-parking="stopParking">
+                            @stop-parking="stopParking(parking)">
                         </my-parking-preview>                        
                     </ul>
                 </div>
@@ -32,7 +33,7 @@
                      <h2>My Details</h2>
                      <el-card class="box-card">  
                         <div class="profile-details flex space-around" >
-                            <div class="profile-image"></div>
+                            <img :src="user.profileImage" class="profile-image" />
                             <div class="profile-details flex column">
                                 <h2>{{user.firstName}} {{user.lastName}}</h2>
                                 <p>{{user.email}}</p>
@@ -80,13 +81,16 @@ export default {
       return moment(timestamp).fromNow();
     },
     stopParking(parking) {
+      console.log('parking to stop: ', parking)
         // could not figure out why 'this' was undefined in the 'then' cb'
-      var self = this;
-      // this.parking.iconUrl = "/img/available-position-48x48.png"
+      // var self = this;      
       return this.$store
         .dispatch({ type: "stopParking", parking: parking })
         .then(() => {
-              self.reservedParkings = self.reservedParkings.filter(currParking => currParking._id !== parking._id)
+          // var parkingIdx = self.reservedParkings.findIndex(parking => parking._id === parking._id);
+          // self.reservedParkings.splice(parkingIdx, 1)
+          this.reservedParkings = this.reservedParkings.filter(currParking => currParking._id !== parking._id);
+          // self.reservedParkings.splice(parkingIdx, 1)
         });
     }
   },
@@ -157,7 +161,6 @@ img {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  background-image: url("../assets/images/user1.jpg");
   border-radius: 50%;
 }
 

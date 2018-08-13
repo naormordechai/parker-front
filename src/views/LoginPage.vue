@@ -26,8 +26,9 @@
                             <input type="text" v-model="newUser.lastName" required placeholder="Last Name:"/>   
                             <input type="email" v-model="newUser.email" required placeholder="email:"/>   
                             <input type="password" v-model="newUser.password" required placeholder="Password:"/>                
-                            <!-- <el-button type="success" @click="signup">Sign me Up!</el-button> -->
-                            <input type="submit" class="el-button el-button--success">
+                            <label for="loadProfileImg" class="upload-img-lbl el-button el-button--primary">{{loadImgText}}</label>
+                            <input type="file" id="loadProfileImg" class="load-img-btn" name="profile-image" @change="loadImg($event.target, $event)"/>
+                            <input type="submit" class="submit-btn el-button el-button--success">
                         </div>
                     </form>
                  </div>
@@ -42,6 +43,7 @@
 import UserService from '../../services/UserService.js'
 import eventBus from '../../services/EventBusService.js'
 import FooterCmp from '@/components/FooterCmp.vue'
+import CloudinaryService from "../../services/CloudinaryService.js";
 
 
 export default {
@@ -56,8 +58,10 @@ export default {
         firstName: "",
         lastName: "",
         email: "",
-        password: ""
-      }
+        password: "",
+        profileImage: ''
+      },
+      loadImgText: 'Load Image'
     };
   },
 
@@ -97,9 +101,16 @@ export default {
     alert(message) {
       this.$alert(message, "Alert", {
         confirmButtonText: "OK",
+      });     
+    },
+    loadImg(elPic, ev) {  
+      console.log('elPic: ', elPic)
+      console.log('event: ', ev)
+      CloudinaryService.uploadImg(elPic, ev).then(res => {  
+        console.log('img url res: ', res)      
+        this.newUser.profileImage = res;  
+        this.loadImgText = 'image uploaded'      
       });
- 
-      
     }
   },
   components:{
@@ -145,6 +156,14 @@ button {
 }
 h3 {
   margin: 15px;
+}
+
+.load-img-btn {
+  display: none;  
+}
+
+.submit-btn {
+  margin-top: 10px !important
 }
 
 @media (max-width: 550px) {
