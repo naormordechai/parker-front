@@ -123,7 +123,8 @@ export default {
 
         stopParking(context, { parking }) {            
             parking.occupiedUntil = 0
-            parking.reserverId = ''           
+            parking.reserverId = '' 
+            parking.iconUrl = '/img/available-position-48x48.png'          
             return ParkingService.stopParking(parking)
                 .then((parking) => {
                     context.commit({ type: 'stopParking', parking })
