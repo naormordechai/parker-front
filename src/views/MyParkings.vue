@@ -22,7 +22,7 @@
                     <ul>
                         <my-parking-preview v-for="parking in ownedParkings" :key="parking._id"
                             :parking="parking" :owned="true"
-                           >
+                           @edit-parking="editParking">
                         </my-parking-preview>                        
                     </ul>
                 </div>
@@ -83,7 +83,7 @@ export default {
     stopParking(parking) {
       console.log('parking to stop: ', parking)
         // could not figure out why 'this' was undefined in the 'then' cb'
-      // var self = this;      
+    
       return this.$store
         .dispatch({ type: "stopParking", parking: parking })
         .then(() => {
@@ -92,6 +92,9 @@ export default {
           this.reservedParkings = this.reservedParkings.filter(currParking => currParking._id !== parking._id);
           // self.reservedParkings.splice(parkingIdx, 1)
         });
+    },
+    editParking(parking){
+      console.log('editParking:',parking)
     }
   },
   created() {
@@ -168,7 +171,7 @@ img {
   position: relative;
 }
 
-.google-maps {  
+.google-maps {
   position: absolute;
   top: 0;
   left: 0;
@@ -192,40 +195,39 @@ img {
   z-index: -1;
 }
 .profile-details {
-    max-width: 70%;
-    margin: 0 auto;
+  max-width: 70%;
+  margin: 0 auto;
 }
 
 @media (max-width: 1060px) {
-    section {
-        margin: 30px;
-    }    
+  section {
+    margin: 30px;
+  }
 }
 
 @media (max-width: 650px) {
-    .profile-details {
-        flex-direction: column;
-    }
-    .profile-image {
-        margin: 30px auto
-    }
+  .profile-details {
+    flex-direction: column;
+  }
+  .profile-image {
+    margin: 30px auto;
+  }
 }
 
 @media (max-width: 440px) {
-    .profile-details {
-        max-width: 100%;
-    }
-    .profile-image {
-        width: 200px;
-        height: 200px;
-    }
+  .profile-details {
+    max-width: 100%;
+  }
+  .profile-image {
+    width: 200px;
+    height: 200px;
+  }
 }
 
-@media (max-width: 350px) {    
-    .profile-image {
-        width: 150px;
-        height: 150px;
-    }
+@media (max-width: 350px) {
+  .profile-image {
+    width: 150px;
+    height: 150px;
+  }
 }
-
 </style>

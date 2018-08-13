@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { log } from 'util';
 const PARKING_URL = (process.env.NODE_ENV !== 'development')
     ? '/parking'
     : '//localhost:3000/parking';
@@ -16,6 +17,14 @@ function getById(parkingId) {
 
 function addParking(newParking) {
     return axios.post(PARKING_URL + '/add', newParking)
+}
+
+function editParking(editedParking){
+    return axios.put(`${PARKING_URL}/${editedParking.parkingId}`, editedParking)
+        .then(res => {
+
+           return res.data})
+        
 }
 
 function reserveParking(parkingReserved){
@@ -39,4 +48,5 @@ export default {
     stopParking,  
     reserveParking,
     addParking,
+    editParking
 }

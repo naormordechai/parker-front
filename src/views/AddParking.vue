@@ -3,7 +3,7 @@
  
        <form @submit.prevent="addParking" class="add-parking-form" > 
           <h3> Add New Parking </h3>
-          <div v-if="isAddParking" class="add-parking">
+<!--          <div v-if="isAddParking" class="add-parking">  -->
             <div class="add-margin">
              <input placeholder="Please input Address" v-model="parkingToEdit.address" type="text" ref="placeAutocomplete" class="el-input__inner"> 
              </div>          
@@ -33,7 +33,7 @@
             </div>
             
              <el-button type="success" @click="addParking">Confirm New Parking</el-button>             
-          </div>
+<!--          </div>  -->
         </form>
 
 
@@ -42,7 +42,6 @@
 </template>
 
 <script>
-//import VueGoogleAutocomplete from "vue-google-autocomplete";
 import CloudinaryService from "../../services/CloudinaryService.js";
 import FooterCmp from '@/components/FooterCmp.vue'
 import StorageService from '../../services/StorageService.js';
@@ -50,15 +49,14 @@ import StorageService from '../../services/StorageService.js';
 
 
 export default {
-  props: ["parking"],
-  name: "ParkingEdit",
-  // components: { VueGoogleAutocomplete },
+  name: "AddParking",
   data() {
     return {
-      parkingToAdd: {
+      parkingToAdd: 
+      {
         location: {
-          lat: "0",
-          lng: "0"
+          lat: 0,
+          lng: 0
         },
         address: "",
         occupiedUntil: "0",
@@ -75,7 +73,6 @@ export default {
         createdAt: 0,
         imageURL: "http://res.cloudinary.com/parker1/image/upload/v1533190733/e8iuj1et9h7mwylwhe5x.jpg"
       },
-      isAddParking: true,
       fileLabelTxt: "Load Image",
       
     };
@@ -94,7 +91,6 @@ export default {
   },
   created() {
     this.reLoadParkingToAdd()  
-    // this.ownerId = this.user._id   
   },
   mounted() {
     console.log('gmap promise lazy: ', this.$gmapApiPromiseLazy())
@@ -114,15 +110,17 @@ export default {
 
   methods: {
     addParking() {
+
+      console.log('this.parkingToAdd.location.lat',this.parkingToAdd.location.lat);
+      
       if (!this.user._id) {
         StorageService.store('parking-to-add', this.parkingToEdit)    
         this.$router.push("/login");
       } else {
-        if (!this.parkingToAdd.address){
-         this.alert('The address is empty, please add address');
+        if ((!this.parkingToAdd.address) || (this.parkingToAdd.location.lat === 0) || (this.parkingToAdd.location.lng === 0)){
+         this.alert('The address not valid!  please insert valid address');
         } else {
         let newParking = this.parkingToEdit;
-        if (this.isAddParking) {
           newParking.ownerId = this.user._id;
 
           this.$store
@@ -134,9 +132,9 @@ export default {
             })
             .catch(err => {
              this.alert('Failed to save parking, please try later');
+             console.log('Failed to save parking, please try later');
               
             });
-         }
         }
 
       }
