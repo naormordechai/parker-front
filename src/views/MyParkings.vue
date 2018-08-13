@@ -21,7 +21,7 @@
                     <ul>
                         <my-parking-preview v-for="parking in ownedParkings" :key="parking._id"
                             :parking="parking" :owned="true"
-                           >
+                           @edit-parking="editParking">
                         </my-parking-preview>                        
                     </ul>
                 </div>
@@ -82,12 +82,15 @@ export default {
     stopParking(parking) {
         // could not figure out why 'this' was undefined in the 'then' cb'
       var self = this;
-      this.parking.iconUrl = "/img/available-position-48x48.png"
+     // this.parking.iconUrl = "/img/available-position-48x48.png"
       return this.$store
         .dispatch({ type: "stopParking", parking: parking })
         .then(() => {
           self.reservedParkings = self.reservedParkings.filter(parking => parking._id !== parking._id);
         });
+    },
+    editParking(parking){
+      console.log('editParking:',parking)
     }
   },
   created() {

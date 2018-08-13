@@ -30,6 +30,7 @@
                             <li v-else><i class="far fa-clock"></i>  ends {{convertTimestamp(parking.occupiedUntil)}}</li>                                                    
                         </ul>                        
                         <el-button v-if="!owned" type="success" @click.prevent="stopParking(parking)">Stop Parking</el-button>  
+                        <el-button v-if="owned" type="success" @click.prevent="$router.push('/parking/edit/'+parking._id)">Edit Parking</el-button>  
                     </div>
                                                          
                 </div>
@@ -56,6 +57,9 @@ export default {
     },
     stopParking() {
         this.$emit('stop-parking', this.parking)
+    },
+    editParking() {
+        this.$emit('edit-parking', this.parking)
     }
   },
 

@@ -1,16 +1,15 @@
 <template>
     <section class="parking-section">
  
-       <form @submit.prevent="addParking" class="add-parking-form" > 
-          <h3> Add New Parking </h3>
-<!--          <div v-if="isAddParking" class="add-parking">  -->
-            <div class="add-margin">
+       <form @submit.prevent="editParking" class="edit-parking-form" > 
+          <h3> Edit Parking </h3>
+            <div class="edit-margin">
              <input placeholder="Please input Address" v-model="parkingToEdit.address" type="text" ref="placeAutocomplete" class="el-input__inner"> 
              </div>          
             <div>
             <p>Price in ₪:</p>  <el-input-number v-model="parkingToEdit.price" :min="1" ></el-input-number>
             </div>
-            <div class="amenities-section add-margin">
+            <div class="amenities-section edit-margin">
              <div><el-checkbox v-model="parkingToEdit.amenities.isCovered">Covered</el-checkbox></div>
              <div><el-checkbox v-model="parkingToEdit.amenities.isPaved">Paved</el-checkbox></div>
              <div><el-checkbox v-model="parkingToEdit.amenities.isForDisable">For disabled</el-checkbox></div>
@@ -32,8 +31,7 @@
                <label for="LoadImageBtn" class="load-img-lbl el-button el-button--primary el-button--small">{{fileLabelTxt}}</label>
             </div>
             
-             <el-button type="success" @click="addParking">Confirm New Parking</el-button>             
-<!--          </div>  -->
+             <el-button type="success" @click="editParking">Confirm Edit Parking</el-button>             
         </form>
 
 
@@ -45,34 +43,18 @@
 import CloudinaryService from "../../services/CloudinaryService.js";
 import FooterCmp from '@/components/FooterCmp.vue'
 import StorageService from '../../services/StorageService.js';
+import ParkingService from '../../services/ParkingService.js';
 
 
 
 export default {
-  name: "AddParking",
+  props: ["parking"],
+  name: "EditParking",
+ 
   data() {
     return {
-      parkingToAdd: 
-      {
-        location: {
-          lat: 0,
-          lng: 0
-        },
-        address: "",
-        occupiedUntil: "0",
-        iconUrl: "/img/available-position-48x48.png",
-        reserverId: "",
-        ownerId: "",
-        price: "0",
-        amenities: {
-          isCovered: false,
-          isPaved: true,
-          isForDisable: false
-        },
-        description: "",
-        createdAt: 0,
-        imageURL: "http://res.cloudinary.com/parker1/image/upload/v1533190733/e8iuj1et9h7mwylwhe5x.jpg"
-      },
+      parkingEdit: null,
+      
       fileLabelTxt: "Load Image",
       
     };
@@ -83,14 +65,16 @@ export default {
   },
   computed: {
     parkingToEdit() {
-      return this.parkingToAdd;
+      return this.parkingEdit;
     },
     user() {
       return this.$store.getters.loggedInUser;
     }
   },
   created() {
-    this.reLoadParkingToAdd()  
+  
+    this.loadParkingId()
+   
   },
   mounted() {
     console.log('gmap promise lazy: ', this.$gmapApiPromiseLazy())
@@ -101,34 +85,38 @@ export default {
       );
       autocomplete.addListener("place_changed", x => {
         var place = autocomplete.getPlace();
-        this.parkingToAdd.location.lat = place.geometry.location.lat();
-        this.parkingToAdd.location.lng = place.geometry.location.lng();
-        this.parkingToAdd.address = place.formatted_address;
+        this.parkingToEdit.location.lat = place.geometry.location.lat();
+        this.parkingToEdit.location.lng = place.geometry.location.lng();
+        this.parkingToEdit.address = place.formatted_address;
       });
     });
   },
 
   methods: {
-    addParking() {
+     loadParkingId(){
+        var parkingId = this.$route.params.id
+        return ParkingService.getById(parkingId)
+        .then(res => {
+            this.parkingEdit = res.parking;
+            console.log('res:',res);
+            
+        })
+     },
 
-      console.log('this.parkingToAdd.location.lat',this.parkingToAdd.location.lat);
-      
-      if (!this.user._id) {
-        StorageService.store('parking-to-add', this.parkingToEdit)    
+    editParking() { 
+
+      if (this.user._id !== this.parkingToEdit.ownerId) {
         this.$router.push("/login");
       } else {
-        if ((!this.parkingToAdd.address) || (this.parkingToAdd.location.lat === 0) || (this.parkingToAdd.location.lng === 0)){
+        if ((!this.parkingToEdit.address) || (this.parkingToEdit.location.lat === 0) || (this.parkingToEdit.location.lng === 0)){
          this.alert('The address not valid!  please insert valid address');
         } else {
-        let newParking = this.parkingToEdit;
-          newParking.ownerId = this.user._id;
-
+        const editedParking = this.parkingToEdit;
           this.$store
-            .dispatch({ type: "addParking", newParking })
+            .dispatch({ type: "editParking", editedParking })
             .then(res => {
               // reditect to the parking details page with vue router.push
-              this.$router.push(`/parking/${res._id}`);
-              localStorage.removeItem('parking-to-add')
+              this.$router.push(`/parking/${editedParking._id}`);
             })
             .catch(err => {
              this.alert('Failed to save parking, please try later');
@@ -141,14 +129,6 @@ export default {
       
     },
 
-    reLoadParkingToAdd () {
-      var parkingToAdd = StorageService.load('parking-to-add')
-      if (parkingToAdd) {
-        this.parkingToAdd = parkingToAdd
-      } else {
-        return
-      }
-    },
 
      alert(message) {
       this.$alert(message, "Alert", {
@@ -185,7 +165,7 @@ p{
   z-index: -1;
 }
 
-.load-img-lbl,.add-margin{
+.load-img-lbl,.edit-margin{
   margin: 10px
 }
 .el-textarea__inner {
@@ -201,7 +181,7 @@ p{
   padding-left: 40px;
 }
 
-.add-parking-form{
+.edit-parking-form{
   width: 300px;
   display: inline-block;
   justify-content:center;
