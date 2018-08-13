@@ -50,9 +50,7 @@ export default {
         .catch(err => {
           return Promise.reject()
         })
-
-
-    },
+      },
     signup(context, {newUser}) {
       return UserService.addUser(newUser)
       .then (newUser => {

@@ -59,6 +59,7 @@ export default {
         var occupiedUntil = Date.now() + this.hours * 60 * 60 * 1000;
         parking.reserverId = this.user._id;       
         parking.occupiedUntil = occupiedUntil;
+        parking.iconUrl = "/img/occupied-48x48.png"
         this.$store
           .dispatch({ type: "reserveParking", parking: parking })
           .then(res => {

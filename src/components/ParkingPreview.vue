@@ -40,18 +40,15 @@ export default {
             return this.parking.occupiedUntil > Date.now()
         },
         distance(){
-            var distance = this.parking.distance            
+            var distance = this.parking.distance
              if (distance > 1) {
                 return distance.toFixed(2) + " km from you"
             }
             else {
                 return distance.toFixed(3)*1000 + " meters from you"
-            }                  
+            }          
         }
-
-        
     },
-  
     props:{
         parking:Object
     },

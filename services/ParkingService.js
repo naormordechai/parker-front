@@ -30,9 +30,6 @@ function reserveParking(parkingReserved){
 function stopParking(parking) {  
     return axios.put(`${PARKING_URL}/stop`, parking)
     .then(res => res.data)
-    .then(data => {  
-        return data
-    })
 }
 
 export default {

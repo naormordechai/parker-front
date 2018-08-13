@@ -27,10 +27,10 @@
             <GmapMarker
               :key="index"
               v-for="(p, index) in parkings"
-              :position="p.location"
-              :icon="getSymbol(p)"
+              :position="p.location"              
+              :icon="p.iconUrl"
               :clickable="true"  
-              :label="'₪' + p.price"           
+              :label="'₪' + p.price"                        
               :draggable="false"
               @click="$router.push('/parking/' + p._id)"
             />
@@ -56,9 +56,8 @@ import FilterBy from './FilterByCmp.vue'
 export default {
   data(){
     return {
-      pos:null,
-      // iconBase : 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-      iconBase : 'img/icons/my-position-64x64.png',
+      pos:null,      
+      iconBase : 'img/my-position-64x64.png',
       isMap:false,
       msg:''
     }
@@ -68,11 +67,9 @@ export default {
      parkings:Array
    },
    methods:{
-       getSymbol(parking){
-         return  (parking.occupiedUntil < Date.now()) 
-                          ? 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
-                          : ''
-       }, 
+      //  getSymbol(parking){
+      //    return  (parking.occupiedUntil < Date.now())?  '/img/occupied-48x48.png' : '/img/available-position-48x48.png' 
+      //    },            
        getMyPos(){
         return LocService.getPosition()
        .then(pos => {
@@ -96,7 +93,8 @@ export default {
          } else {
            return 'Map'
          }
-       }
+       },
+       
      },
   components:{
     ParkingPreview,
@@ -130,6 +128,8 @@ h5 {
 .btn-map{
   display: none;
 }
+
+
 
 @media (max-width: 770px) {
   .list {

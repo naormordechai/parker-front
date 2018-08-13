@@ -44,8 +44,8 @@
     :position="parkingDetail.parking.location"
     :clickable="true"
     :draggable="false"
+    :icon="parkingDetail.parking.iconUrl"
     @click="$router.push('/reserve/'+parkingDetail.parking._id)"
-    icon='http://maps.google.com/mapfiles/ms/icons/green-dot.png'
   />
 </GmapMap>
 
@@ -71,10 +71,12 @@ data(){
 },
 methods:{
     loadParkingId(){
+        
         var parkingId = this.$route.params.id
         return ParkingService.getById(parkingId)
         .then(res => {
             this.parkingDetail = res
+             console.log('parking icon: ', this.parkingDetail.parking.iconUrl)
         })
     },
 
@@ -97,7 +99,7 @@ methods:{
 
 },
 
-    created : async function (){
+    created : async function (){       
         var parkignPrm = this.loadParkingId()
         var locationPrm = LocService.getPosition()
         .then(pos => {

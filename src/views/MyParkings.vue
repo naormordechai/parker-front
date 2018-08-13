@@ -82,10 +82,11 @@ export default {
     stopParking(parking) {
         // could not figure out why 'this' was undefined in the 'then' cb'
       var self = this;
+      // this.parking.iconUrl = "/img/available-position-48x48.png"
       return this.$store
         .dispatch({ type: "stopParking", parking: parking })
         .then(() => {
-          self.reservedParkings = self.reservedParkings.filter(parking => parking._id !== parking._id);
+              self.reservedParkings = self.reservedParkings.filter(currParking => currParking._id !== parking._id)
         });
     }
   },
@@ -156,7 +157,7 @@ img {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  background-image: url('../assets/images/user1.jpg');
+  background-image: url("../assets/images/user1.jpg");
   border-radius: 50%;
 }
 
@@ -164,7 +165,7 @@ img {
   position: relative;
 }
 
-.google-maps {  
+.google-maps {
   position: absolute;
   top: 0;
   left: 0;
@@ -188,40 +189,39 @@ img {
   z-index: -1;
 }
 .profile-details {
-    max-width: 70%;
-    margin: 0 auto;
+  max-width: 70%;
+  margin: 0 auto;
 }
 
 @media (max-width: 1060px) {
-    section {
-        margin: 30px;
-    }    
+  section {
+    margin: 30px;
+  }
 }
 
 @media (max-width: 650px) {
-    .profile-details {
-        flex-direction: column;
-    }
-    .profile-image {
-        margin: 30px auto
-    }
+  .profile-details {
+    flex-direction: column;
+  }
+  .profile-image {
+    margin: 30px auto;
+  }
 }
 
 @media (max-width: 440px) {
-    .profile-details {
-        max-width: 100%;
-    }
-    .profile-image {
-        width: 200px;
-        height: 200px;
-    }
+  .profile-details {
+    max-width: 100%;
+  }
+  .profile-image {
+    width: 200px;
+    height: 200px;
+  }
 }
 
-@media (max-width: 350px) {    
-    .profile-image {
-        width: 150px;
-        height: 150px;
-    }
+@media (max-width: 350px) {
+  .profile-image {
+    width: 150px;
+    height: 150px;
+  }
 }
-
 </style>

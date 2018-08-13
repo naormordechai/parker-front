@@ -76,7 +76,7 @@ export default {
         },
         reserveParking(state, { parking }) {
             var idx = state.parkings.findIndex(currParking => currParking._id === parking._id)
-            state.parkings[idx] = parking
+            state.parkings.splice(idx, 1, parking)                        
         },
         stopParking(state, { parking }) {
             var idx = state.parkings.findIndex(currParking => currParking._id === parking._id)
@@ -85,8 +85,6 @@ export default {
 
         addParking(state, { newParking }) {
             state.parkings.unshift(newParking)
-            // console.log("parkings form store:",state.parkings)
-            // return newParking
         },
         setPosition(state, payload) {
             state.position.lat = payload.lat
@@ -111,13 +109,13 @@ export default {
                 .then((parkings) => {
                     context.commit({ type: 'setParkings', parkings })
                     return parkings
-
                 })
         },
 
         reserveParking(context, { parking }) {           
             return ParkingService.reserveParking(parking)
                 .then(parking => {
+                    console.log('parking after returning from MDB: ', parking)
                     context.commit({ type: 'reserveParking', parking })
                 })
         },

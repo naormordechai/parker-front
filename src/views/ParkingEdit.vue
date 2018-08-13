@@ -62,6 +62,7 @@ export default {
         },
         address: "",
         occupiedUntil: "0",
+        iconUrl: "/img/available-position-48x48.png",
         reserverId: "",
         ownerId: "",
         price: "0",
