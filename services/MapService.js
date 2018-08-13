@@ -27,11 +27,12 @@ function addMarker(loc) {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = 'AIzaSyC6AifY9XewU3b2wEp0Dr7XKyOjSS1oebQ';
+    const API_KEY = 'AIzaSyDXtbBnFfIsE_Zn-6D4r2RtCrjk-9lvxvs';
    
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     // elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initMap`;
+    // AIzaSyDXtbBnFfIsE_Zn-6D4r2RtCrjk-9lvxvs
 
     elGoogleApi.async = true;
     document.body.append(elGoogleApi);
@@ -51,7 +52,7 @@ function centerMap(lat,lng) {
 
 function loadLocation(value) {
 
-    const API_KEY = 'AIzaSyC6AifY9XewU3b2wEp0Dr7XKyOjSS1oebQ';
+    const API_KEY = 'AIzaSyDXtbBnFfIsE_Zn-6D4r2RtCrjk-9lvxvs';
     console.log(value)
     return  axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${value}&key=${API_KEY}`)
     .then(function(res){

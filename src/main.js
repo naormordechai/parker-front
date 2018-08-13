@@ -16,7 +16,7 @@ import LocService from '../services/LocService.js'
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyC6AifY9XewU3b2wEp0Dr7XKyOjSS1oebQ',   
+    key: 'AIzaSyDXtbBnFfIsE_Zn-6D4r2RtCrjk-9lvxvs',   
     libraries: 'places', // This is required if you use the Autocomplete plugin
   },
 })

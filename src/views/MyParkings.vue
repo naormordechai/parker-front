@@ -4,12 +4,13 @@
 
          <el-tabs type="border-card">
             <el-tab-pane label="Reserved Parkings">
+              <h2 v-show="!reserved">You haven't reserved any parking yet.</h2>
                  <div v-show="reserved" class="reserved-parkings">           
                     <h2 v-if="reservedParkings.length > 0">My Reserved Parkings:</h2>
                     <ul>
                         <my-parking-preview v-for="parking in reservedParkings" :key="parking._id"
                             :parking="parking" :owned="false"
-                            @stop-parking="stopParking">
+                            @stop-parking="stopParking(parking)">
                         </my-parking-preview>                        
                     </ul>
                 </div>
@@ -32,7 +33,7 @@
                      <h2>My Details</h2>
                      <el-card class="box-card">  
                         <div class="profile-details flex space-around" >
-                            <div class="profile-image"></div>
+                            <img :src="user.profileImage" class="profile-image" />
                             <div class="profile-details flex column">
                                 <h2>{{user.firstName}} {{user.lastName}}</h2>
                                 <p>{{user.email}}</p>
@@ -80,13 +81,16 @@ export default {
       return moment(timestamp).fromNow();
     },
     stopParking(parking) {
+      console.log('parking to stop: ', parking)
         // could not figure out why 'this' was undefined in the 'then' cb'
-      var self = this;
-     // this.parking.iconUrl = "/img/available-position-48x48.png"
+    
       return this.$store
         .dispatch({ type: "stopParking", parking: parking })
         .then(() => {
-          self.reservedParkings = self.reservedParkings.filter(parking => parking._id !== parking._id);
+          // var parkingIdx = self.reservedParkings.findIndex(parking => parking._id === parking._id);
+          // self.reservedParkings.splice(parkingIdx, 1)
+          this.reservedParkings = this.reservedParkings.filter(currParking => currParking._id !== parking._id);
+          // self.reservedParkings.splice(parkingIdx, 1)
         });
     },
     editParking(parking){
@@ -160,7 +164,6 @@ img {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  background-image: url('../assets/images/user1.jpg');
   border-radius: 50%;
 }
 
@@ -168,7 +171,7 @@ img {
   position: relative;
 }
 
-.google-maps {  
+.google-maps {
   position: absolute;
   top: 0;
   left: 0;
@@ -192,40 +195,39 @@ img {
   z-index: -1;
 }
 .profile-details {
-    max-width: 70%;
-    margin: 0 auto;
+  max-width: 70%;
+  margin: 0 auto;
 }
 
 @media (max-width: 1060px) {
-    section {
-        margin: 30px;
-    }    
+  section {
+    margin: 30px;
+  }
 }
 
 @media (max-width: 650px) {
-    .profile-details {
-        flex-direction: column;
-    }
-    .profile-image {
-        margin: 30px auto
-    }
+  .profile-details {
+    flex-direction: column;
+  }
+  .profile-image {
+    margin: 30px auto;
+  }
 }
 
 @media (max-width: 440px) {
-    .profile-details {
-        max-width: 100%;
-    }
-    .profile-image {
-        width: 200px;
-        height: 200px;
-    }
+  .profile-details {
+    max-width: 100%;
+  }
+  .profile-image {
+    width: 200px;
+    height: 200px;
+  }
 }
 
-@media (max-width: 350px) {    
-    .profile-image {
-        width: 150px;
-        height: 150px;
-    }
+@media (max-width: 350px) {
+  .profile-image {
+    width: 150px;
+    height: 150px;
+  }
 }
-
 </style>

@@ -22,16 +22,23 @@
             :center="pos"
             :zoom="14"
             map-type-id="terrain"
-            style="width: 60%; height: 100vh; flex:1" >
-            <GmapMarker
+            style="width: 60%; height: 100vh; flex:1"
+      >
+      <GmapMarker
               :key="index"
               v-for="(p, index) in parkings"
               :position="p.location"              
               :icon="p.iconUrl"
               :clickable="true"  
-              :label="'₪' + p.price"           
+              :label="{ 
+                text: `₪${p.price}`,
+                color: 'white',
+                fontSize: '16px'                
+              }"
+
               :draggable="false"
-              @click="$router.push('/parking/' + p._id)"/>
+              @click="$router.push('/parking/' + p._id)"
+      />
 
             <GmapMarker 
               :position="pos"
@@ -124,6 +131,9 @@ h5 {
 .btn-map{
   display: none;
 }
+
+
+
 
 @media (max-width: 770px) {
   .list {

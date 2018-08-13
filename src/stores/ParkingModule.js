@@ -76,7 +76,7 @@ export default {
         },
         reserveParking(state, { parking }) {
             var idx = state.parkings.findIndex(currParking => currParking._id === parking._id)
-            state.parkings.splice(idx, 1, parking)
+            state.parkings.splice(idx, 1, parking)                        
         },
         stopParking(state, { parking }) {
             var idx = state.parkings.findIndex(currParking => currParking._id === parking._id)
@@ -120,20 +120,21 @@ export default {
                     context.commit({ type: 'setParkings', parkings })
                     
                     return parkings
-
                 })
         },
 
         reserveParking(context, { parking }) {
             return ParkingService.reserveParking(parking)
                 .then(parking => {
+                    console.log('parking after returning from MDB: ', parking)
                     context.commit({ type: 'reserveParking', parking })
                 })
         },
 
         stopParking(context, { parking }) {
             parking.occupiedUntil = 0
-            parking.reserverId = ''
+            parking.reserverId = '' 
+            parking.iconUrl = '/img/available-position-48x48.png'          
             return ParkingService.stopParking(parking)
                 .then((parking) => {
                     context.commit({ type: 'stopParking', parking })

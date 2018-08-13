@@ -13,7 +13,7 @@
                 <p><i class="fas fa-shekel-sign"></i> {{parkingDetail.parking.price}}</p>
                 <p><i class="fas fa-map-marker-alt"></i>  {{calcDistance}} </p>
                 <div class="line"></div>
-                <p>{{parkingDetail.parking.description}}</p>
+                <p class="description">{{parkingDetail.parking.description}}</p>
                 <div class="line"></div>
                 <div class="amenities flex">
                     <p v-if="parkingDetail.parking.amenities.isPaved"><i class="fas fa-road"></i></p>
@@ -44,7 +44,7 @@
     :position="parkingDetail.parking.location"
     :clickable="true"
     :draggable="false"
-    :icon= parkingDetail.parking.iconUrl
+    :icon="parkingDetail.parking.iconUrl"
     @click="$router.push('/reserve/'+parkingDetail.parking._id)"
   />
 </GmapMap>
@@ -71,10 +71,12 @@ data(){
 },
 methods:{
     loadParkingId(){
+        
         var parkingId = this.$route.params.id
         return ParkingService.getById(parkingId)
         .then(res => {
             this.parkingDetail = res
+             console.log('parking icon: ', this.parkingDetail.parking.iconUrl)
         })
     },
 
@@ -97,7 +99,7 @@ methods:{
 
 },
 
-    created : async function (){
+    created : async function (){       
         var parkignPrm = this.loadParkingId()
         var locationPrm = LocService.getPosition()
         .then(pos => {
@@ -134,6 +136,11 @@ methods:{
 </script>
 
 <style scoped lang="scss">
+
+.description{
+    line-height: 25px;
+}
+
 .parking-details-image {
     max-width: 100%;
 }
