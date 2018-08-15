@@ -31,11 +31,6 @@ function _connectGoogleApi() {
    
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
-<<<<<<< HEAD
-=======
-    // elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initMap`;
-    // AIzaSyDXtbBnFfIsE_Zn-6D4r2RtCrjk-9lvxvs
->>>>>>> 0a7fd4a98a572ba318ea3c9a24b315edc38dd013
 
     elGoogleApi.async = true;
     document.body.append(elGoogleApi);
@@ -56,10 +51,6 @@ function centerMap(lat,lng) {
 function loadLocation(value) {
 
     const API_KEY = 'AIzaSyDXtbBnFfIsE_Zn-6D4r2RtCrjk-9lvxvs';
-<<<<<<< HEAD
-=======
-    console.log(value)
->>>>>>> 0a7fd4a98a572ba318ea3c9a24b315edc38dd013
     return  axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${value}&key=${API_KEY}`)
     .then(function(res){
         return res.data

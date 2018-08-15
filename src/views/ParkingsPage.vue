@@ -28,10 +28,10 @@ export default {
             setTimeout(this.showAvailableParkingMsg, 60000)            
         },
         showAvailableParkingMsg() {
-            DemoService.addRandomParking()
-            .then (res => {
-                var parkingToAdd = res.data
-                this.$store.commit({type: 'addNewParking', parkingToAdd: parkingToAdd})
+            // DemoService.addRandomParking()
+            // .then (res => {
+            //     var parkingToAdd = res.data
+            //     this.$store.commit({type: 'addNewParking', parkingToAdd: parkingToAdd})
                 this.$notify({
                     title: `it's your lucky day!`, 
                     message: 'a new parking near your location has just become available! \
@@ -39,7 +39,7 @@ export default {
                     type: 'success',   
                     duration: 8000                 
                 })
-            })
+            // })
         }
     },
     created (){
